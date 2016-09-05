@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/destinations"
+            android:checkable="true"
+            android:title="@string/destionatins" />
+        <item
+            android:id="@+id/packages"
+            android:title="@string/packages" />
+        <item
+            android:id="@+id/hotels"
+            android:title="@string/hotels" />
+        <item
+            android:id="@+id/festivals"
+            android:title="@string/festivals" />
+        <item
+            android:id="@+id/customize_tours"
+            android:title="@string/customize_tours" />
+        <item
+            android:id="@+id/user_bookmark"
+            android:title="@string/user_bookmark" />
+    </group>
+</menu>
