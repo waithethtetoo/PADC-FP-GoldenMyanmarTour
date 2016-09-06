@@ -35,12 +35,12 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
-    /*  @Override
-      public void onAttach(Context context) {
-          super.onAttach(context);
-          mController = (DestinationViewHolder.ControllerDestinationItem) context;
-      }
-  */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mController = (DestinationViewHolder.ControllerDestinationItem) context;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

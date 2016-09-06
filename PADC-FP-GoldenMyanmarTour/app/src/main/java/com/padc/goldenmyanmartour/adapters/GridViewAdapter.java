@@ -37,11 +37,11 @@ public class GridViewAdapter extends BaseAdapter {
         return 10;
     }
 
-    /*   @Override
-       public DestinationVO getItem(int position) {
-           return destinationList.get(position);
-       }
-   */
+   /* @Override
+    public DestinationVO getItem(int position) {
+        return destinationList.get(position);
+    } */
+
     @Override
     public Object getItem(int position) {
         return 0;
@@ -63,6 +63,7 @@ public class GridViewAdapter extends BaseAdapter {
             viewHolder = (DestinationViewHolder) convertView.getTag();
         }
 //        viewHolder.bindData(getItem(position));
+//        viewHolder.bindData();
         return convertView;
     }
 }

@@ -76,6 +76,7 @@ public class HomeActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             navigateToHomeFragment();
         }
+
         piImageSlider.setNumPage(5);
         String[] images = {"R.drawable.bagan", "R.mipmap.ic_launcher", "R.drawable.bagan", "R.mipmap.ic_launcher",
                 "R.drawable.bagan"};
