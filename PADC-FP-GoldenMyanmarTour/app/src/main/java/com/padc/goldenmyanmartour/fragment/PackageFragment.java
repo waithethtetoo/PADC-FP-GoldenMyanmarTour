@@ -1,9 +1,9 @@
 package com.padc.goldenmyanmartour.fragment;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,22 +23,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Created by WT on 9/6/2016.
  */
-public class HomeFragment extends Fragment {
+public class PackageFragment extends Fragment {
 
-    @BindView(R.id.gv_destinations)
-    GridView gv_destinations;
+    @BindView(R.id.gv_packages)
+    GridView gvPackages;
 
     private GridViewAdapter mAdapter;
     private DestinationViewHolder.ControllerDestinationItem mController;
+
     private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
 
-    public HomeFragment() {
-    }
-
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static PackageFragment newInstance() {
+        PackageFragment fragment = new PackageFragment();
         return fragment;
     }
 
@@ -54,28 +52,28 @@ public class HomeFragment extends Fragment {
         mAdapter = new GridViewAdapter(null, mController);
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_packages, container, false);
         ButterKnife.bind(this, view);
-        gv_destinations.setAdapter(mAdapter);
+        gvPackages.setAdapter(mAdapter);
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_book_mark, menu);
-        MenuItem bookMarkItem = menu.findItem(R.id.action_bookmark);
-        MenuItemCompat.setOnActionExpandListener(bookMarkItem, mOnActionExpandListener);
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        MenuItemCompat.setOnActionExpandListener(searchItem, mOnActionExpandListener);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_bookmark:
-                Toast.makeText(GMTApp.getContext(), getString(R.string.lbl_book_mark), Toast.LENGTH_SHORT).show();
+            case R.id.action_search:
+                Toast.makeText(GMTApp.getContext(), getString(R.string.lbl_search), Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -46,10 +46,10 @@ public class ImagesPagerAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) mInflater.inflate(R.layout.view_item_destination_image, container, false);
 
         Glide.with(imageView.getContext())
-                .load(R.mipmap.ic_launcher)
+                .load(R.drawable.bagan)
                 .centerCrop()
-                .placeholder(R.drawable.bagan)
-                .error(R.drawable.bagan)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
                 .into(imageView);
         return imageView;
     }
