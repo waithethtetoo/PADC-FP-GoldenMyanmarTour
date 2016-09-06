@@ -40,10 +40,10 @@ public class HomeActivity extends AppCompatActivity
     NavigationView navigationView;
 
     @BindView(R.id.pager_images)
-    ViewPager pager_images;
+    ViewPager pagerImages;
 
     @BindView(R.id.pi_image_slider)
-    PageIndicatorView pi_image_slider;
+    PageIndicatorView piImageSlider;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -76,12 +76,12 @@ public class HomeActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             navigateToHomeFragment();
         }
-        pi_image_slider.setNumPage(5);
+        piImageSlider.setNumPage(5);
         String[] images = {"R.drawable.bagan", "R.mipmap.ic_launcher", "R.drawable.bagan", "R.mipmap.ic_launcher",
                 "R.drawable.bagan"};
         ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(images);
-        pager_images.setAdapter(pagerAdapter);
-        pager_images.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pagerImages.setAdapter(pagerAdapter);
+        pagerImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity
 
             @Override
             public void onPageSelected(int position) {
-                pi_image_slider.setCurrentPage(position);
+                piImageSlider.setCurrentPage(position);
             }
 
             @Override

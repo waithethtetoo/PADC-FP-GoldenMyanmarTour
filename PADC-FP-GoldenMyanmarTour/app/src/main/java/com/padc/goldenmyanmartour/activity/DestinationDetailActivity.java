@@ -31,16 +31,16 @@ public class DestinationDetailActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     @BindView(R.id.tv_dest_desc)
-    TextView tv_dest_desc;
+    TextView tvdestDesc;
 
     @BindView(R.id.pager_destination_images)
-    ViewPager pager_destination_images;
+    ViewPager pagerDestinationImages;
 
     @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout collapsing_toolbar;
+    CollapsingToolbarLayout collapsingToolbar;
 
     @BindView(R.id.pi_destination_image_slider)
-    PageIndicatorView pi_destination_image_slider;
+    PageIndicatorView piDestinationImageSlider;
 
     private String mDestinationName;
     private DestinationVO mDestination;
@@ -74,11 +74,11 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
     private void bindData(DestinationVO destinationVO) {
 
-        tv_dest_desc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
-        pi_destination_image_slider.setCurrentPage(destinationVO.getImages().length);
+        tvdestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
+        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getImages());
-        pager_destination_images.setAdapter(adapter);
-        pager_destination_images.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pagerDestinationImages.setAdapter(adapter);
+        pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -86,7 +86,7 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                pi_destination_image_slider.setCurrentPage(position);
+                piDestinationImageSlider.setCurrentPage(position);
             }
 
             @Override
@@ -94,6 +94,6 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
             }
         });
-        collapsing_toolbar.setTitle(mDestinationName);
+        collapsingToolbar.setTitle(mDestinationName);
     }
 }
