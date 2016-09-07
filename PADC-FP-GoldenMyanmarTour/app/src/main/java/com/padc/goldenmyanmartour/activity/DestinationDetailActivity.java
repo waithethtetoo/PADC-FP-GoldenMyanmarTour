@@ -57,14 +57,14 @@ public class DestinationDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_destination_detail);
         ButterKnife.bind(this, this);
 
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
-        bindData(mDestination);
+        bindData();
     }
 
     @Override
@@ -72,12 +72,14 @@ public class DestinationDetailActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void bindData(DestinationVO destinationVO) {
+    private void bindData() {
 
         tvdestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
-        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
-        ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getImages());
-        pagerDestinationImages.setAdapter(adapter);
+
+//        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
+
+//        ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getImages());
+//        pagerDestinationImages.setAdapter(adapter);
         pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

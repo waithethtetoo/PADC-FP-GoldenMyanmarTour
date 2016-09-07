@@ -21,6 +21,7 @@ import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
+import com.padc.goldenmyanmartour.fragment.PackageFragment;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
 import butterknife.BindView;
@@ -57,7 +58,8 @@ public class HomeActivity extends AppCompatActivity
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setTitle(R.string.app_name);
             actionBar.setHomeAsUpIndicator(R.mipmap.ic_launcher);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -132,6 +134,7 @@ public class HomeActivity extends AppCompatActivity
                 navigateToHomeFragment();
                 return true;
             case R.id.packages:
+                navigateToPackageFragment();
                 return true;
             case R.id.hotels:
                 return true;
@@ -148,6 +151,12 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToHomeFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, HomeFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToPackageFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, PackageFragment.newInstance())
                 .commit();
     }
 

@@ -7,4 +7,6 @@
     <string name="festivals">Festivals</string>
     <string name="customize_tours">Customize Tour</string>
     <string name="user_bookmark">User Bookmarks</string>
+    <string name="lbl_book_mark">User Bookmark</string>
+    <string name="lbl_search">Price Search</string>
 </resources>
