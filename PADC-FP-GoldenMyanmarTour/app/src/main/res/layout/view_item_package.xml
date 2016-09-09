@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.padc.goldenmyanmartour.components.DynamicImageView
+        android:id="@+id/iv_package"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:src="@drawable/inle" />
+
+    <TextView
+        android:id="@+id/tv_package_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 DAYS / 1 NIGHT FROM KALAW TO INLE LAKE"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_package_price"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Price : 20,000 Ks"-->
+        <!--android:textSize="@dimen/text_regular" />-->
+
+</LinearLayout>

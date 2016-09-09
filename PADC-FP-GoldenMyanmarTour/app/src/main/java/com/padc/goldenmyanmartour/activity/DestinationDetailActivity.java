@@ -1,15 +1,21 @@
 package com.padc.goldenmyanmartour.activity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
@@ -19,6 +25,7 @@ import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by WT on 9/5/2016.
@@ -31,7 +38,7 @@ public class DestinationDetailActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     @BindView(R.id.tv_dest_desc)
-    TextView tvdestDesc;
+    TextView tvDestDesc;
 
     @BindView(R.id.pager_destination_images)
     ViewPager pagerDestinationImages;
@@ -42,8 +49,12 @@ public class DestinationDetailActivity extends AppCompatActivity {
     @BindView(R.id.pi_destination_image_slider)
     PageIndicatorView piDestinationImageSlider;
 
+    @BindView(R.id.fab_book_mark)
+    FloatingActionButton fabBookMark;
+
     private String mDestinationName;
     private DestinationVO mDestination;
+    private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
 
     public static Intent newIntent(String name) {
         Intent intent = new Intent(GMTApp.getContext(), DestinationDetailActivity.class);
@@ -64,22 +75,13 @@ public class DestinationDetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
-        bindData();
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    private void bindData() {
-
-        tvdestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
 
 //        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
-
-//        ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getImages());
-//        pagerDestinationImages.setAdapter(adapter);
+        piDestinationImageSlider.setCurrentPage(3);
+        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay"};
+        ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
+        pagerDestinationImages.setAdapter(adapter);
         pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -97,5 +99,21 @@ public class DestinationDetailActivity extends AppCompatActivity {
             }
         });
         collapsingToolbar.setTitle(mDestinationName);
+
+        bindData();
+    }
+
+    @OnClick(R.id.fab_book_mark)
+    public void clickFabBookMark() {
+        Toast.makeText(DestinationDetailActivity.this, "Floating Book Mark Button Click", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    private void bindData() {
+        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
     }
 }

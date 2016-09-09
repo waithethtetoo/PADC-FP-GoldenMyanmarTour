@@ -1,5 +1,6 @@
 package com.padc.goldenmyanmartour.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,13 @@ import java.util.List;
 /**
  * Created by WT on 9/5/2016.
  */
-public class GridViewAdapter extends BaseAdapter {
+public class DestinationAdapter extends BaseAdapter {
 
     private List<DestinationVO> destinationList;
     private LayoutInflater inflater;
     private DestinationViewHolder.ControllerDestinationItem controllerDestinationItem;
 
-    public GridViewAdapter(List<DestinationVO> destinationList, DestinationViewHolder.ControllerDestinationItem mController) {
+    public DestinationAdapter(List<DestinationVO> destinationList, DestinationViewHolder.ControllerDestinationItem mController) {
         if (destinationList != null) {
             this.destinationList = destinationList;
         } else {
@@ -30,6 +31,7 @@ public class GridViewAdapter extends BaseAdapter {
         }
         inflater = LayoutInflater.from(GMTApp.getContext());
         this.controllerDestinationItem = mController;
+//        mContext=GMTApp.getContext();
     }
 
     @Override
@@ -57,13 +59,13 @@ public class GridViewAdapter extends BaseAdapter {
         DestinationViewHolder viewHolder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.view_item_destinations, parent, false);
-            viewHolder = new DestinationViewHolder(convertView, controllerDestinationItem);
+            viewHolder = new DestinationViewHolder(convertView,controllerDestinationItem);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (DestinationViewHolder) convertView.getTag();
         }
 //        viewHolder.bindData(getItem(position));
-//        viewHolder.bindData();
+        viewHolder.bindData();
         return convertView;
     }
 }

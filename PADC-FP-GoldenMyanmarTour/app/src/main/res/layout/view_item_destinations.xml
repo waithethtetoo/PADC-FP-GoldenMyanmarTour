@@ -5,19 +5,20 @@
     android:orientation="vertical"
     android:padding="@dimen/margin_medium">
 
-    <TextView
-        android:id="@+id/tv_destination_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bagan"
-        android:textSize="@dimen/text_heading_1x" />
-
     <com.padc.goldenmyanmartour.components.DynamicImageView
         android:id="@+id/iv_destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_small"
         android:src="@drawable/bagan" />
+
+    <TextView
+        android:id="@+id/tv_destination_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bagan"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_heading_1x" />
 
     <TextView
         android:id="@+id/tv_destination_desc"
@@ -27,6 +28,5 @@
         android:ellipsize="end"
         android:maxLines="3"
         android:text="It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century."
-        android:textColor="@color/primary_text"
         android:textSize="@dimen/text_regular" />
 </LinearLayout>

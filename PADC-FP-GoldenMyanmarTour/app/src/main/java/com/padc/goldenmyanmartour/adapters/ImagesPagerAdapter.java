@@ -19,6 +19,7 @@ import java.util.List;
  * Created by WT on 9/5/2016.
  */
 public class ImagesPagerAdapter extends PagerAdapter {
+
     private List<String> mImages;
     private LayoutInflater mInflater;
 

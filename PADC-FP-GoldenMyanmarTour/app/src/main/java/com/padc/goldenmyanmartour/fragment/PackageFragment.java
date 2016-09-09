@@ -1,6 +1,7 @@
 package com.padc.goldenmyanmartour.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,13 +12,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
-import com.padc.goldenmyanmartour.adapters.GridViewAdapter;
+import com.padc.goldenmyanmartour.activity.PackageDetailActivity;
+import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
+import com.padc.goldenmyanmartour.adapters.PackageAdapter;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
+import com.padc.goldenmyanmartour.views.holders.PackageViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,10 +37,8 @@ public class PackageFragment extends Fragment {
     @BindView(R.id.gv_packages)
     GridView gvPackages;
 
-    private GridViewAdapter mAdapter;
-    private DestinationViewHolder.ControllerDestinationItem mController;
-
-    private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
+    private PackageAdapter mAdapter;
+    private PackageViewHolder.ControllerItem mController;
 
     public static PackageFragment newInstance() {
         PackageFragment fragment = new PackageFragment();
@@ -43,13 +48,13 @@ public class PackageFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mController = (DestinationViewHolder.ControllerDestinationItem) context;
+//        mController = (DestinationViewHolder.ControllerDestinationItem) context;
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new GridViewAdapter(null, mController);
+        mAdapter = new PackageAdapter(null, mController);
     }
 
     @Nullable
@@ -61,21 +66,4 @@ public class PackageFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_search, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        MenuItemCompat.setOnActionExpandListener(searchItem, mOnActionExpandListener);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_search:
-                Toast.makeText(GMTApp.getContext(), getString(R.string.lbl_search), Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

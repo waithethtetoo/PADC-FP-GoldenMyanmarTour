@@ -21,7 +21,10 @@
         </activity>
         <activity
             android:name=".activity.DestinationDetailActivity"
-            android:label="@string/destionatins"></activity>
+            android:label="@string/destinations"></activity>
+        <activity
+            android:name=".activity.PackageDetailActivity"
+            android:label="@string/packages"></activity>
     </application>
 
 </manifest>

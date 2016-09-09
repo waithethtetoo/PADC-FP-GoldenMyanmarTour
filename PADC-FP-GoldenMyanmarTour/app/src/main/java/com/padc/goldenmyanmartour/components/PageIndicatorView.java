@@ -14,7 +14,9 @@ import static android.graphics.Paint.ANTI_ALIAS_FLAG;
  * Created by WT on 9/5/2016.
  */
 public class PageIndicatorView extends View {
-    private final String VIEW_TAG="PageIndicator";
+
+    private final String VIEW_TAG = "PageIndicatorView";
+
     private final int WHITE_COLOR = 0xFFFFFFFF;
     private final int GRAY_COLOR = 0xFFFFFFFF;
     private final Paint mPaintNormalFill = new Paint(ANTI_ALIAS_FLAG);
@@ -71,7 +73,7 @@ public class PageIndicatorView extends View {
         float realWidth = this.calculateWith();
 
         //center circle object
-        float dx = (float)(width / 2.0 - realWidth / 2.0);
+        float dx = (float) (width / 2.0 - realWidth / 2.0);
         float dy = 0;
         //Log.d(VIEW_TAG, "onDraw>>>" + realWidth + "/ " + width + " / height " + this.getHeight());
         for (int iLoop = 0; iLoop < this.numPage; iLoop++) {
@@ -101,8 +103,7 @@ public class PageIndicatorView extends View {
     /**
      * Determines the width of this view
      *
-     * @param measureSpec
-     *            A measureSpec packed into an int
+     * @param measureSpec A measureSpec packed into an int
      * @return The width of the view, honoring constraints from measureSpec
      */
     private int measureLong(int measureSpec) {
@@ -115,7 +116,7 @@ public class PageIndicatorView extends View {
             result = specSize;
         } else {
             //Calculate the width according the views count
-            result = (int)(getPaddingLeft() + getPaddingRight()
+            result = (int) (getPaddingLeft() + getPaddingRight()
                     + this.calculateWith());
             //Respect AT_MOST value if that was what is called for by measureSpec
             if (specMode == MeasureSpec.AT_MOST) {
@@ -128,8 +129,7 @@ public class PageIndicatorView extends View {
     /**
      * Determines the height of this view
      *
-     * @param measureSpec
-     *            A measureSpec packed into an int
+     * @param measureSpec A measureSpec packed into an int
      * @return The height of the view, honoring constraints from measureSpec
      */
     private int measureShort(int measureSpec) {
@@ -142,7 +142,7 @@ public class PageIndicatorView extends View {
             result = specSize;
         } else {
             //Measure the height
-            result = (int)(2 * mRadius + getPaddingTop() + getPaddingBottom() + 1);
+            result = (int) (2 * mRadius + getPaddingTop() + getPaddingBottom() + 1);
             //Respect AT_MOST value if that was what is called for by measureSpec
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);

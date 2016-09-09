@@ -5,18 +5,22 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.Toast;
+import android.widget.Spinner;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
-import com.padc.goldenmyanmartour.adapters.GridViewAdapter;
+import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
+import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
+import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
 import butterknife.BindView;
@@ -28,11 +32,10 @@ import butterknife.ButterKnife;
 public class HomeFragment extends Fragment {
 
     @BindView(R.id.gv_destinations)
-    GridView gv_destinations;
+    GridView gvDestinations;
 
-    private GridViewAdapter mAdapter;
+    private DestinationAdapter mAdapter;
     private DestinationViewHolder.ControllerDestinationItem mController;
-    private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
 
     public HomeFragment() {
     }
@@ -45,13 +48,13 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mController = (DestinationViewHolder.ControllerDestinationItem) context;
+//        mController = (DestinationViewHolder.ControllerDestinationItem) context;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new GridViewAdapter(null, mController);
+        mAdapter = new DestinationAdapter(null, mController);
     }
 
     @Override
@@ -59,25 +62,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-        gv_destinations.setAdapter(mAdapter);
+        gvDestinations.setAdapter(mAdapter);
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_book_mark, menu);
-        MenuItem bookMarkItem = menu.findItem(R.id.action_bookmark);
-        MenuItemCompat.setOnActionExpandListener(bookMarkItem, mOnActionExpandListener);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_bookmark:
-                Toast.makeText(GMTApp.getContext(), getString(R.string.lbl_book_mark), Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
