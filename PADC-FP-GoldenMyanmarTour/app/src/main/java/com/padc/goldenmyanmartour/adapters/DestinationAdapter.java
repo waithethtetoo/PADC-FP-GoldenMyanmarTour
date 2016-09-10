@@ -31,7 +31,6 @@ public class DestinationAdapter extends BaseAdapter {
         }
         inflater = LayoutInflater.from(GMTApp.getContext());
         this.controllerDestinationItem = mController;
-//        mContext=GMTApp.getContext();
     }
 
     @Override
@@ -56,10 +55,11 @@ public class DestinationAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         DestinationViewHolder viewHolder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.view_item_destinations, parent, false);
-            viewHolder = new DestinationViewHolder(convertView,controllerDestinationItem);
+            viewHolder = new DestinationViewHolder(convertView, controllerDestinationItem);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (DestinationViewHolder) convertView.getTag();

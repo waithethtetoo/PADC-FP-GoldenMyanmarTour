@@ -1,0 +1,21 @@
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".fragment.HomeFragment"
+    tools:showIn="@layout/activity_home">
+
+    <GridView
+        android:id="@+id/gv_festivals"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:columnWidth="150dp"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/margin_medium"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/margin_medium" />
+
+</android.support.v4.widget.SwipeRefreshLayout>

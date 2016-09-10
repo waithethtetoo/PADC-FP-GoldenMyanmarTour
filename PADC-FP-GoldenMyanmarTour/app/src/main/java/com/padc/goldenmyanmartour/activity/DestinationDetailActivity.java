@@ -40,11 +40,11 @@ public class DestinationDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_dest_desc)
     TextView tvDestDesc;
 
-    @BindView(R.id.pager_destination_images)
-    ViewPager pagerDestinationImages;
-
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
+
+    @BindView(R.id.pager_destination_images)
+    ViewPager pagerDestinationImages;
 
     @BindView(R.id.pi_destination_image_slider)
     PageIndicatorView piDestinationImageSlider;
@@ -74,11 +74,11 @@ public class DestinationDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
         mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
 
-
 //        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
-        piDestinationImageSlider.setCurrentPage(3);
+        piDestinationImageSlider.setNumPage(3);
         String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay"};
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerDestinationImages.setAdapter(adapter);
@@ -99,7 +99,6 @@ public class DestinationDetailActivity extends AppCompatActivity {
             }
         });
         collapsingToolbar.setTitle(mDestinationName);
-
         bindData();
     }
 

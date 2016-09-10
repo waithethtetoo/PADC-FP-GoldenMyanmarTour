@@ -21,10 +21,12 @@
         </activity>
         <activity
             android:name=".activity.DestinationDetailActivity"
-            android:label="@string/destinations"></activity>
+            android:label="@string/destinations"
+            android:parentActivityName=".activity.HomeActivity"></activity>
         <activity
             android:name=".activity.PackageDetailActivity"
-            android:label="@string/packages"></activity>
+            android:label="@string/packages"
+            android:parentActivityName=".activity.HomeActivity"></activity>
     </application>
 
 </manifest>
