@@ -24,6 +24,7 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.fragment.FestivalFragment;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
 import com.padc.goldenmyanmartour.fragment.PackageFragment;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
@@ -43,11 +44,11 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
-//    @BindView(R.id.pager_images)
-//    ViewPager pagerImages;
-//
-//    @BindView(R.id.pi_image_slider)
-//    PageIndicatorView piImageSlider;
+    @BindView(R.id.pager_images)
+    ViewPager pagerImages;
+
+    @BindView(R.id.pi_image_slider)
+    PageIndicatorView piImageSlider;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -82,57 +83,37 @@ public class HomeActivity extends AppCompatActivity
             navigateToHomeFragment();
         }
 
-//        piImageSlider.setNumPage(5);
-//        String[] images = {"R.drawable.bagan", "R.mipmap.ic_launcher", "R.drawable.bagan", "R.mipmap.ic_launcher",
-//                "R.drawable.bagan"};
-//        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(images);
-//        pagerImages.setAdapter(pagerAdapter);
-//        pagerImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                piImageSlider.setCurrentPage(position);
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
+        piImageSlider.setNumPage(5);
+        String[] images = {"R.drawable.bagan", "R.mipmap.ic_launcher", "R.drawable.bagan", "R.mipmap.ic_launcher",
+                "R.drawable.bagan"};
+        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(images);
+        pagerImages.setAdapter(pagerAdapter);
+        pagerImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                piImageSlider.setCurrentPage(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
-
-    MenuItem searchItem;
-    MenuItem tourItem;
-    private boolean isHome = false;
-    private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        searchItem = menu.findItem(R.id.action_search);
-        MenuItemCompat.setOnActionExpandListener(searchItem, mOnActionExpandListener);
-
-        tourItem = menu.findItem(R.id.action_tour_type_filter);
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(tourItem);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
         return true;
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        searchItem.setVisible(!isHome);
-        tourItem.setVisible(!isHome);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -143,10 +124,6 @@ public class HomeActivity extends AppCompatActivity
         switch (id) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            case R.id.action_search:
-                return true;
-            case R.id.action_tour_type_filter:
                 return true;
         }
 
@@ -167,6 +144,7 @@ public class HomeActivity extends AppCompatActivity
             case R.id.hotels:
                 return true;
             case R.id.festivals:
+                navigateToFestivalFragment();
                 return true;
             case R.id.customize_tours:
                 return true;
@@ -175,6 +153,7 @@ public class HomeActivity extends AppCompatActivity
         }
         return false;
     }
+
 
     private void navigateToHomeFragment() {
         getSupportFragmentManager().beginTransaction()
@@ -185,6 +164,12 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToPackageFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, PackageFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToFestivalFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, FestivalFragment.newInstance())
                 .commit();
     }
 

@@ -34,7 +34,8 @@ public class ImagesPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return mImages.size();
+        return 5;
+//        return mImages.size();
     }
 
     @Override
@@ -52,8 +53,10 @@ public class ImagesPagerAdapter extends PagerAdapter {
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .into(imageView);
+        container.addView(imageView);
         return imageView;
     }
+
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
