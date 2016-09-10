@@ -25,6 +25,7 @@ import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
+import com.padc.goldenmyanmartour.fragment.HotelFragment;
 import com.padc.goldenmyanmartour.fragment.PackageFragment;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
@@ -42,6 +43,8 @@ public class HomeActivity extends AppCompatActivity
 
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
+
+
 
 //    @BindView(R.id.pager_images)
 //    ViewPager pagerImages;
@@ -165,6 +168,7 @@ public class HomeActivity extends AppCompatActivity
                 navigateToPackageFragment();
                 return true;
             case R.id.hotels:
+                navigateToHotelFragment();
                 return true;
             case R.id.festivals:
                 return true;
@@ -185,6 +189,12 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToPackageFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, PackageFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToHotelFragment(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, HotelFragment.newInstance())
                 .commit();
     }
 
