@@ -79,7 +79,7 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
 //        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
         piDestinationImageSlider.setNumPage(3);
-        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay"};
+        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay","R.drawable.bagan", "R.drawable.inle"};
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerDestinationImages.setAdapter(adapter);
         pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
