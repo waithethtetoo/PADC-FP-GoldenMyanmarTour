@@ -57,8 +57,8 @@ public class PackageDetailActivity extends AppCompatActivity {
     @BindView(R.id.iv_book_the_package)
     ImageView ivBookPackage;
 
-    @BindView(R.id.fab_package_book_mark)
-    FloatingActionButton fabPackageBook;
+//    @BindView(R.id.fab_package_book_mark)
+//    FloatingActionButton fabPackageBook;
 
     private String mPackageName;
     private PackageVO packageVO;
@@ -120,10 +120,10 @@ public class PackageDetailActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(mPackageName);
     }
 
-    @OnClick(R.id.fab_package_book_mark)
-    public void clickOnPackageBookMark() {
-        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
-    }
+//    @OnClick(R.id.fab_package_book_mark)
+//    public void clickOnPackageBookMark() {
+//        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
+//    }
 
     @OnClick(R.id.iv_book_the_package)
     public void clickOnBook() {

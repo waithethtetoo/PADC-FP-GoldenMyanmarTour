@@ -97,14 +97,14 @@
                 android:id="@+id/tv_package_desc_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Day 1:Kalaw-Changyi Pauk-Khaung Dine"
-                android:textColor="@color/primary_text"
                 android:layout_below="@id/tv_package_name"
                 android:layout_marginBottom="@dimen/margin_medium_2"
                 android:layout_marginLeft="@dimen/margin_medium_3"
-                android:textSize="@dimen/text_regular"
                 android:layout_marginRight="@dimen/margin_medium_3"
-                android:lineSpacingMultiplier="1.2" />
+                android:lineSpacingMultiplier="1.2"
+                android:text="Day 1:Kalaw-Changyi Pauk-Khaung Dine"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular" />
 
             <TextView
                 android:id="@+id/tv_package_desc"
@@ -122,13 +122,18 @@
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_package_book_mark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_star_border_24dp"
-        android:tint="@android:color/white"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|end|right" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+    <!--android:id="@+id/fab_package_book_mark"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="@dimen/fab_margin"-->
+    <!--android:src="@drawable/ic_star_border_24dp"-->
+    <!--android:tint="@android:color/white"-->
+    <!--app:layout_anchor="@id/appbar"-->
+    <!--app:layout_anchorGravity="bottom|end|right" />-->
+    <include
+        android:id="@+id/vp_fabs"
+        layout="@layout/view_pod_fabs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </android.support.design.widget.CoordinatorLayout>
