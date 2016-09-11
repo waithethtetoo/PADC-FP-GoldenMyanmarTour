@@ -51,6 +51,19 @@ public class ViewPodFabs extends FrameLayout {
 
         AnimatorSet asBookMark = new AnimatorSet();
         asBookMark.play(objAnimBookMarkBW).after(objAnimBookMarkFW);
+        asBookMark.start();
+
+        ObjectAnimator objAnimShareXFW = ObjectAnimator.ofFloat(fabShare, "x", fabShare.getX(), fabShare.getX() - 180f);
+        objAnimShareXFW.setDuration(500);
+        objAnimShareXFW.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        ObjectAnimator objAnimShareYFW = ObjectAnimator.ofFloat(fabShare, "y", fabShare.getY(), fabShare.getY() - 180f);
+        objAnimShareYFW.setDuration(500);
+        objAnimShareYFW.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        AnimatorSet asMapFW = new AnimatorSet();
+        asMapFW.play(objAnimShareYFW).with(objAnimShareXFW); //apply together
+        asMapFW.start();
 
         ObjectAnimator objAnimShareXBW = ObjectAnimator.ofFloat(fabShare, "x", fabShare.getX() - 180f, fabShare.getX() - 160f);
         objAnimShareXBW.setDuration(100);
@@ -64,6 +77,7 @@ public class ViewPodFabs extends FrameLayout {
         asShareBW.play(objAnimShareYBW).with(objAnimShareXBW);
         asShareBW.setStartDelay(500);
         asShareBW.start();
+
     }
 
     private void closeAnim() {
@@ -138,7 +152,7 @@ public class ViewPodFabs extends FrameLayout {
         fabShare.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
     }
