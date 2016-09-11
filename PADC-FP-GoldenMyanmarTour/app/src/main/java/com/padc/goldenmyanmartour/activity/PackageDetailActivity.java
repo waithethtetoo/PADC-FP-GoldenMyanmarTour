@@ -50,7 +50,7 @@ public class PackageDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_package_name)
     TextView tvPackageName;
-//    @BindView(R.id.tv_package_price)
+    //    @BindView(R.id.tv_package_price)
 //    TextView tvPackagePrice;
     @BindView(R.id.tv_package_desc)
     TextView tvPackageDesc;
@@ -97,7 +97,7 @@ public class PackageDetailActivity extends AppCompatActivity {
 
         mPackageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
 
-        piPackageImageSlider.setCurrentPage(3);
+        piPackageImageSlider.setNumPage(5);
         String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay"};
 
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);

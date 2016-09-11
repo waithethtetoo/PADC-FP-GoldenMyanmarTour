@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -40,6 +41,14 @@ public class PackageFragment extends Fragment {
     private PackageAdapter mAdapter;
     private PackageViewHolder.ControllerItem mController;
 
+    MenuItem searchItem;
+    MenuItem tourItem;
+    private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
+
+    public PackageFragment() {
+        setHasOptionsMenu(true);
+    }
+
     public static PackageFragment newInstance() {
         PackageFragment fragment = new PackageFragment();
         return fragment;
@@ -55,6 +64,7 @@ public class PackageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new PackageAdapter(null, mController);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -66,4 +76,31 @@ public class PackageFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_search, menu);
+        searchItem = menu.findItem(R.id.action_search);
+        MenuItemCompat.setOnActionExpandListener(searchItem, mOnActionExpandListener);
+
+        tourItem = menu.findItem(R.id.action_tour_type_filter);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(tourItem);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_search:
+                Toast.makeText(GMTApp.getContext(), "Action Search is clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_tour_type_filter:
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
