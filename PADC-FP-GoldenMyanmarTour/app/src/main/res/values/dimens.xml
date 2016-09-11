@@ -19,5 +19,6 @@
 
     <dimen name="icon_in_detail">48dp</dimen>
     <dimen name="margin_top_profile_pic">60dp</dimen>
+    <dimen name="padding_bottom_for_hotel">80dp</dimen>
 
 </resources>

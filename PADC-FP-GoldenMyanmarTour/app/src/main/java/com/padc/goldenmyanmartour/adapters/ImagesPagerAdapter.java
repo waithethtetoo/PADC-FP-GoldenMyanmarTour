@@ -54,7 +54,6 @@ public class ImagesPagerAdapter extends PagerAdapter {
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .into(imageView);
-
         return imageView;
     }
 

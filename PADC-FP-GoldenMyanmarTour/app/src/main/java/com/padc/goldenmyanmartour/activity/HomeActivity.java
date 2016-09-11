@@ -26,6 +26,7 @@ import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.fragment.FestivalFragment;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
+import com.padc.goldenmyanmartour.fragment.HotelFragment;
 import com.padc.goldenmyanmartour.fragment.PackageFragment;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
@@ -44,11 +45,12 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
-    @BindView(R.id.pager_images)
+       @BindView(R.id.pager_images)
     ViewPager pagerImages;
 
     @BindView(R.id.pi_image_slider)
     PageIndicatorView piImageSlider;
+
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -142,6 +144,7 @@ public class HomeActivity extends AppCompatActivity
                 navigateToPackageFragment();
                 return true;
             case R.id.hotels:
+                navigateToHotelFragment();
                 return true;
             case R.id.festivals:
                 navigateToFestivalFragment();
@@ -167,11 +170,16 @@ public class HomeActivity extends AppCompatActivity
                 .commit();
     }
 
-    private void navigateToFestivalFragment() {
+    private void navigateToHotelFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fl_container, FestivalFragment.newInstance())
+                .replace(R.id.fl_container, HotelFragment.newInstance())
                 .commit();
     }
 
+        private void navigateToFestivalFragment () {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fl_container, FestivalFragment.newInstance())
+                    .commit();
 
+    }
 }
