@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
-       @BindView(R.id.pager_images)
+    @BindView(R.id.pager_images)
     ViewPager pagerImages;
 
     @BindView(R.id.pi_image_slider)
@@ -76,8 +76,10 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent intentToSearchActivity=SearchActivity.newIntent();
+                startActivity(intentToSearchActivity);
             }
         });
 
@@ -176,10 +178,10 @@ public class HomeActivity extends AppCompatActivity
                 .commit();
     }
 
-        private void navigateToFestivalFragment () {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_container, FestivalFragment.newInstance())
-                    .commit();
+    private void navigateToFestivalFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, FestivalFragment.newInstance())
+                .commit();
 
     }
 }
