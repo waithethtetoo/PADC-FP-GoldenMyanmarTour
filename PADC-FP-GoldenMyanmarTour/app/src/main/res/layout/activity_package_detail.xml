@@ -17,7 +17,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/package_collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/detail_backdrop_height"
             android:fitsSystemWindows="true"
             app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:contentScrim="?attr/colorPrimary"
@@ -70,37 +70,50 @@
                 android:tint="@color/accent" />
 
             <TextView
-                android:id="@+id/tv_package_name"
+                android:id="@+id/tv_package_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/iv_book_the_package"
                 android:layout_marginBottom="@dimen/margin_medium_2"
-                android:layout_marginLeft="@dimen/margin_medium_2"
-                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:text="Price : 20,000 Ks"
+                android:textColor="@color/price_text_color"
+                android:textSize="@dimen/text_regular" />
+
+            <TextView
+                android:id="@+id/tv_package_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_price"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
                 android:text="TREK 06 - 2 DAYS / 1 NIGHT FROM KALAW TO INLE LAKE \n KALAW – CHAUNGYI PAUK – KHAUNG DINE – INLE LAKE"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_regular_2x" />
 
             <TextView
-                android:id="@+id/tv_package_price"
+                android:id="@+id/tv_package_desc_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Day 1:Kalaw-Changyi Pauk-Khaung Dine"
+                android:textColor="@color/primary_text"
                 android:layout_below="@id/tv_package_name"
                 android:layout_marginBottom="@dimen/margin_medium_2"
-                android:layout_marginLeft="@dimen/margin_medium_2"
-                android:layout_marginRight="@dimen/margin_medium_2"
-                android:text="Price : 20,000 Ks"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_regular" />
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:textSize="@dimen/text_regular"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:lineSpacingMultiplier="1.2" />
 
             <TextView
                 android:id="@+id/tv_package_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_package_price"
+                android:layout_below="@id/tv_package_desc_title"
                 android:layout_marginBottom="@dimen/margin_medium_2"
-                android:layout_marginLeft="@dimen/margin_medium_2"
-                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_regular"

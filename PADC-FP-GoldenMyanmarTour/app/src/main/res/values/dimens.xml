@@ -15,10 +15,11 @@
     <dimen name="text_regular">14sp</dimen>
     <dimen name="text_regular_2x">16sp</dimen>
 
-    <dimen name="detail_backdrop_height">250dp</dimen>
+    <dimen name="detail_backdrop_height">200dp</dimen>
 
     <dimen name="icon_in_detail">48dp</dimen>
     <dimen name="margin_top_profile_pic">60dp</dimen>
     <dimen name="padding_bottom_for_hotel">80dp</dimen>
+    <dimen name="margin_medium_3">16dp</dimen>
 
 </resources>

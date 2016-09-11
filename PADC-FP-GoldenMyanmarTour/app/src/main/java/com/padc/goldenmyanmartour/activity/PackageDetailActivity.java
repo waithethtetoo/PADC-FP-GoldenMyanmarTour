@@ -50,8 +50,7 @@ public class PackageDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_package_name)
     TextView tvPackageName;
-    //    @BindView(R.id.tv_package_price)
-//    TextView tvPackagePrice;
+
     @BindView(R.id.tv_package_desc)
     TextView tvPackageDesc;
 
@@ -76,7 +75,7 @@ public class PackageDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_package_detail);
         ButterKnife.bind(this, this);
 
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
