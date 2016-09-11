@@ -34,8 +34,8 @@ public class ImagesPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
-//        return mImages.size();
+//        return 5;
+        return mImages.size();
     }
 
     @Override
@@ -46,9 +46,10 @@ public class ImagesPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView imageView = (ImageView) mInflater.inflate(R.layout.view_item_destination_image, container, false);
+        String imageUrl = mImages.get(position);
 
         Glide.with(imageView.getContext())
-                .load(R.drawable.bagan)
+                .load(imageUrl)
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
