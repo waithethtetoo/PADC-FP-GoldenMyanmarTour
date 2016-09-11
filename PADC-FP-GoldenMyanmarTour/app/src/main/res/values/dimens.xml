@@ -15,7 +15,7 @@
     <dimen name="text_regular">14sp</dimen>
     <dimen name="text_regular_2x">16sp</dimen>
 
-    <dimen name="detail_backdrop_height">256dp</dimen>
+    <dimen name="detail_backdrop_height">250dp</dimen>
 
     <dimen name="icon_in_detail">48dp</dimen>
     <dimen name="margin_top_profile_pic">60dp</dimen>
