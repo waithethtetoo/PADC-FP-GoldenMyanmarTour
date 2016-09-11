@@ -22,15 +22,18 @@
         <activity
             android:name=".activity.DestinationDetailActivity"
             android:label="@string/destinations"
-            android:parentActivityName=".activity.HomeActivity"></activity>
+            android:parentActivityName=".activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.PackageDetailActivity"
             android:label="@string/packages"
-            android:parentActivityName=".activity.HomeActivity"></activity>
-
-        <activity android:name=".activity.HotelDetailActivity"
             android:parentActivityName=".activity.HomeActivity"
-            android:label="Hotels"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.HotelDetailActivity"
+            android:label="Hotels"
+            android:parentActivityName=".activity.HomeActivity"></activity>
 
     </application>
 
