@@ -68,7 +68,7 @@ public class DestinationDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_destination_detail);
         ButterKnife.bind(this, this);
 
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -79,7 +79,7 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
 //        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
         piDestinationImageSlider.setNumPage(3);
-        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay","R.drawable.bagan", "R.drawable.inle"};
+        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay", "R.drawable.bagan", "R.drawable.inle"};
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerDestinationImages.setAdapter(adapter);
         pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
