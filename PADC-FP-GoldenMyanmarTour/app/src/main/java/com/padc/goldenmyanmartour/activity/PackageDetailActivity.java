@@ -54,6 +54,9 @@ public class PackageDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_package_desc)
     TextView tvPackageDesc;
 
+    @BindView(R.id.tv_package_price)
+    TextView tvPackagePrice;
+
     @BindView(R.id.iv_book_the_package)
     ImageView ivBookPackage;
 
@@ -91,8 +94,16 @@ public class PackageDetailActivity extends AppCompatActivity {
 
     private void bindData() {
         tvPackageName.setText("Kalaw-Chaung Pauk-Khaung Dine-Inle Lake");
-//        tvPackagePrice.setText("20,000 Ks");
-        tvPackageDesc.setText("Day 1:Kalaw-Changyi Pauk-Khaung Dine\\n Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village, the starting point for the 2 days trekking trip to Khaung Dine. Your local station tour guide Ko Paul will introduce you to the villagers along the way and will show you the traditional way of life. At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch. Only a 30 minutes away is a bathing place where you can have a bath and then proceed to Chaunggyi Pauk a typical Taung Yoe village. The people in this village are well known for their bamboo mattresses and handicrafts. Dinner and overnight at Chaungyi Pauk.\\n Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake\\n From Chaungyi Pauk it is only a 2 ½ hours walk to the Hot Spa, the only place where you can go for a hot bath. Don't miss the change. Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake. This Intha village is well known for the production of soybean Cakes and noodles. From here transfer by boat to your hotel.");
+        tvPackagePrice.setText("Price : 20,000 Ks");
+        tvPackageDesc.setText("Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village, \n" +
+                "the starting point for the 2 days trekking trip to Khaung Dine. \n" +
+                "Your local station tour guide Ko Paul will introduce you to the villagers along the way \n" +
+                "and will show you the traditional way of life. \n" +
+                "At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch. \n" +
+                "Only a 30 minutes away is a bathing place where you can have a bath and \n" +
+                "then proceed to Chaunggyi Pauk a typical Taung Yoe village.\n" +
+                " The people in this village are well known for their bamboo mattresses and handicrafts. \n" +
+                "Dinner and overnight at Chaungyi Pauk.");
 
         mPackageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
 

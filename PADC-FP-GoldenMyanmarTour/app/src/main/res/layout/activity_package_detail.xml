@@ -59,21 +59,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_book_the_package"
-                android:layout_width="@dimen/icon_in_detail"
-                android:layout_height="@dimen/icon_in_detail"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:clickable="true"
-                android:padding="@dimen/margin_medium"
-                android:src="@drawable/ic_book_for_the_trip"
-                android:tint="@color/accent" />
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_book_the_package"-->
+            <!--android:layout_width="@dimen/icon_in_detail"-->
+            <!--android:layout_height="@dimen/icon_in_detail"-->
+            <!--android:layout_marginTop="@dimen/margin_medium"-->
+            <!--android:clickable="true"-->
+            <!--android:padding="@dimen/margin_medium"-->
+            <!--android:src="@drawable/ic_book_for_the_trip"-->
+            <!--android:tint="@color/accent" />-->
 
             <TextView
                 android:id="@+id/tv_package_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_book_the_package"
                 android:layout_marginBottom="@dimen/margin_medium_2"
                 android:layout_marginLeft="@dimen/margin_medium_3"
                 android:layout_marginRight="@dimen/margin_medium_3"
@@ -94,7 +93,7 @@
                 android:textSize="@dimen/text_regular_2x" />
 
             <TextView
-                android:id="@+id/tv_package_desc_title"
+                android:id="@+id/tv_package_desc_title_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_package_name"
@@ -107,30 +106,51 @@
                 android:textSize="@dimen/text_regular" />
 
             <TextView
-                android:id="@+id/tv_package_desc"
+                android:id="@+id/tv_package_desc_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_package_desc_title"
+                android:layout_below="@id/tv_package_desc_title_one"
                 android:layout_marginBottom="@dimen/margin_medium_2"
                 android:layout_marginLeft="@dimen/margin_medium_3"
                 android:layout_marginRight="@dimen/margin_medium_3"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_regular"
-                tools:text="Day 1:Kalaw-Changyi Pauk-Khaung Dine\n Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village, the starting point for the 2 days trekking trip to Khaung Dine. Your local station tour guide Ko Paul will introduce you to the villagers along the way and will show you the traditional way of life. At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch. Only a 30 minutes away is a bathing place where you can have a bath and then proceed to Chaunggyi Pauk a typical Taung Yoe village. The people in this village are well known for their bamboo mattresses and handicrafts. Dinner and overnight at Chaungyi Pauk.\n Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake\n From Chaungyi Pauk it is only a 2 ½ hours walk to the Hot Spa, the only place where you can go for a hot bath. Don't miss the change. Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake. This Intha village is well known for the production of soybean Cakes and noodles. From here transfer by boat to your hotel." />
+                tools:text="Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village,
+the starting point for the 2 days trekking trip to Khaung Dine.
+Your local station tour guide Ko Paul will introduce you to the villagers along the way
+and will show you the traditional way of life.
+At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch.
+Only a 30 minutes away is a bathing place where you can have a bath and
+then proceed to Chaunggyi Pauk a typical Taung Yoe village.
+ The people in this village are well known for their bamboo mattresses and handicrafts.
+Dinner and overnight at Chaungyi Pauk." />
 
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.padc.goldenmyanmartour.components.DynamicImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/inle" />
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/tv_package_desc_title_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_one"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:lineSpacingMultiplier="1.2"
+                android:text="Day 1:Kalaw-Changyi Pauk-Khaung Dine"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular" />
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/fab_package_book_mark"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_margin="@dimen/fab_margin"-->
-    <!--android:src="@drawable/ic_star_border_24dp"-->
-    <!--android:tint="@android:color/white"-->
-    <!--app:layout_anchor="@id/appbar"-->
-    <!--app:layout_anchorGravity="bottom|end|right" />-->
     <include
         android:id="@+id/vp_fabs"
         layout="@layout/view_pod_fabs"
