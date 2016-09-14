@@ -15,7 +15,7 @@
             android:id="@+id/festivals"
             android:title="@string/festivals" />
         <item
-            android:id="@+id/customize_tours"
+            android:id="@+id/plan_own_route"
             android:title="@string/plan_your_own_route" />
         <item
             android:id="@+id/user_bookmark"

@@ -9,11 +9,11 @@
         android:orderInCategory="90"
         android:title="@string/lbl_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="collapseActionView|ifRoom" />
     <item
         android:id="@+id/action_tour_type_filter"
         android:orderInCategory="90"
         android:title="@string/lbl_tour_type_filter"
         app:actionViewClass="android.widget.Spinner"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:showAsAction="ifRoom" />
 </menu>

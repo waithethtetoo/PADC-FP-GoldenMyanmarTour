@@ -8,8 +8,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.padc.goldenmyanmartour.activity.SearchActivity">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Welcome Forom Search Activity "/>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false" />
+
+    <GridView
+        android:id="@+id/gv_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchView"
+        android:columnWidth="150dp"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/margin_medium"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/margin_medium" />
+
+
 </RelativeLayout>

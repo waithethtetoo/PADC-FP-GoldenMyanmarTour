@@ -57,7 +57,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <!--<ImageView-->
             <!--android:id="@+id/iv_book_the_package"-->
@@ -103,7 +103,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:text="Day 1:Kalaw-Changyi Pauk-Khaung Dine"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_regular" />
+                android:textSize="@dimen/text_regular_2x" />
 
             <TextView
                 android:id="@+id/tv_package_desc_one"
@@ -127,27 +127,133 @@ then proceed to Chaunggyi Pauk a typical Taung Yoe village.
 Dinner and overnight at Chaungyi Pauk." />
 
             <HorizontalScrollView
+                android:id="@+id/horizontal_one"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_one"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2">
 
-                <com.padc.goldenmyanmartour.components.DynamicImageView
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/inle" />
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_one"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:src="@drawable/inle" />
+
+                    <ImageView
+                        android:id="@+id/iv_two"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:layout_toRightOf="@id/iv_one"
+                        android:src="@drawable/bagan" />
+
+                    <ImageView
+                        android:id="@+id/iv_three"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:layout_toRightOf="@id/iv_two"
+                        android:src="@drawable/mandalay" />
+
+                    <ImageView
+                        android:id="@+id/iv_four"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:layout_toRightOf="@id/iv_three"
+                        android:src="@drawable/ananda_pagoda_festival" />
+                </RelativeLayout>
             </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/tv_package_desc_title_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_package_desc_one"
+                android:layout_below="@id/horizontal_one"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:lineSpacingMultiplier="1.2"
+                android:text="Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <TextView
+                android:id="@+id/tv_package_desc_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_title_two"
                 android:layout_marginBottom="@dimen/margin_medium_2"
                 android:layout_marginLeft="@dimen/margin_medium_3"
                 android:layout_marginRight="@dimen/margin_medium_3"
                 android:lineSpacingMultiplier="1.2"
-                android:text="Day 1:Kalaw-Changyi Pauk-Khaung Dine"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_regular" />
+                android:textSize="@dimen/text_regular"
+                tools:text="From Chaungyi Pauk it is only a 2 ½ hours walk to the Hot Spa,
+the only place where you can go for a hot bath. Don't miss the change.
+Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake.
+This Intha village is well known for the production of soybean Cakes and noodles.
+From here transfer by boat to your hotel." />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontal_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_two"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_two_one"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:src="@drawable/bagan" />
+
+                    <ImageView
+                        android:id="@+id/iv_two_two"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:layout_toRightOf="@id/iv_two_one"
+                        android:src="@drawable/mandalay" />
+
+                    <ImageView
+                        android:id="@+id/iv_two_three"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:layout_toRightOf="@id/iv_two_two"
+                        android:src="@drawable/ananda_pagoda_festival" />
+
+                    <ImageView
+                        android:id="@+id/iv_two_four"
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:layout_marginLeft="@dimen/image_left"
+                        android:layout_marginRight="@dimen/image_left"
+                        android:layout_toRightOf="@id/iv_two_three"
+                        android:src="@drawable/inle" />
+                </RelativeLayout>
+            </HorizontalScrollView>
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
