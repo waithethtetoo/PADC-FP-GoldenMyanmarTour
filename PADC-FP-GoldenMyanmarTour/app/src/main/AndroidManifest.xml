@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.padc.goldenmyanmartour">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:name=".GMTApp"
         android:allowBackup="true"
@@ -23,18 +25,22 @@
             android:name=".activity.DestinationDetailActivity"
             android:label="@string/destinations"
             android:parentActivityName=".activity.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.PackageDetailActivity"
             android:label="@string/packages"
             android:parentActivityName=".activity.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.HotelDetailActivity"
             android:label="Hotels"
-            android:parentActivityName=".activity.HomeActivity"></activity>
-
+            android:parentActivityName=".activity.HomeActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity
+            android:name=".activity.FestivalDetailActivity"
+            android:label="@string/festivals"
+            android:parentActivityName=".activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

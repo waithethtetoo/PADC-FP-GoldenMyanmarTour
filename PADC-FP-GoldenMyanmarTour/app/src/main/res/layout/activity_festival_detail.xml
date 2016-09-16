@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.FestivalDetailActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_backdrop_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/festival_collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="@dimen/margin_medium_2"
+            app:expandedTitleMarginStart="@dimen/margin_medium_2"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager_festival_images"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax" />
+
+            <com.padc.goldenmyanmartour.components.PageIndicatorView
+                android:id="@+id/pi_festival_image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/margin_medium_2" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_festival_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_festival"
+                android:layout_toEndOf="@+id/iv_month"
+                android:layout_toRightOf="@+id/iv_month"
+                android:text="Ananda Pagoda Festival"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_heading_1x" />
+
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_festival_name"
+                android:src="@drawable/ic_pin_drop_24dp" />
+
+            <TextView
+                android:id="@+id/tv_festival_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_location"
+                android:layout_toEndOf="@+id/iv_month"
+                android:layout_toRightOf="@+id/iv_month"
+                android:maxLines="3"
+                android:text="Bagan"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular" />
+
+            <ImageView
+                android:id="@+id/iv_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_festival_location"
+                android:src="@drawable/ic_event_available_24dp" />
+
+            <TextView
+                android:id="@+id/tv_festival_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_month"
+                android:layout_below="@id/tv_festival_location"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_toEndOf="@+id/iv_month"
+                android:layout_toRightOf="@+id/iv_month"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="January"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular" />
+
+            <ImageView
+                android:id="@+id/iv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/iv_month"
+                android:src="@drawable/ic_today_24dp" />
+
+            <TextView
+                android:id="@+id/tv_festival_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_date"
+                android:layout_toEndOf="@+id/iv_date"
+                android:layout_toRightOf="@+id/iv_date"
+                android:maxLines="3"
+                android:text="Full Moon of Pyatho to 15th Waning of Pyatho"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular" />
+
+            <ImageView
+                android:id="@+id/iv_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_festival_date"
+                android:src="@drawable/ic_schedule_24dp" />
+
+            <TextView
+                android:id="@+id/tv_festival_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_duration"
+                android:layout_toEndOf="@+id/iv_duration"
+                android:layout_toRightOf="@+id/iv_duration"
+                android:maxLines="3"
+                android:text="15 days"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular" />
+
+            <TextView
+                android:id="@+id/tv_festival_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_festival_duration"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_marginTop="@dimen/margin_large"
+                android:lineSpacingMultiplier="1.2"
+                android:text="The authentic Naga Hill Tribes (about 68 different groups) wear their respective traditional costumes to participate this important festival. They worship to their deities by scarifying the animals. Their traditional dance, martial music and cults of animism are unique and interesting."
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular_2x" />
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

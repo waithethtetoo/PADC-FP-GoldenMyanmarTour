@@ -1,0 +1,102 @@
+package com.padc.goldenmyanmartour.fragment;
+
+
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+
+import com.padc.goldenmyanmartour.GMTApp;
+import com.padc.goldenmyanmartour.R;
+import com.padc.goldenmyanmartour.adapters.BookMarkAdapter;
+import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
+import com.padc.goldenmyanmartour.data.vo.BookmarkVO;
+import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by WT on 9/14/2016.
+ */
+public class PLanOwnRouteFragment extends Fragment
+        implements View.OnClickListener {
+
+    @BindView(R.id.image_one)
+    ImageView ivOne;
+    @BindView(R.id.image_two)
+    ImageView ivTwo;
+    @BindView(R.id.image_three)
+    ImageView ivThree;
+
+    BookMarkAdapter adapter;
+
+    public static PLanOwnRouteFragment newInstance() {
+        PLanOwnRouteFragment fragment = new PLanOwnRouteFragment();
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_planownroute, container, false);
+        ButterKnife.bind(this, view);
+
+        ivOne.setOnClickListener(this);
+        ivTwo.setOnClickListener(this);
+        ivThree.setOnClickListener(this);
+
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.image_one:
+                showBookMarkList();
+                break;
+            case R.id.image_two:
+                showBookMarkList();
+                break;
+            case R.id.image_three:
+                showBookMarkList();
+                break;
+        }
+    }
+
+
+    public void showBookMarkList() {
+        Dialog dialog = new Dialog(GMTApp.getContext());
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        dialog.setContentView(R.layout.custom_popup_window);
+        dialog.setTitle("Your Bookmark");
+        GridView gvResult = (GridView) dialog.findViewById(R.id.gv_result);
+        List<String> names = new ArrayList<>(); //bookmark list
+        names.add("Pyin_Oo_Lwin");
+        names.add("Bagan");
+        names.add("Taunggyi");
+        adapter = new BookMarkAdapter(names);
+        gvResult.setAdapter(adapter);
+        dialog.show();
+    }
+
+
+}

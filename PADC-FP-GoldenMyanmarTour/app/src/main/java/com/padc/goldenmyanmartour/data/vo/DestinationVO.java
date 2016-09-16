@@ -27,6 +27,10 @@ public class DestinationVO {
         return images;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setImages(String[] images) {
         this.images = images;
     }

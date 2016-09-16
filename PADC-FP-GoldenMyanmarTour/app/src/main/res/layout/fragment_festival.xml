@@ -7,8 +7,8 @@
     tools:context=".fragment.HomeFragment"
     tools:showIn="@layout/activity_home">
 
-    <GridView
-        android:id="@+id/gv_festivals"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_festivals"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:columnWidth="150dp"

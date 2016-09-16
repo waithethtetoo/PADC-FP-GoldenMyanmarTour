@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.padc.goldenmyanmartour.components.DynamicImageView
+        android:id="@+id/iv_festival"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:src="@drawable/ananda_pagoda_festival" />
+
+    <TextView
+        android:id="@+id/tv_festival_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_festival"
+        android:layout_toEndOf="@+id/iv_month"
+        android:layout_toRightOf="@+id/iv_month"
+        android:text="Ananda Pagoda Festival"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_heading_1x" />
+
+    <ImageView
+        android:id="@+id/iv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_festival_name"
+        android:src="@drawable/ic_pin_drop_24dp" />
+
+    <TextView
+        android:id="@+id/tv_festival_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_location"
+        android:layout_toEndOf="@+id/iv_month"
+        android:layout_toRightOf="@+id/iv_month"
+        android:maxLines="3"
+        android:text="Khamti, Lahe, Lashi in Sagaing"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular" />
+
+    <ImageView
+        android:id="@+id/iv_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_festival_location"
+        android:src="@drawable/ic_event_available_24dp" />
+
+    <TextView
+        android:id="@+id/tv_festival_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iv_date"
+        android:layout_toEndOf="@+id/iv_month"
+        android:layout_toRightOf="@+id/iv_month"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="January"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular" />
+
+    <ImageView
+        android:id="@+id/iv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/iv_month"
+        android:src="@drawable/ic_today_24dp" />
+
+    <TextView
+        android:id="@+id/tv_festival_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_date"
+        android:layout_toEndOf="@+id/iv_date"
+        android:layout_toRightOf="@+id/iv_date"
+        android:maxLines="3"
+        android:text="Full Moon of Pyatho to 15th Waning of Pyatho"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular" />
+
+    <ImageView
+        android:id="@+id/iv_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/iv_date"
+        android:src="@drawable/ic_schedule_24dp" />
+
+    <TextView
+        android:id="@+id/tv_festival_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_duration"
+        android:layout_toEndOf="@+id/iv_duration"
+        android:layout_toRightOf="@+id/iv_duration"
+        android:maxLines="3"
+        android:text="15 days"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular" />
+</RelativeLayout>

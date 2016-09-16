@@ -51,14 +51,26 @@ public class PackageDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_package_name)
     TextView tvPackageName;
 
-    @BindView(R.id.tv_package_desc)
-    TextView tvPackageDesc;
+    @BindView(R.id.tv_package_price)
+    TextView tvPackagePrice;
 
-    @BindView(R.id.iv_book_the_package)
-    ImageView ivBookPackage;
+    @BindView(R.id.tv_package_desc_title_one)
+    TextView tvPackDescTitleOne;
 
-    @BindView(R.id.fab_package_book_mark)
-    FloatingActionButton fabPackageBook;
+    @BindView(R.id.tv_package_desc_one)
+    TextView tvPackageDescOne;
+
+    @BindView(R.id.tv_package_desc_title_two)
+    TextView tvPackaDescTitleTwo;
+
+    @BindView(R.id.tv_package_desc_two)
+    TextView tvPackDescTwo;
+
+//    @BindView(R.id.iv_book_the_package)
+//    ImageView ivBookPackage;
+
+//    @BindView(R.id.fab_package_book_mark)
+//    FloatingActionButton fabPackageBook;
 
     private String mPackageName;
     private PackageVO packageVO;
@@ -91,8 +103,23 @@ public class PackageDetailActivity extends AppCompatActivity {
 
     private void bindData() {
         tvPackageName.setText("Kalaw-Chaung Pauk-Khaung Dine-Inle Lake");
-//        tvPackagePrice.setText("20,000 Ks");
-        tvPackageDesc.setText("Day 1:Kalaw-Changyi Pauk-Khaung Dine\\n Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village, the starting point for the 2 days trekking trip to Khaung Dine. Your local station tour guide Ko Paul will introduce you to the villagers along the way and will show you the traditional way of life. At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch. Only a 30 minutes away is a bathing place where you can have a bath and then proceed to Chaunggyi Pauk a typical Taung Yoe village. The people in this village are well known for their bamboo mattresses and handicrafts. Dinner and overnight at Chaungyi Pauk.\\n Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake\\n From Chaungyi Pauk it is only a 2 ½ hours walk to the Hot Spa, the only place where you can go for a hot bath. Don't miss the change. Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake. This Intha village is well known for the production of soybean Cakes and noodles. From here transfer by boat to your hotel.");
+        tvPackagePrice.setText("Price : 20,000 Ks");
+        tvPackDescTitleOne.setText("Day 1:Kalaw-Changyi Pauk-Khaung Dine");
+        tvPackageDescOne.setText("Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village, \n" +
+                "the starting point for the 2 days trekking trip to Khaung Dine. \n" +
+                "Your local station tour guide Ko Paul will introduce you to the villagers along the way \n" +
+                "and will show you the traditional way of life. \n" +
+                "At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch. \n" +
+                "Only a 30 minutes away is a bathing place where you can have a bath and \n" +
+                "then proceed to Chaunggyi Pauk a typical Taung Yoe village.\n" +
+                " The people in this village are well known for their bamboo mattresses and handicrafts. \n" +
+                "Dinner and overnight at Chaungyi Pauk.");
+        tvPackaDescTitleTwo.setText("Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake");
+        tvPackDescTwo.setText("From Chaungyi Pauk it is only a 2 ½ hours walk to the Hot Spa, \n" +
+                "the only place where you can go for a hot bath. Don't miss the change. \n" +
+                "Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake. \n" +
+                "This Intha village is well known for the production of soybean Cakes and noodles. \n" +
+                "From here transfer by boat to your hotel.");
 
         mPackageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
 
@@ -120,14 +147,14 @@ public class PackageDetailActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(mPackageName);
     }
 
-    @OnClick(R.id.fab_package_book_mark)
-    public void clickOnPackageBookMark() {
-        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
-    }
+//    @OnClick(R.id.fab_package_book_mark)
+//    public void clickOnPackageBookMark() {
+//        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
+//    }
 
-    @OnClick(R.id.iv_book_the_package)
-    public void clickOnBook() {
-        Toast.makeText(GMTApp.getContext(), "Your booking is successful.", Toast.LENGTH_SHORT).show();
-    }
+//    @OnClick(R.id.iv_book_the_package)
+//    public void clickOnBook() {
+//        Toast.makeText(GMTApp.getContext(), "Your booking is successful.", Toast.LENGTH_SHORT).show();
+//    }
 
 }

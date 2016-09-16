@@ -8,6 +8,7 @@ import android.widget.ImageView;
  * Created by WT on 9/5/2016.
  */
 public class DynamicImageView extends ImageView {
+
     private float mAspectRatio=1.4f;
     public DynamicImageView (Context context){super(context);}
     public DynamicImageView(Context context, AttributeSet attributeSet){
