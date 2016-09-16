@@ -1,6 +1,7 @@
 package com.padc.goldenmyanmartour.fragment;
 
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,19 +9,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.Toast;
+import android.view.WindowManager;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
-import com.padc.goldenmyanmartour.adapters.ExpandListAdapter;
-import com.padc.goldenmyanmartour.data.vo.DestinationVO;
-import com.padc.goldenmyanmartour.data.vo.ExpandGroup;
+import com.padc.goldenmyanmartour.adapters.BookMarkAdapter;
+import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
+import com.padc.goldenmyanmartour.data.vo.BookmarkVO;
+import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,13 +31,17 @@ import butterknife.ButterKnife;
 /**
  * Created by WT on 9/14/2016.
  */
-public class PLanOwnRouteFragment extends Fragment {
+public class PLanOwnRouteFragment extends Fragment
+        implements View.OnClickListener {
 
-    private ExpandListAdapter expandListAdapter;
-    private ArrayList<ExpandGroup> ExpListItems;
+    @BindView(R.id.image_one)
+    ImageView ivOne;
+    @BindView(R.id.image_two)
+    ImageView ivTwo;
+    @BindView(R.id.image_three)
+    ImageView ivThree;
 
-    @BindView(R.id.expand_saved_places)
-    ExpandableListView ExpandList;
+    BookMarkAdapter adapter;
 
     public static PLanOwnRouteFragment newInstance() {
         PLanOwnRouteFragment fragment = new PLanOwnRouteFragment();
@@ -49,40 +56,47 @@ public class PLanOwnRouteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_planownroute, container, false);
         ButterKnife.bind(this, view);
-        ExpListItems = setGroup();
-        expandListAdapter = new ExpandListAdapter(GMTApp.getContext(), ExpListItems);
-        ExpandList.setAdapter(expandListAdapter);
+
+        ivOne.setOnClickListener(this);
+        ivTwo.setOnClickListener(this);
+        ivThree.setOnClickListener(this);
+
         return view;
     }
 
-    public ArrayList<ExpandGroup> setGroup() {
-        String[] groupName = {"Saved Places"};
-        String[] destName = {"Yangon", "Bagan", "Inle", "Pyin-Oo-Lwin"}; // book mark list 
-        ArrayList<ExpandGroup> list = new ArrayList<ExpandGroup>();
-
-        ArrayList<DestinationVO> ch_list;
-        int size = 4;
-        int j = 0;
-
-        for (String group_name : groupName) {
-            ExpandGroup gru = new ExpandGroup();
-            gru.setName(group_name);
-
-            ch_list = new ArrayList<DestinationVO>();
-            for (; j < size; j++) {
-                DestinationVO ch = new DestinationVO();
-                ch.setName(destName[j]);
-                ch_list.add(ch);
-            }
-            gru.setDestinationVOs(ch_list);
-            list.add(gru);
-
-            size = size + 4;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.image_one:
+                showBookMarkList();
+                break;
+            case R.id.image_two:
+                showBookMarkList();
+                break;
+            case R.id.image_three:
+                showBookMarkList();
+                break;
         }
-
-        return list;
     }
+
+
+    public void showBookMarkList() {
+        Dialog dialog = new Dialog(GMTApp.getContext());
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        dialog.setContentView(R.layout.custom_popup_window);
+        dialog.setTitle("Your Bookmark");
+        GridView gvResult = (GridView) dialog.findViewById(R.id.gv_result);
+        List<String> names = new ArrayList<>(); //bookmark list
+        names.add("Pyin_Oo_Lwin");
+        names.add("Bagan");
+        names.add("Taunggyi");
+        adapter = new BookMarkAdapter(names);
+        gvResult.setAdapter(adapter);
+        dialog.show();
+    }
+
 
 }

@@ -4,12 +4,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ExpandableListView
-        android:id="@+id/expand_saved_places"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:addStatesFromChildren="true"
-        android:clickable="true"
-        android:groupIndicator="@drawable/ic_pin_drop_24dp" />
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-   </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_one"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="@dimen/image_height"
+                android:layout_marginLeft="@dimen/image_left"
+                android:src="@drawable/ic_pin_drop_24dp" />
+
+            <ImageView
+                android:id="@+id/image_two"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="@dimen/image_height"
+                android:layout_marginLeft="@dimen/image_left"
+                android:src="@drawable/ic_pin_drop_24dp" />
+
+            <ImageView
+                android:id="@+id/image_three"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="@dimen/image_height"
+                android:layout_marginLeft="@dimen/image_left"
+                android:src="@drawable/ic_pin_drop_24dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
