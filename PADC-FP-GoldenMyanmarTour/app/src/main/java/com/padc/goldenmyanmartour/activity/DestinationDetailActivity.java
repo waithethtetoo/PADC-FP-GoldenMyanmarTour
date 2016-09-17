@@ -52,9 +52,6 @@ public class DestinationDetailActivity extends AppCompatActivity {
     @BindView(R.id.pi_destination_image_slider)
     PageIndicatorView piDestinationImageSlider;
 
-//    @BindView(R.id.fab_book_mark)
-//    FloatingActionButton fabBookMark;
-
     @BindView(R.id.lv_destination)
     ListView lvDest;
 
@@ -108,11 +105,6 @@ public class DestinationDetailActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(mDestinationName);
         bindData();
     }
-
-//    @OnClick(R.id.fab_book_mark)
-//    public void clickFabBookMark() {
-//        Toast.makeText(DestinationDetailActivity.this, "Floating Book Mark Button Click", Toast.LENGTH_SHORT).show();
-//    }
 
     @Override
     public void onBackPressed() {
