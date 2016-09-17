@@ -55,28 +55,37 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:id="@+id/tv_dest_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium_2"
-            android:layout_marginLeft="@dimen/margin_medium_3"
-            android:layout_marginRight="@dimen/margin_medium_3"
-            android:layout_marginTop="@dimen/margin_large"
-            android:lineSpacingMultiplier="1.2"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_regular_2x"
-            tools:text="It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century." />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_dest_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:layout_marginTop="@dimen/margin_large"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular_2x"
+                tools:text="It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century." />
+
+            <ListView
+                android:id="@+id/lv_destination"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_book_mark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_star_border_24dp"
-        android:tint="@android:color/white"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|end|right" />
+    <include
+        android:id="@+id/vp_fabs"
+        layout="@layout/view_pod_fabs_destination"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </android.support.design.widget.CoordinatorLayout>

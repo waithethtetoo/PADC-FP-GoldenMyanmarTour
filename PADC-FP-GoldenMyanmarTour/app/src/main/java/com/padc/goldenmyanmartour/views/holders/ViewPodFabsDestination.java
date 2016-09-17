@@ -1,9 +1,7 @@
 package com.padc.goldenmyanmartour.views.holders;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
@@ -17,23 +15,22 @@ import com.padc.goldenmyanmartour.R;
 /**
  * Created by WT on 9/11/2016.
  */
-public class ViewPodFabs extends FrameLayout {
+public class ViewPodFabsDestination extends FrameLayout {
 
     private FloatingActionButton fabBookMark;
     private FloatingActionButton fabShare;
-    private FloatingActionButton fabCall;
     private FloatingActionButton fabInfo;
     private boolean isOpen = false;
 
-    public ViewPodFabs(Context context) {
+    public ViewPodFabsDestination(Context context) {
         super(context);
     }
 
-    public ViewPodFabs(Context context, AttributeSet attrs) {
+    public ViewPodFabsDestination(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ViewPodFabs(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ViewPodFabsDestination(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -43,23 +40,11 @@ public class ViewPodFabs extends FrameLayout {
         objAnim.setInterpolator(new AccelerateInterpolator());
         objAnim.start();
 
-        ObjectAnimator objAnimCallFW = ObjectAnimator.ofFloat(fabCall, "y", fabCall.getY(), fabCall.getY() - 310f);
-        objAnimCallFW.setDuration(500);
-        objAnimCallFW.setInterpolator(new AccelerateDecelerateInterpolator());
-
-        ObjectAnimator objAnimCallBW = ObjectAnimator.ofFloat(fabCall, "y", fabCall.getY() - 310, fabCall.getY() - 280f);
-        objAnimCallBW.setDuration(100);
-        objAnimCallBW.setInterpolator(new AccelerateDecelerateInterpolator());
-
-        AnimatorSet asCall = new AnimatorSet(); // objects connect with each other
-        asCall.play(objAnimCallBW).after(objAnimCallFW); // backward movement
-        asCall.start();
-
-        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX(), fabBookMark.getX() - 310f);
+        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY(), fabBookMark.getY() - 310f);
         objAnimBookMarkFW.setDuration(500);
         objAnimBookMarkFW.setInterpolator(new AccelerateDecelerateInterpolator());
 
-        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX() - 310, fabBookMark.getX() - 280f);
+        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY() - 310, fabBookMark.getY() - 280f);
         objAnimBookMarkBW.setDuration(100);
         objAnimBookMarkBW.setInterpolator(new AccelerateDecelerateInterpolator());
 
@@ -100,23 +85,12 @@ public class ViewPodFabs extends FrameLayout {
         objAnimRotation.setInterpolator(new AccelerateInterpolator());
         objAnimRotation.start();
 
-        ObjectAnimator objAnimCallFW = ObjectAnimator.ofFloat(fabCall, "y", fabCall.getY(), fabCall.getY() - 30f);
-        objAnimCallFW.setDuration(100);
-        objAnimCallFW.setInterpolator(new AccelerateDecelerateInterpolator());
 
-        ObjectAnimator objAnimCallBW = ObjectAnimator.ofFloat(fabCall, "y", fabCall.getY() - 30, fabCall.getY() + 280f);
-        objAnimCallBW.setDuration(500);
-        objAnimCallBW.setInterpolator(new AccelerateDecelerateInterpolator());
-
-        AnimatorSet asCall = new AnimatorSet();
-        asCall.play(objAnimCallBW).after(objAnimCallFW);
-        asCall.start();
-
-        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX(), fabBookMark.getY() - 30f);
+        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY(), fabBookMark.getY() - 30f);
         objAnimBookMarkFW.setDuration(100);
         objAnimBookMarkFW.setInterpolator(new AccelerateDecelerateInterpolator());
 
-        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX() - 30, fabBookMark.getX() + 280f);
+        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY() - 30, fabBookMark.getY() + 280f);
         objAnimBookMarkBW.setDuration(500);
         objAnimBookMarkBW.setInterpolator(new AccelerateDecelerateInterpolator());
 
@@ -167,13 +141,7 @@ public class ViewPodFabs extends FrameLayout {
                 }
             }
         });
-        fabCall = (FloatingActionButton) findViewById(R.id.fab_call);
-        fabCall.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         fabBookMark = (FloatingActionButton) findViewById(R.id.fab_bookmark);
         fabBookMark.setOnClickListener(new OnClickListener() {
             @Override

@@ -1,0 +1,43 @@
+{
+	"code" : 200,
+	"message" : "OK",
+	"hotels" : [{
+		"hotel-id" : 1234567890,
+		"hotel-name" : "XYZ ABC",
+		"description" : "xyz abc lmnop",
+		"photos" : ["http://", "http://", ..],
+		"direction-to-hotel" : "abc def xyz",
+		"phone-numbers" : ["09100200300", "09123456789", ..],
+		"location" : {
+			"lat" : 123456.87,
+			"lng" : 234567.89,
+			"address" : "abc def xyz",
+			"city" : {
+				"city-id" : 2345678901,
+				"name" : "FGFGQ",
+				"description" : "xyz abc 123 lmnop"
+			},
+			"state" : {
+				"state-id" : 3456789012,
+				"name" : "BKR",
+				"description" : "aijqyz bkr 123 lmnop"
+			}
+		},
+		"room-prices" : [{
+			"room-description" : "diamond grade 3 person bedroom",
+			"charge-per-night" : 35000,
+			"included-services" : ["AC", "Mini-Fridge", "Breakfest Unitl 10AM", ..],
+			"photos" : ["http://", "http://", ..]
+		},{
+			"room-description" : "sliver grade 5 person bedroom",
+			"charge-per-night" : 35000,
+			"included-services" : ["AC", "Breakfest Unitl 10AM", ..],
+			"photos" : ["http://", "http://", ..]
+		}, ..]
+	},{
+		"hotel-id" : 2345678901,
+		"hotel-name" : "ABC LMNOP",
+		.
+		.
+	},..]
+}

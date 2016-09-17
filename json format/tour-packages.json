@@ -1,0 +1,51 @@
+{
+	"code" : 200,
+	"message" : "OK",
+	"tour-packages" : [{
+		"package-id" : 1234567890,
+		"package-name" : "ABC",
+		"description" : "abc defg hijk lmnop",
+		"photos" : ["http://", "http://", "http://", ..],
+		"estimate-price-per-person" : 80000,
+		"total-days" : 4,
+		"sub-destinations" : [{
+			"destination-id" : 2345678901,
+			"destination-title" : "AA BB CC",
+			"sort-order" : 1,
+			"destination-photos" : ["http://", "http://", "http://", ..],
+			"note-to-visitor" : "abc defg hijk lmnop",
+		},{
+			"destination-id" : 2345678901,
+			"destination-title" : "SS TT UU VV",
+			.
+			.
+		},..],
+		"tour-company" : {
+			"company-id" : 3456789012,
+			"company-name" : "ABC EOF",
+			"description" : "abc xyz bkr",
+			"photos" : ["http://", "http://", ..],
+			"phone-numbers" : ["09100200300", "09123456789"],
+			"location" : {
+				"lat" : 123456.87,
+				"lng" : 234567.89,
+				"address" : "abc def xyz",
+				"city" : {
+					"city-id" : 2345678901,
+					"name" : "FGFGQ",
+					"description" : "xyz abc 123 lmnop"
+				},
+				"state" : {
+					"state-id" : 3456789012,
+					"name" : "BKR",
+					"description" : "aijqyz bkr 123 lmnop"
+				}
+			},
+		}
+	},{
+		"package-id" : 2345678901,
+		"package-name" : "OPQ RST",
+		.
+		.
+	},..]
+}

@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.padc.goldenmyanmartour.GMTApp;
@@ -22,11 +24,14 @@ import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 import com.padc.goldenmyanmartour.data.vo.BookmarkVO;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by WT on 9/14/2016.
@@ -41,7 +46,9 @@ public class PLanOwnRouteFragment extends Fragment
     @BindView(R.id.image_three)
     ImageView ivThree;
 
+
     BookMarkAdapter adapter;
+    List<String> names;
 
     public static PLanOwnRouteFragment newInstance() {
         PLanOwnRouteFragment fragment = new PLanOwnRouteFragment();
@@ -89,7 +96,7 @@ public class PLanOwnRouteFragment extends Fragment
         dialog.setContentView(R.layout.custom_popup_window);
         dialog.setTitle("Your Bookmark");
         GridView gvResult = (GridView) dialog.findViewById(R.id.gv_result);
-        List<String> names = new ArrayList<>(); //bookmark list
+        names = new ArrayList<>(); //bookmark list
         names.add("Pyin_Oo_Lwin");
         names.add("Bagan");
         names.add("Taunggyi");
@@ -98,5 +105,8 @@ public class PLanOwnRouteFragment extends Fragment
         dialog.show();
     }
 
-
+    @OnClick(R.id.btn_calculate)
+    public void onCalculatePrice() {
+        Toast.makeText(GMTApp.getContext(), "Price Calculate", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -1,0 +1,33 @@
+{
+	"code" : 200,
+	"message" : "OK",
+	"festivals" : [{
+		"festival-id" : 1234567890,
+		"festival-name" : "XYZ ABC",
+		"description" : "abc def lmnop",
+		"note-to-visitor" : "abc xyz lmnop",
+		"direction-to-festival" : "xxx yyy zzz",
+		"photos" : ["http://", "http://", ..],
+		"festival-period" : {
+			"start-date" : "2016-09-16",
+			"end-date" : "2016-09-19",
+			"daily-start-time" : "17:00",
+			"daily-end-time" : "23:00"
+		},
+		"location" : {
+			"lat" : 123456.87,
+			"lng" : 234567.89,
+			"address" : "abc def xyz",
+			"city" : {
+				"city-id" : 2345678901,
+				"name" : "FGFGQ",
+				"description" : "xyz abc 123 lmnop"
+			},
+			"state" : {
+				"state-id" : 3456789012,
+				"name" : "BKR",
+				"description" : "aijqyz bkr 123 lmnop"
+			}
+		}
+	}]
+}
