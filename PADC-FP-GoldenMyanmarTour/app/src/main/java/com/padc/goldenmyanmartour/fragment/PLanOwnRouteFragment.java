@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,6 +30,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,6 +48,12 @@ public class PLanOwnRouteFragment extends Fragment
     @BindView(R.id.image_three)
     ImageView ivThree;
 
+    @BindView(R.id.tv_one)
+    TextView tvOne;
+    @BindView(R.id.tv_two)
+    TextView tvTwo;
+    @BindView(R.id.tv_three)
+    TextView tvThree;
 
     BookMarkAdapter adapter;
     List<String> names;
@@ -102,6 +110,18 @@ public class PLanOwnRouteFragment extends Fragment
         names.add("Taunggyi");
         adapter = new BookMarkAdapter(names);
         gvResult.setAdapter(adapter);
+        gvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // selected place image will show here\
+                ivOne.setImageResource(R.drawable.mandalay);
+                ivTwo.setImageResource(R.drawable.inle);
+                ivThree.setImageResource(R.drawable.bagan);
+                tvOne.setText("Mandalay");
+                tvTwo.setText("Inle");
+                tvThree.setText("Bagan");
+            }
+        });
         dialog.show();
     }
 

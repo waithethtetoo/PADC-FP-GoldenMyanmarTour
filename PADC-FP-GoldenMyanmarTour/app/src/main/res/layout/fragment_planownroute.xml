@@ -4,37 +4,72 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--<HorizontalScrollView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content">-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
+        <ImageView
+            android:id="@+id/image_one"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/image_left"
+            android:src="@drawable/ic_pin_drop_24dp" />
 
-    <ImageView
-        android:id="@+id/image_one"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="@dimen/image_left"
-        android:src="@drawable/ic_pin_drop_24dp" />
+        <TextView
+            android:id="@+id/tv_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="Place name"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular_2x" />
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/image_two"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="@dimen/image_left"
-        android:src="@drawable/ic_pin_drop_24dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/image_three"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="@dimen/image_left"
-        android:src="@drawable/ic_pin_drop_24dp" />
-    <!--</LinearLayout>-->
-    <!--</HorizontalScrollView>-->
+        <ImageView
+            android:id="@+id/image_two"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/image_left"
+            android:src="@drawable/ic_pin_drop_24dp" />
+
+        <TextView
+            android:id="@+id/tv_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="Place name"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular_2x" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_three"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/image_left"
+            android:src="@drawable/ic_pin_drop_24dp" />
+
+        <TextView
+            android:id="@+id/tv_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="Place name"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular_2x" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_calculate"
         android:layout_width="wrap_content"

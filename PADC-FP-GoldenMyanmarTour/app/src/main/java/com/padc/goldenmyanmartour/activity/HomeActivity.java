@@ -141,24 +141,29 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
-        fab.setVisibility(View.VISIBLE);
         switch (item.getItemId()) {
             case R.id.destinations:
+                fab.setVisibility(View.VISIBLE);
                 navigateToHomeFragment();
                 return true;
             case R.id.packages:
+                fab.setVisibility(View.VISIBLE);
                 navigateToPackageFragment();
                 return true;
             case R.id.hotels:
+                fab.setVisibility(View.INVISIBLE);
                 navigateToHotelFragment();
                 return true;
             case R.id.festivals:
+                fab.setVisibility(View.INVISIBLE);
                 navigateToFestivalFragment();
                 return true;
             case R.id.plan_own_route:
+                fab.setVisibility(View.INVISIBLE);
                 navigateToPlanOwnRoute();
                 return true;
             case R.id.user_bookmark:
+                fab.setVisibility(View.INVISIBLE);
                 return true;
         }
         return false;

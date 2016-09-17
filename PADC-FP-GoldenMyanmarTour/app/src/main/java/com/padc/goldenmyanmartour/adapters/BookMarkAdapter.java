@@ -51,7 +51,7 @@ public class BookMarkAdapter extends BaseAdapter {
             tvResult.setText(nameList.get(position));
 //            tvResult.setText("Pyin-Oo-Lwin");
             ImageView ivResult = (ImageView) convertView.findViewById(R.id.iv_result);
-
+            ivResult.setImageResource(R.drawable.mandalay);
         }
         return convertView;
     }
