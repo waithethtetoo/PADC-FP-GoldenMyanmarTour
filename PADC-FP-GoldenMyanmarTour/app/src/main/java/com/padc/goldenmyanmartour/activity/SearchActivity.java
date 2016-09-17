@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearchActivity extends AppCompatActivity {
+
     private static final String IE_SEARCH = "IE_SEARCH";
 
     String fragmentName;
@@ -32,11 +36,15 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.gv_search_result)
     GridView gvSearchResult;
 
+    @BindView(R.id.lv_search)
+    ListView lvSearch;
+
     DestinationAdapter dAdapter;
     PackageAdapter pAdapter;
 
     DestinationViewHolder.ControllerDestinationItem dController;
     PackageViewHolder.ControllerItem pController;
+    String searchHint;
 
     public static Intent newIntent(String name) {
         Intent intent = new Intent(GMTApp.getContext(), SearchActivity.class);
@@ -58,20 +66,34 @@ public class SearchActivity extends AppCompatActivity {
         switch (fragmentName) {
             case "Home Fragment":
                 searchView.setQueryHint("Search by destination");
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        dAdapter = new DestinationAdapter(null, dController);
-                        gvSearchResult.setAdapter(dAdapter);
-                        return true;
-                    }
 
+                // destination list
+                final String[] nameList = {"Yangon", "Mandalay", "Bagan", "Inle Lake", "Golden Rock Pagoda"};
+                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(GMTApp.getContext(),
+                        android.R.layout.simple_list_item_1, nameList);
+                lvSearch.setAdapter(mAdapter);
+                lvSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public boolean onQueryTextChange(String newText) {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        searchHint = lvSearch.getItemAtPosition(position).toString();
+                        searchView.setQuery(searchHint, false); // show ListView selected item
+                        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                            @Override
+                            public boolean onQueryTextSubmit(String query) {
+                                searchAction(query);
+                                return true;
+                            }
 
-                        return false;
+                            @Override
+                            public boolean onQueryTextChange(String newText) {
+                                lvSearch.setVisibility(View.VISIBLE);
+                                gvSearchResult.setVisibility(View.INVISIBLE);
+                                return false;
+                            }
+                        });
                     }
                 });
+
 
                 break;
             case "Package Fragment":
@@ -79,13 +101,13 @@ public class SearchActivity extends AppCompatActivity {
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) {
-                        pAdapter = new PackageAdapter(null, pController);
-                        gvSearchResult.setAdapter(pAdapter);
+                        searchAction(query);
                         return true;
                     }
 
                     @Override
                     public boolean onQueryTextChange(String newText) {
+                        gvSearchResult.setVisibility(View.INVISIBLE);
                         return false;
                     }
                 });
@@ -94,8 +116,25 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    // search function do here
     public void searchAction(String query) {
         String searchQuery = query.toString();
+        if (searchQuery.equalsIgnoreCase(searchHint)) {
+            lvSearch.setVisibility(View.INVISIBLE);
+            gvSearchResult.setVisibility(View.VISIBLE);
 
+            dAdapter = new DestinationAdapter(null, dController);
+            gvSearchResult.setAdapter(dAdapter);
+        } else if (searchQuery.equalsIgnoreCase("20000")) {
+            gvSearchResult.setVisibility(View.VISIBLE);
+
+            pAdapter = new PackageAdapter(null, pController);
+            gvSearchResult.setAdapter(pAdapter);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

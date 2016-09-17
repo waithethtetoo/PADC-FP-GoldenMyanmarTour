@@ -99,10 +99,12 @@ public class PLanOwnRouteFragment extends Fragment
 
 
     public void showBookMarkList() {
+
         Dialog dialog = new Dialog(GMTApp.getContext());
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.setContentView(R.layout.custom_popup_window);
         dialog.setTitle("Your Bookmark");
+
         GridView gvResult = (GridView) dialog.findViewById(R.id.gv_result);
         names = new ArrayList<>(); //bookmark list
         names.add("Pyin_Oo_Lwin");
@@ -113,13 +115,16 @@ public class PLanOwnRouteFragment extends Fragment
         gvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // selected place image will show here\
+                // selected place image will show here
                 ivOne.setImageResource(R.drawable.mandalay);
-                ivTwo.setImageResource(R.drawable.inle);
-                ivThree.setImageResource(R.drawable.bagan);
                 tvOne.setText("Mandalay");
+
+                ivTwo.setImageResource(R.drawable.inle);
                 tvTwo.setText("Inle");
+
+                ivThree.setImageResource(R.drawable.bagan);
                 tvThree.setText("Bagan");
+
             }
         });
         dialog.show();
