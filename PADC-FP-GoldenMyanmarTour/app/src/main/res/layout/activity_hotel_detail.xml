@@ -55,28 +55,31 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-<TextView
-android:id="@+id/tv_hotel_desc"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginBottom="@dimen/margin_medium_2"
-android:layout_marginLeft="@dimen/margin_medium_2"
-android:layout_marginRight="@dimen/margin_medium_2"
-android:layout_marginTop="@dimen/margin_large"
-android:lineSpacingMultiplier="1.2"
-android:textColor="@color/primary_text"
-android:textSize="@dimen/text_regular_2x"
-    />
+        <TextView
+            android:id="@+id/tv_hotel_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_large"
+            android:lineSpacingMultiplier="1.2"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular_2x" />
     </android.support.v4.widget.NestedScrollView>
 
-<android.support.design.widget.FloatingActionButton
-android:id="@+id/fab"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_margin="@dimen/fab_margin"
-android:src="@drawable/ic_share_24dp"
-android:tint="@android:color/white"
-app:layout_anchor="@id/appbar"
-app:layout_anchorGravity="bottom|end|right" />
-
-    </android.support.design.widget.CoordinatorLayout>
+    <!--<android.support.design.widget.FloatingActionButton-->
+    <!--android:id="@+id/fab"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="@dimen/fab_margin"-->
+    <!--android:src="@drawable/ic_share_24dp"-->
+    <!--android:tint="@android:color/white"-->
+    <!--app:layout_anchor="@id/appbar"-->
+    <!--app:layout_anchorGravity="bottom|end|right" />-->
+    <include
+        android:id="@+id/vp_fabs"
+        layout="@layout/view_pod_fabs_destination"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</android.support.design.widget.CoordinatorLayout>
