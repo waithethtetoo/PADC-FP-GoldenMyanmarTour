@@ -52,7 +52,7 @@ public class HotelFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_hotel, container, false);
         ButterKnife.bind(this, rootView);
         rvHotels.setAdapter(mHotelAdapter);
-        rvHotels.setLayoutManager(new GridLayoutManager(getContext(),2));
+        rvHotels.setLayoutManager(new GridLayoutManager(getContext(),1));
         return rootView;
     }
 }
