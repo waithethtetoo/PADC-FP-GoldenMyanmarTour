@@ -29,8 +29,8 @@ public class HotelViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @BindView(R.id.tv_hotel_address)
     TextView tvHotelAddress;
 
-    @BindView(R.id.tv_hotel_desc)
-    TextView tvHotelDesc;
+//    @BindView(R.id.tv_hotel_desc)
+//    TextView tvHotelDesc;
 
     private ControllerHotelItem mController;
     private HotelVO mHotel;
@@ -47,7 +47,7 @@ public class HotelViewHolder extends RecyclerView.ViewHolder implements View.OnC
        // mHotel = hotel;
         tvHotelName.setText("Park Royal Yangon");
         tvHotelAddress.setText("33 Alan Pya Phaya Road, Dagon Township, Yangon, Myanmar");
-        tvHotelDesc.setText("Offering a unique blend of gentle Myanmar hospitality combined with first class service and facilities, the Grand Plaza Parkroyal");//hotel.getHotelDesc()
+        //tvHotelDesc.setText("Offering a unique blend of gentle Myanmar hospitality combined with first class service and facilities, the Grand Plaza Parkroyal");//hotel.getHotelDesc()
 
        // String imageUrl = hotel.getHotelImage()[0];
 
