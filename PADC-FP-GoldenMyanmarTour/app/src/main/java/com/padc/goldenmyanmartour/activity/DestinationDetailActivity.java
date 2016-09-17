@@ -14,15 +14,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
+import com.padc.goldenmyanmartour.adapters.ListViewAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 
+import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,12 +52,13 @@ public class DestinationDetailActivity extends AppCompatActivity {
     @BindView(R.id.pi_destination_image_slider)
     PageIndicatorView piDestinationImageSlider;
 
-    @BindView(R.id.fab_book_mark)
-    FloatingActionButton fabBookMark;
+    @BindView(R.id.lv_destination)
+    ListView lvDest;
 
     private String mDestinationName;
     private DestinationVO mDestination;
     private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
+    private ListViewAdapter adapter;
 
     public static Intent newIntent(String name) {
         Intent intent = new Intent(GMTApp.getContext(), DestinationDetailActivity.class);
@@ -102,11 +106,6 @@ public class DestinationDetailActivity extends AppCompatActivity {
         bindData();
     }
 
-    @OnClick(R.id.fab_book_mark)
-    public void clickFabBookMark() {
-        Toast.makeText(DestinationDetailActivity.this, "Floating Book Mark Button Click", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -114,5 +113,7 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
     private void bindData() {
         tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
+        adapter = new ListViewAdapter(null, GMTApp.getContext());
+        lvDest.setAdapter(adapter);
     }
 }

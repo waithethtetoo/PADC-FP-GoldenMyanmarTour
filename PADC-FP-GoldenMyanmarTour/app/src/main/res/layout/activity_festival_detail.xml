@@ -64,6 +64,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_festival"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_toEndOf="@+id/iv_month"
                 android:layout_toRightOf="@+id/iv_month"
                 android:text="Ananda Pagoda Festival"
@@ -77,6 +80,9 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/tv_festival_name"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:src="@drawable/ic_pin_drop_24dp" />
 
             <TextView
@@ -84,6 +90,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/iv_location"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_toEndOf="@+id/iv_month"
                 android:layout_toRightOf="@+id/iv_month"
                 android:maxLines="3"
@@ -96,6 +105,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_festival_location"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:src="@drawable/ic_event_available_24dp" />
 
             <TextView
@@ -104,7 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/iv_month"
                 android:layout_below="@id/tv_festival_location"
-                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_toEndOf="@+id/iv_month"
                 android:layout_toRightOf="@+id/iv_month"
                 android:ellipsize="end"
@@ -120,6 +134,9 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/iv_month"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:src="@drawable/ic_today_24dp" />
 
             <TextView
@@ -127,6 +144,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/iv_date"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_toEndOf="@+id/iv_date"
                 android:layout_toRightOf="@+id/iv_date"
                 android:maxLines="3"
@@ -139,6 +159,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_festival_date"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:src="@drawable/ic_schedule_24dp" />
 
             <TextView
@@ -146,6 +169,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/iv_duration"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_toEndOf="@+id/iv_duration"
                 android:layout_toRightOf="@+id/iv_duration"
                 android:maxLines="3"
@@ -159,9 +185,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_festival_duration"
                 android:layout_marginBottom="@dimen/margin_medium_2"
-                android:layout_marginLeft="@dimen/margin_medium_2"
-                android:layout_marginRight="@dimen/margin_medium_2"
-                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:lineSpacingMultiplier="1.2"
                 android:text="The authentic Naga Hill Tribes (about 68 different groups) wear their respective traditional costumes to participate this important festival. They worship to their deities by scarifying the animals. Their traditional dance, martial music and cults of animism are unique and interesting."
                 android:textColor="@color/primary_text"
