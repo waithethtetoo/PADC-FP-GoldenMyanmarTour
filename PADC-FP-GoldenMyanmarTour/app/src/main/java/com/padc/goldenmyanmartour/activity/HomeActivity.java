@@ -151,7 +151,7 @@ public class HomeActivity extends AppCompatActivity
                 navigateToPackageFragment();
                 return true;
             case R.id.hotels:
-                fab.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.VISIBLE);
                 navigateToHotelFragment();
                 return true;
             case R.id.festivals:
