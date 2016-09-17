@@ -16,4 +16,5 @@
         android:paddingRight="@dimen/margin_medium"
         android:scrollbarStyle="outsideOverlay"
         ></android.support.v7.widget.RecyclerView>
+
 </android.support.v4.widget.SwipeRefreshLayout>
