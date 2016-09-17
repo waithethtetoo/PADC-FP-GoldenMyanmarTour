@@ -11,7 +11,7 @@
     <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_small">4dp</dimen>
 
-    <dimen name="text_heading_1x">24sp</dimen>
+    <dimen name="text_heading_1x">20sp</dimen>
     <dimen name="text_regular">14sp</dimen>
     <dimen name="text_regular_2x">16sp</dimen>
 
