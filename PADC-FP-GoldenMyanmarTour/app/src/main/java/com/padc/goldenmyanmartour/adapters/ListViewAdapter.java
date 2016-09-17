@@ -21,8 +21,6 @@ public class ListViewAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
     private List<DestinationVO> destinationList;
-    private ImageView ivDestOne, ivDestTwo;
-    private TextView tvDestOne, tvDestTwo;
     Context context;
 
     public ListViewAdapter(List<DestinationVO> destinationList, Context context) {
@@ -48,18 +46,25 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        ViewHolder holder = new ViewHolder();
         convertView = inflater.inflate(R.layout.list_item_design, parent, false);
-        ivDestOne = (ImageView) convertView.findViewById(R.id.iv_dest_one);
-        ivDestTwo = (ImageView) convertView.findViewById(R.id.iv_dest_two);
-        tvDestOne = (TextView) convertView.findViewById(R.id.tv_dest_one);
-        tvDestTwo = (TextView) convertView.findViewById(R.id.tv_dest_two);
+        holder.ivDestOne = (ImageView) convertView.findViewById(R.id.iv_dest_one);
+        holder.ivDestTwo = (ImageView) convertView.findViewById(R.id.iv_dest_two);
+        holder.tvDestOne = (TextView) convertView.findViewById(R.id.tv_dest_one);
+        holder.tvDestTwo = (TextView) convertView.findViewById(R.id.tv_dest_two);
 
-        ivDestOne.setImageResource(R.drawable.bagan);
-        ivDestTwo.setImageResource(R.drawable.mandalay);
-        tvDestOne.setText("Bagan Bagan Bagna");
-        tvDestTwo.setText("Mandalay Mandalay Mandalay");
+        holder.ivDestOne.setImageResource(R.drawable.bagan);
+        holder.ivDestTwo.setImageResource(R.drawable.mandalay);
+        holder.tvDestOne.setText("Bagan Bagan Bagna");
+        holder.tvDestTwo.setText("Mandalay Mandalay Mandalay");
 
         return convertView;
+    }
+
+    private class ViewHolder {
+        private TextView tvDestOne;
+        private TextView tvDestTwo;
+        private ImageView ivDestOne;
+        private ImageView ivDestTwo;
     }
 }
