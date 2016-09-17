@@ -31,6 +31,17 @@
         <item>Train Expeditions</item>
         <item>Air Balloons</item>
     </string-array>
+
+
+    <string-array name="country_array">
+        <item>Denmark</item>
+        <item>Faroe Islands</item>
+        <item>Finland</item>
+        <item>Iceland</item>
+        <item>Norway</item>
+        <item>Svalbard and Jan Mayen</item>
+        <item>Sweden</item>
+    </string-array>
     
     <string-array name="spinner_city_item_array">City Filter
         <item>Mandalay</item>
@@ -60,9 +71,11 @@
                 + "\n\n" + "Feast your senses at the hotel's fine restaurants where you will find our unmistakable hospitality and culinary excellence. Whether it is a gathering of family or friends, our restaurants can satisfy any palate for any occasion.From contract signing to seminars, to conferences, or even lavish banquets, Grand Plaza Parkroyal is Yangon's preferred meeting and conference venue. Our functions and meeting rooms offer unique flexibility backed by impeccable, efficient services and facilities to please every event organizer. Moreover, a professional banquet service team is readily available to see to your needs.After a long day of site-seeing or business meetings, pamper yourself with long relaxing massages and traditional spa therapies. For fitness buffs, there's the gym, tennis court, swimming pool and aerobic studio. Sooth tired muscles with some time out in the sauna or steam bath.Be it for pleasure or business, Grand Plaza Parkroyal, Yangon, is the ultimate place for you in Yangon."</string>
 
 
+
     <!--Plan Own Route Fragment -->
     <string name="lbl_calculate">Calculate Price</string>
 
     <string name="filter_type_package">Type</string>
+
 
 </resources>

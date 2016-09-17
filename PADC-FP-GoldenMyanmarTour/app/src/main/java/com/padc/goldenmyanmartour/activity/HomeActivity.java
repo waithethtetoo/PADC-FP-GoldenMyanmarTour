@@ -131,6 +131,7 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_home, menu);
 
 
@@ -149,7 +150,9 @@ public class HomeActivity extends AppCompatActivity
 //            spinner.setAdapter(adapter);
 //
 //        }
-        return true;
+
+
+                return true;
     }
 
 
