@@ -110,6 +110,7 @@ public class PLanOwnRouteFragment extends Fragment
         names.add("Pyin_Oo_Lwin");
         names.add("Bagan");
         names.add("Taunggyi");
+        names.add("Inle Lake");
         adapter = new BookMarkAdapter(names);
         gvResult.setAdapter(adapter);
         gvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -119,18 +120,19 @@ public class PLanOwnRouteFragment extends Fragment
                 ivOne.setImageResource(R.drawable.mandalay);
                 tvOne.setText("Mandalay");
 
-                ivTwo.setImageResource(R.drawable.inle);
+       /*         ivTwo.setImageResource(R.drawable.inle);
                 tvTwo.setText("Inle");
 
                 ivThree.setImageResource(R.drawable.bagan);
                 tvThree.setText("Bagan");
-
+*/
             }
         });
         dialog.show();
     }
 
     @OnClick(R.id.btn_calculate)
+    // calculate price by user choose places
     public void onCalculatePrice() {
         Toast.makeText(GMTApp.getContext(), "Price Calculate", Toast.LENGTH_SHORT).show();
     }
