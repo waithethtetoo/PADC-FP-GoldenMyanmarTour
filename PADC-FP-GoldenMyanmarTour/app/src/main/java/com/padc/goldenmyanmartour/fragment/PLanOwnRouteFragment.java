@@ -120,12 +120,18 @@ public class PLanOwnRouteFragment extends Fragment
                 ivOne.setImageResource(R.drawable.mandalay);
                 tvOne.setText("Mandalay");
 
+
        /*         ivTwo.setImageResource(R.drawable.inle);
+=======
+                ivTwo.setImageResource(R.drawable.inle);
+>>>>>>> 1. change fab setVisbility from INVISIBLE to VISIBLE at HomeActivity.java;
                 tvTwo.setText("Inle");
 
                 ivThree.setImageResource(R.drawable.bagan);
                 tvThree.setText("Bagan");
+<<<<<<< afd2ca82146820f0ed191ecd63a02bfa826cf80a
 */
+
             }
         });
         dialog.show();
