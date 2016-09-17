@@ -1,16 +1,26 @@
 package com.padc.goldenmyanmartour.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
+import com.padc.goldenmyanmartour.activity.HomeActivity;
+import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.HotelAdapter;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
 
@@ -28,6 +38,9 @@ public class HotelFragment extends Fragment {
     private HotelAdapter mHotelAdapter;
     private HotelViewHolder.ControllerHotelItem controllerHotelItem;
 
+    MenuItem hotelCityItem;
+    MenuItem hotelPriceItem;
+
     public static HotelFragment newInstance() {
         HotelFragment fragment = new HotelFragment();
         return fragment;
@@ -43,6 +56,7 @@ public class HotelFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHotelAdapter = new HotelAdapter(null, controllerHotelItem);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -54,5 +68,50 @@ public class HotelFragment extends Fragment {
         rvHotels.setAdapter(mHotelAdapter);
         rvHotels.setLayoutManager(new GridLayoutManager(getContext(),1));
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_city_price_filter,menu);
+
+        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
+        hotelPriceItem.setTitle("Price");
+
+
+
+        hotelCityItem = menu.findItem(R.id.spinnerCity);
+        hotelCityItem.setTitle("City");
+
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
+
+        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
+        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
+        spinnerPrice.setAdapter(adapterPrice);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean visible) {
+        super.setUserVisibleHint(visible);
+        if (visible && isResumed()) {
+            onResume();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!getUserVisibleHint()) {
+            return;
+        }
+
+
     }
 }

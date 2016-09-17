@@ -31,16 +31,28 @@
         <item>Train Expeditions</item>
         <item>Air Balloons</item>
     </string-array>
+    
+    <string-array name="spinner_city_item_array">City Filter
+        <item>Mandalay</item>
+        <item>Pyin Oo Lwin</item>
+        <item>Yangon</item>
+        <item>Bagan</item>
+        <item>Pindaya</item>
+        <item>Myeik</item>
+        <item>Monywa</item>
+        <item>Mawlamying</item>
+        <item>Kyaing Tong</item>
+        <item>Kalaw</item>
+    </string-array>
 
+    <string-array name="spinner_price_item_array">Price Filter
+        <item>80,015 MMK</item>
+        <item>61,575 MMK</item>
+        <item>65,490 MMK</item>
+        <item>50,225 MMK</item>
+        <item>50,521 MMK</item>
+        <item>55,395 MMK</item>
 
-    <string-array name="country_array">
-        <item>Denmark</item>
-        <item>Faroe Islands</item>
-        <item>Finland</item>
-        <item>Iceland</item>
-        <item>Norway</item>
-        <item>Svalbard and Jan Mayen</item>
-        <item>Sweden</item>
     </string-array>
     
     

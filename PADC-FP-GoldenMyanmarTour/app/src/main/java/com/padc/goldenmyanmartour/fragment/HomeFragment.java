@@ -1,15 +1,11 @@
 package com.padc.goldenmyanmartour.fragment;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,15 +15,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.activity.HomeActivity;
 import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
-import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
-import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
 import butterknife.BindView;
@@ -40,6 +33,9 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
+
+    MenuItem destinationItemCity;
+
 
     private DestinationAdapter mAdapter;
     private DestinationViewHolder.ControllerDestinationItem mController;
@@ -62,6 +58,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new DestinationAdapter(null, mController);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -73,6 +70,30 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_type_filter,menu);
+
+        destinationItemCity = menu.findItem(R.id.spinner);
+        destinationItemCity.setTitle("City");
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(destinationItemCity);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id= item.getItemId();
+        switch (id) {
+            case R.id.spinner:
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     // search action according to different fragment
     @Override

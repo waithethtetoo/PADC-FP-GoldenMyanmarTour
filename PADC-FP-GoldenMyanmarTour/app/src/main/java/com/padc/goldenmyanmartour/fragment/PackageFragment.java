@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,21 +12,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.activity.HomeActivity;
-import com.padc.goldenmyanmartour.activity.PackageDetailActivity;
 import com.padc.goldenmyanmartour.activity.SearchActivity;
-import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 import com.padc.goldenmyanmartour.adapters.PackageAdapter;
-import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 import com.padc.goldenmyanmartour.views.holders.PackageViewHolder;
 
 import butterknife.BindView;
@@ -44,8 +38,8 @@ public class PackageFragment extends Fragment {
     private PackageAdapter mAdapter;
     private PackageViewHolder.ControllerItem mController;
 
-    MenuItem searchItem;
-    MenuItem tourItem;
+    MenuItem packageItemType;
+    MenuItem itemPrice;
     private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
 
     public PackageFragment() {
@@ -79,34 +73,39 @@ public class PackageFragment extends Fragment {
         return view;
     }
 
-    /*   @Override
+      @Override
        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-           inflater.inflate(R.menu.menu_search, menu);
-           searchItem = menu.findItem(R.id.action_search);
-           MenuItemCompat.setOnActionExpandListener(searchItem, mOnActionExpandListener);
+           inflater.inflate(R.menu.menu_type_filter, menu);
+//           filterItem = menu.findItem(R.id.spinner);
+//           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
 
-           tourItem = menu.findItem(R.id.action_tour_type_filter);
-           Spinner spinner = (Spinner) MenuItemCompat.getActionView(tourItem);
+
+
+
+           packageItemType = menu.findItem(R.id.spinner);
+          packageItemType.setTitle("TourType");
+           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
                    R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
            spinner.setAdapter(adapter);
            super.onCreateOptionsMenu(menu, inflater);
        }
 
-       @Override
-       public boolean onOptionsItemSelected(MenuItem item) {
-           int id = item.getItemId();
-           switch (id) {
-               case R.id.action_search:
-                   Toast.makeText(GMTApp.getContext(), "Action Search is clicked", Toast.LENGTH_SHORT).show();
-                   return true;
-               case R.id.action_tour_type_filter:
-                   return true;
-           }
+//       @Override
 
-           return super.onOptionsItemSelected(item);
-       }
-   */
+//       public boolean onOptionsItemSelected(MenuItem item) {
+//           int id = item.getItemId();
+//           switch (id) {
+//               case R.id.action_search:
+//                   Toast.makeText(GMTApp.getContext(), "Action filter is clicked", Toast.LENGTH_SHORT).show();
+//                   return true;
+//               case R.id.action_tour_type_filter:
+//                   return true;
+//           }
+//
+//           return super.onOptionsItemSelected(item);
+//       }
+
     @Override
     public void setUserVisibleHint(boolean visible) {
         super.setUserVisibleHint(visible);
