@@ -72,16 +72,26 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
         inflater.inflate(R.menu.menu_type_filter,menu);
 
+
+
         destinationItemCity = menu.findItem(R.id.spinner);
-        destinationItemCity.setTitle("City");
+
+        //destinationItemCity.setTitle("City");
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(destinationItemCity);
+        spinner.setDropDownVerticalOffset(-56);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+                 R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
         spinner.setAdapter(adapter);
-        super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override

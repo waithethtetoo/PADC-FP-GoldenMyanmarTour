@@ -72,6 +72,8 @@ public class HotelFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
         inflater.inflate(R.menu.menu_city_price_filter,menu);
 
         hotelPriceItem = menu.findItem(R.id.spinnerPrice);
@@ -94,7 +96,20 @@ public class HotelFragment extends Fragment {
                 R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
         spinnerPrice.setAdapter(adapterPrice);
 
-        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id= item.getItemId();
+        switch (id) {
+            case R.id.spinnerPrice:
+                break;
+            case R.id.spinnerCity:
+               break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

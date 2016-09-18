@@ -7,6 +7,7 @@
         app:actionViewClass="android.widget.Spinner"
         android:background="#ff00"
         android:orderInCategory="100"
+
         app:showAsAction="always|collapseActionView" />
 
     <item android:id="@+id/spinnerPrice"
@@ -15,5 +16,6 @@
         android:background="#ff00"
         app:showAsAction="always|collapseActionView"
         android:orderInCategory="101"
+
         ></item>
 </menu>

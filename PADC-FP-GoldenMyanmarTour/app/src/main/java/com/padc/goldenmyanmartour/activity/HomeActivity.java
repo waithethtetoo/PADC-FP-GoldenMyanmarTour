@@ -78,6 +78,8 @@ public class HomeActivity extends AppCompatActivity
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowCustomEnabled(true);
+
         }
 
         Menu leftMenu = navigationView.getMenu();

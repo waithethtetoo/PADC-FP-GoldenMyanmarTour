@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:name="http://schemas.android.com/tools">
     <!-- Package Type Found -->
 
     <item
         android:id="@+id/spinner"
-        android:title="@string/filter_type_package"
-        app:actionViewClass="android.widget.Spinner"
         android:background="#ff00"
-        app:showAsAction="always|collapseActionView" />
+        android:orderInCategory="1"
+        android:title="Type"
+        app:actionViewClass="android.widget.Spinner"
+        app:showAsAction="always" />
 </menu>
