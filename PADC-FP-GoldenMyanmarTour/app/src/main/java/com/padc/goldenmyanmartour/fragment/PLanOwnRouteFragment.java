@@ -99,33 +99,51 @@ public class PLanOwnRouteFragment extends Fragment
 
 
     public void showBookMarkList() {
+
         Dialog dialog = new Dialog(GMTApp.getContext());
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.setContentView(R.layout.custom_popup_window);
         dialog.setTitle("Your Bookmark");
+
         GridView gvResult = (GridView) dialog.findViewById(R.id.gv_result);
         names = new ArrayList<>(); //bookmark list
         names.add("Pyin_Oo_Lwin");
         names.add("Bagan");
         names.add("Taunggyi");
+        names.add("Inle Lake");
         adapter = new BookMarkAdapter(names);
         gvResult.setAdapter(adapter);
         gvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // selected place image will show here\
+                // selected place image will show here
                 ivOne.setImageResource(R.drawable.mandalay);
-                ivTwo.setImageResource(R.drawable.inle);
-                ivThree.setImageResource(R.drawable.bagan);
                 tvOne.setText("Mandalay");
+
+
+
+       /*         ivTwo.setImageResource(R.drawable.inle);
+=======
+                ivTwo.setImageResource(R.drawable.inle);
+>>>>>>> 1. change fab setVisbility from INVISIBLE to VISIBLE at HomeActivity.java;
+=======
+       /*         ivTwo.setImageResource(R.drawable.inle);
+>>>>>>> add comment at line number 123 to 128 at PlanOwnRoute.java;
                 tvTwo.setText("Inle");
+
+                ivThree.setImageResource(R.drawable.bagan);
                 tvThree.setText("Bagan");
+<<<<<<< 4cabdce795aa1e810dfd294a830927b18b1fa21d
+<<<<<<< afd2ca82146820f0ed191ecd63a02bfa826cf80a
+*/
+
             }
         });
         dialog.show();
     }
 
     @OnClick(R.id.btn_calculate)
+    // calculate price by user choose places
     public void onCalculatePrice() {
         Toast.makeText(GMTApp.getContext(), "Price Calculate", Toast.LENGTH_SHORT).show();
     }
