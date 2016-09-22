@@ -1,8 +1,12 @@
 package com.padc.goldenmyanmartour.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +18,17 @@ import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
+import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FestivalDetailActivity extends BaseActivity {
+public class FestivalDetailActivity extends BaseActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String IE_FESTIVAL_NAME = "IE_FESTIVAL_NAME";
 
@@ -32,9 +40,9 @@ public class FestivalDetailActivity extends BaseActivity {
     @BindView(R.id.tv_festival_location)
     TextView tvFestLocation;
     @BindView(R.id.tv_festival_month)
-    TextView tvFestMonth;
+    TextView tvFestStratDate;
     @BindView(R.id.tv_festival_date)
-    TextView tvFestDate;
+    TextView tvFestEndDate;
     @BindView(R.id.tv_festival_duration)
     TextView tvFestDuration;
     @BindView(R.id.tv_festival_desc)
@@ -73,21 +81,19 @@ public class FestivalDetailActivity extends BaseActivity {
         }
 
         mFestivalName = getIntent().getStringExtra(IE_FESTIVAL_NAME);
-
-        bindData();
+        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
     }
 
-    private void bindData() {
-        tvFestName.setText("Ananda Pagoda Festival");
-        tvFestLocation.setText("Khamti, Lahe, Lashi in Sagaing");
-        tvFestMonth.setText("January");
-        tvFestDate.setText("Full Moon of Pyatho to 15th Waning of Pyatho");
-        tvFestDuration.setText("15 Days");
-        tvFestDesc.setText("The authentic Naga Hill Tribes (about 68 different groups) wear their respective traditional costumes to participate this important festival. They worship to their deities by scarifying the animals. Their traditional dance, martial music and cults of animism are unique and interesting.");
+    private void bindData(FestivalVO festivalVO) {
+        tvFestName.setText(festivalVO.getFestivalName());
+        tvFestLocation.setText(festivalVO.getLocationVO().getCityVO().getName());
+        tvFestStratDate.setText(festivalVO.getFestivalPeriodVO().getStartDate());
+        tvFestEndDate.setText(festivalVO.getFestivalPeriodVO().getEndDate());
+        tvFestDuration.setText(festivalVO.getFestivalPeriodVO().getStartTime());
+        tvFestDesc.setText(festivalVO.getDescription());
 
-        piFestImageSlider.setNumPage(5);
-        String[] images = {"R.drawable.ananda_pagoda_festival", "R.drawable.ananda_pagoda_festival", "R.drawable.ananda_pagoda_festival", "R.drawable.ananda_pagoda_festival", "R.drawable.ananda_pagoda_festival"};
-        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(images);
+        piFestImageSlider.setNumPage(festivalVO.getPhotos().length);
+        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(festivalVO.getPhotos());
         pagerFestImages.setAdapter(pagerAdapter);
         pagerFestImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -113,4 +119,34 @@ public class FestivalDetailActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this,
+                DestinationContract.FestivalEntry.buildFestivalUriWithTitle(mFestivalName),
+                null,
+                null,
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null && data.moveToFirst()) {
+            mFestival = FestivalVO.parseFromCursor(data);
+            mFestival.setPhotos(FestivalVO.loadFestivalImagesByTitle(mFestival.getFestivalName()));
+            bindData(mFestival);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        super.onSendScreenHit();
+    }
+
 }

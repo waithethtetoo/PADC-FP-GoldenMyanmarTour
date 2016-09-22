@@ -57,10 +57,10 @@ public class DestinationViewHolder implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        mController.onTapDestination(mDestination, iv_destination);
-        Intent intentToDestDetail = DestinationDetailActivity.newIntent("Bagan");
-        intentToDestDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        GMTApp.getContext().startActivity(intentToDestDetail);
+        mController.onTapDestination(mDestination, ivDestination);
+//        Intent intentToDestDetail = DestinationDetailActivity.newIntent("Bagan");
+//        intentToDestDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        GMTApp.getContext().startActivity(intentToDestDetail);
     }
 
     public interface ControllerDestinationItem {

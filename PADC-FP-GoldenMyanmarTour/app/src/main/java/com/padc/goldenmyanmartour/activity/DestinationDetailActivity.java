@@ -1,10 +1,14 @@
 package com.padc.goldenmyanmartour.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -23,7 +27,12 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.adapters.ListViewAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
+
+import java.util.List;
 
 import butterknife.BindDimen;
 import butterknife.BindView;
@@ -33,7 +42,8 @@ import butterknife.OnClick;
 /**
  * Created by WT on 9/5/2016.
  */
-public class DestinationDetailActivity extends AppCompatActivity {
+public class DestinationDetailActivity extends BaseActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
 
@@ -57,6 +67,7 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
     private String mDestinationName;
     private DestinationVO mDestination;
+    private List<AttractionPlacesVO> mAttraction;
     private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
     private ListViewAdapter adapter;
 
@@ -81,10 +92,23 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
         mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
 
-//        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
-        piDestinationImageSlider.setNumPage(3);
-        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay", "R.drawable.bagan", "R.drawable.inle"};
-        ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
+        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    private void bindData(DestinationVO destinationVO) {
+//        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
+        tvDestDesc.setText(destinationVO.getNoteToVisitor());
+        adapter = new ListViewAdapter(mAttraction, GMTApp.getContext());
+        lvDest.setAdapter(adapter);
+
+        piDestinationImageSlider.setNumPage(destinationVO.getDestination_photos().length);
+        ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
         pagerDestinationImages.setAdapter(adapter);
         pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -103,17 +127,34 @@ public class DestinationDetailActivity extends AppCompatActivity {
             }
         });
         collapsingToolbar.setTitle(mDestinationName);
-        bindData();
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this,
+                DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestinationName),
+                null,
+                null,
+                null,
+                null);
     }
 
-    private void bindData() {
-        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
-        adapter = new ListViewAdapter(null, GMTApp.getContext());
-        lvDest.setAdapter(adapter);
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null && data.moveToFirst()) {
+            mDestination = DestinationVO.parseFromCursor(data);
+            mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
+            bindData(mDestination);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        super.onSendScreenHit();
     }
 }
