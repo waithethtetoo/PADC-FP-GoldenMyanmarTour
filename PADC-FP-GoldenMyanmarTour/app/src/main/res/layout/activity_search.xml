@@ -15,40 +15,50 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.padc.goldenmyanmartour.activity.SearchActivity">
+        android:layout_marginLeft="@dimen/margin_medium_3"
+        android:layout_marginRight="@dimen/margin_medium_3">
 
-        <SearchView
-            android:id="@+id/searchView"
+        <LinearLayout
+            android:id="@+id/linearlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:iconifiedByDefault="false" />
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-        <ListView
-            android:id="@+id/lv_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/searchView"
-            android:background="@color/primary_light" />
+            <AutoCompleteTextView
+                android:id="@+id/searchView"
+                android:layout_width="@dimen/left_menu_width"
+                android:layout_height="wrap_content"
+                android:popupBackground="@color/primary_text"
+                android:textColor="@color/primary_text"
+                android:layout_weight="0.80" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/searchView"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/searchView"
+                android:src="@drawable/ic_search_24dp" />
+        </LinearLayout>
 
         <GridView
             android:id="@+id/gv_search_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/searchView"
             android:columnWidth="150dp"
             android:gravity="center"
             android:horizontalSpacing="@dimen/margin_medium"
             android:stretchMode="columnWidth"
             android:verticalSpacing="@dimen/margin_medium"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:layout_below="@+id/linearlayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
