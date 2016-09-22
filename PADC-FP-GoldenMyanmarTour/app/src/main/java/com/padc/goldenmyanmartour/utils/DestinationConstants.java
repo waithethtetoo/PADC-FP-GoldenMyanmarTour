@@ -5,7 +5,7 @@ package com.padc.goldenmyanmartour.utils;
  */
 public class DestinationConstants {
     public static final String IMAGE_ROOT_DIR = "http://";
-    public static final String ATTRACTION_BASE_URL = "http://";
+    public static final String DESTINATION_BASE_URL = "http://";
     public static final String API_GET_DESTINATION_LIST = ".php";
 
     public static final String PARAM_ACCESS_TOKEN = "access_token";
