@@ -6,50 +6,91 @@ import com.google.gson.annotations.SerializedName;
  * Created by WT on 9/12/2016.
  */
 public class FestivalVO {
-    @SerializedName("name")
-    private String name;
-    @SerializedName("location")
-    private String locaton;
-    @SerializedName("month")
-    private String month;
-    @SerializedName("date")
-    private String date;
-    @SerializedName("duration")
-    private String duration;
+    @SerializedName("festival-id")
+    private int festivalId;
+
+    @SerializedName("festival-name")
+    private String festivalName;
+
     @SerializedName("description")
     private String description;
-    @SerializedName("images")
-    private String[] images;
 
-    public String getName() {
-        return name;
+    @SerializedName("note-to-visitor")
+    private String noteToVisitor;
+
+    @SerializedName("direction-to-festival")
+    private String direction;
+
+    @SerializedName("photos")
+    private String[] photos;
+
+    @SerializedName("festival-period")
+    private FestivalPeriodVO festivalPeriodVO;
+
+    @SerializedName("location")
+    private LocationVO locationVO;
+
+    public int getFestivalId() {
+        return festivalId;
     }
 
-    public String getLocaton() {
-        return locaton;
+    public void setFestivalId(int festivalId) {
+        this.festivalId = festivalId;
     }
 
-    public String getMonth() {
-        return month;
+    public String getFestivalName() {
+        return festivalName;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public String getDuration() {
-        return duration;
+    public void setFestivalName(String festivalName) {
+        this.festivalName = festivalName;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String[] getImages() {
-        return images;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setImages(String[] images) {
-        this.images = images;
+    public String getNoteToVisitor() {
+        return noteToVisitor;
+    }
+
+    public void setNoteToVisitor(String noteToVisitor) {
+        this.noteToVisitor = noteToVisitor;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String[] getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String[] photos) {
+        this.photos = photos;
+    }
+
+    public FestivalPeriodVO getFestivalPeriodVO() {
+        return festivalPeriodVO;
+    }
+
+    public void setFestivalPeriodVO(FestivalPeriodVO festivalPeriodVO) {
+        this.festivalPeriodVO = festivalPeriodVO;
+    }
+
+    public LocationVO getLocationVO() {
+        return locationVO;
+    }
+
+    public void setLocationVO(LocationVO locationVO) {
+        this.locationVO = locationVO;
     }
 }
