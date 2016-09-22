@@ -24,5 +24,7 @@
     <dimen name="image_width">150dp</dimen>
     <dimen name="image_height">150dp</dimen>
     <dimen name="image_left">10dp</dimen>
+    <dimen name="sight_width">330dp</dimen>
+    <dimen name="sight_height">200dp</dimen>
 
 </resources>
