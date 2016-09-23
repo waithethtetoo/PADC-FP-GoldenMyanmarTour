@@ -129,10 +129,14 @@ public class PLanOwnRouteFragment extends Fragment
 =======
        /*         ivTwo.setImageResource(R.drawable.inle);
 >>>>>>> add comment at line number 123 to 128 at PlanOwnRoute.java;
+=======
+                ivTwo.setImageResource(R.drawable.inle);
+>>>>>>> 1. change fab setVisbility from INVISIBLE to VISIBLE at HomeActivity.java;
                 tvTwo.setText("Inle");
 
                 ivThree.setImageResource(R.drawable.bagan);
                 tvThree.setText("Bagan");
+<<<<<<< 037983194aa024d9ec03f3af74bcb29336806d6f
 <<<<<<< 4cabdce795aa1e810dfd294a830927b18b1fa21d
 <<<<<<< afd2ca82146820f0ed191ecd63a02bfa826cf80a
 */

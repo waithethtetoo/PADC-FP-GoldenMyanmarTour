@@ -11,6 +11,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
@@ -38,12 +43,16 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.gv_search_result)
     GridView gvSearchResult;
 
+    @BindView(R.id.lv_search)
+    ListView lvSearch;
+
     DestinationAdapter dAdapter;
     PackageAdapter pAdapter;
 
     DestinationViewHolder.ControllerDestinationItem dController;
     PackageViewHolder.ControllerItem pController;
     private String searchHint;
+
 
     public static Intent newIntent(String name) {
         Intent intent = new Intent(GMTApp.getContext(), SearchActivity.class);
@@ -89,40 +98,53 @@ public class SearchActivity extends AppCompatActivity {
                 break;
 
             case "Package Fragment":
-                searchView.setHint("Search by package destination");
+                searchView.setHint("Search by destination");
                 // destination list
-                final String[] destList = {"Yangon", "Mandalay", "Bagan", "Inle Lake", "Golden Rock Pagoda"};
+                final String[] pnameList = {"Yangon", "Mandalay", "Bagan", "Inle Lake", "Golden Rock Pagoda"};
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(GMTApp.getContext(),
-                        android.R.layout.simple_dropdown_item_1line, destList);
+                        android.R.layout.simple_dropdown_item_1line, pnameList);
                 searchView.setThreshold(1);
                 searchView.setAdapter(adapter);
                 searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         searchHint = parent.getItemAtPosition(position).toString();
-//                        searchAction(searchHint);
-                        /*search function do here */
+////                        searchAction(searchHint);
+                         /*search function do here */
                         ivSearch.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 gvSearchResult.setVisibility(View.VISIBLE);
 
-                                pAdapter = new PackageAdapter(null, pController);
-                                gvSearchResult.setAdapter(pAdapter);
+                                dAdapter = new DestinationAdapter(null, dController);
+                                gvSearchResult.setAdapter(dAdapter);
                             }
                         });
 
                     }
                 });
                 break;
+                }
         }
-    }
 
     // search function do here
+
  /*   public void searchAction(String query) {
 
+=======
+    public void searchAction(String query) {
+>>>>>>> 1. change fab setVisbility from INVISIBLE to VISIBLE at HomeActivity.java;
         String searchQuery = query.toString();
+        if (searchQuery.equalsIgnoreCase(searchHint)) {
+            lvSearch.setVisibility(View.INVISIBLE);
+            gvSearchResult.setVisibility(View.VISIBLE);
 
+            dAdapter = new DestinationAdapter(null, dController);
+            gvSearchResult.setAdapter(dAdapter);
+        } else if (searchQuery.equalsIgnoreCase("20000")) {
+            gvSearchResult.setVisibility(View.VISIBLE);
+
+<<<<<<< 037983194aa024d9ec03f3af74bcb29336806d6f
         if (searchQuery.equalsIgnoreCase(searchHint)) {
             Log.d("SearchActivity", searchQuery);
             gvSearchResult.setVisibility(View.VISIBLE);
@@ -135,10 +157,13 @@ public class SearchActivity extends AppCompatActivity {
             Log.d("SearchActivity", searchQuery);
             gvSearchResult.setVisibility(View.VISIBLE);
 
+=======
+>>>>>>> 1. change fab setVisbility from INVISIBLE to VISIBLE at HomeActivity.java;
             pAdapter = new PackageAdapter(null, pController);
             gvSearchResult.setAdapter(pAdapter);
         }
     }
+<<<<<<< 037983194aa024d9ec03f3af74bcb29336806d6f
 */
     @Override
     public void onBackPressed() {
