@@ -21,6 +21,7 @@ import java.util.List;
  * Created by WT on 9/12/2016.
  */
 public class FestivalAdapter extends RecyclerView.Adapter<FestivalViewHolder> {
+
     private List<FestivalVO> festivalVOList;
     private LayoutInflater inflater;
     private FestivalViewHolder.ControllerFestivalItem controllerFestivalItem;
@@ -49,6 +50,11 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 6;
+        return festivalVOList.size();
+    }
+
+    public void setNewData(List<FestivalVO> newFestivalList) {
+        festivalVOList = newFestivalList;
+        notifyDataSetChanged();
     }
 }
