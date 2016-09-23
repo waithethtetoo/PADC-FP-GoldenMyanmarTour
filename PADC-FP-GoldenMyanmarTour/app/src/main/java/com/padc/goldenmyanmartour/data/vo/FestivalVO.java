@@ -124,7 +124,7 @@ public class FestivalVO {
             String images = photos[index];
             ContentValues cv = new ContentValues();
             cv.put(DestinationContract.FestivalImageEntry.COLUMN_FESTIVAL_NAME, title);
-            cv.put(DestinationContract.FestivalImageEntry.COLUMN_IMAGE, images);
+            cv.put(DestinationContract.FestivalImageEntry.COLUMN_IMAGES, images);
 
             destCv[index] = cv;
         }
@@ -151,7 +151,7 @@ public class FestivalVO {
                 null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                images.add(cursor.getString(cursor.getColumnIndex(DestinationContract.FestivalImageEntry.COLUMN_IMAGE)));
+                images.add(cursor.getString(cursor.getColumnIndex(DestinationContract.FestivalImageEntry.COLUMN_IMAGES)));
             } while (cursor.moveToNext());
         }
         String[] imageArray = new String[images.size()];
