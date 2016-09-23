@@ -2,9 +2,13 @@ package com.padc.goldenmyanmartour.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
@@ -27,8 +31,16 @@ import com.padc.goldenmyanmartour.activity.PackageDetailActivity;
 import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 import com.padc.goldenmyanmartour.adapters.PackageAdapter;
+import com.padc.goldenmyanmartour.data.vo.HotelVO;
+import com.padc.goldenmyanmartour.data.vo.Models.PackageModel;
+import com.padc.goldenmyanmartour.data.vo.PackageVO;
+import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 import com.padc.goldenmyanmartour.views.holders.PackageViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +48,8 @@ import butterknife.ButterKnife;
 /**
  * Created by WT on 9/6/2016.
  */
-public class PackageFragment extends Fragment {
+public class PackageFragment extends BaseFragment
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.gv_packages)
     GridView gvPackages;
@@ -60,7 +73,7 @@ public class PackageFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        mController = (DestinationViewHolder.ControllerDestinationItem) context;
+        mController = (PackageViewHolder.ControllerItem) context;
     }
 
     @Override
@@ -132,5 +145,46 @@ public class PackageFragment extends Fragment {
                 startActivity(intentToSearch);
             }
         });
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(),
+                DestinationContract.PackageEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                DestinationContract.PackageEntry.COLUMN_PACKAGE_NAME + "ASC");
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        List<PackageVO> packageVOList = new ArrayList<>();
+        if (data != null && data.moveToFirst()) {
+            do {
+                PackageVO packageVO = PackageVO.parseFromCursor(data);
+                packageVO.setPhotos(PackageVO.loadPackageImageByName(packageVO.getPackageName()));
+                ;
+                packageVOList.add(packageVO);
+            } while (data.moveToNext());
+        }
+        mAdapter.setNewData(packageVOList);
+        PackageModel.getInstance().setStoredData(packageVOList);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
