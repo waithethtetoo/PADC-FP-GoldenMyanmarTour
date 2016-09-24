@@ -38,6 +38,9 @@ public class HotelDetailActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+//
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -97,7 +100,6 @@ public class HotelDetailActivity extends BaseActivity {
         mHotelName = getIntent().getStringExtra(IE_HOTEL_NAME);
 
         bindData();
-        //expandable list
         // preparing list data
 
 
@@ -128,7 +130,6 @@ public class HotelDetailActivity extends BaseActivity {
 //        });
 
         // Listview Group expanded listener
-
 
 
     }
@@ -201,7 +202,6 @@ public class HotelDetailActivity extends BaseActivity {
 //        });
 
     }
-
 
 
 

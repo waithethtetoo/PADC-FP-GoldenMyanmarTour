@@ -22,6 +22,8 @@ public class GMTApp extends Application {
 
     public static GMTApp INSTANCE;
 
+    public static String DESTINATION_BASE_URL = null;
+
     @Override
     public void onCreate() {
         super.onCreate();

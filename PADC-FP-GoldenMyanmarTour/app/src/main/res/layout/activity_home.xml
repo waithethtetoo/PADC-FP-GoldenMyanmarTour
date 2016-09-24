@@ -54,7 +54,6 @@
                     app:popupTheme="@style/AppTheme.PopupOverlay"
                     app:layout_collapseMode="pin"/>
 
-
             </android.support.design.widget.CollapsingToolbarLayout>
 
 

@@ -3,6 +3,7 @@ package com.padc.goldenmyanmartour.data.vo.agent;
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.data.vo.Models.DestinationModel;
 import com.padc.goldenmyanmartour.data.vo.responses.DestinationListResponse;
+import com.padc.goldenmyanmartour.utils.CommonInstances;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import java.util.concurrent.TimeUnit;
@@ -28,9 +29,10 @@ public class RetrofitDataAgent implements DestinationDataAgent {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .build();
 
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(GMTApp.DESTINATION_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(CommonInstances.getGsonInstance())) // convert JSON with response
+                .addConverterFactory(GsonConverterFactory.create(CommonInstances.getInstance())) // convert JSON with response
                 .client(okHttpClient)
                 .build();
         theApi = retrofit.create(DestinationApi.class);
@@ -47,7 +49,9 @@ public class RetrofitDataAgent implements DestinationDataAgent {
     public void loadDestinations() {
         Call<DestinationListResponse> loadDestinationCall = theApi.loadDestinations(DestinationConstants.ACCESS_TOKEN);
         loadDestinationCall.enqueue(new Callback<DestinationListResponse>() {
-            public void onResponse(Call<DestinationListResponse> call, Response<DestinationListResponse> response) {
+
+            @Override
+            public void onResponse(Call<DestinationListResponse> call, retrofit2.Response<DestinationListResponse> response) {
                 DestinationListResponse destinationListResponse = response.body();
                 if (destinationListResponse == null) {
                     DestinationModel.getInstance().notifyErrorInLoadingDestinations(response.message());
@@ -60,5 +64,20 @@ public class RetrofitDataAgent implements DestinationDataAgent {
                 DestinationModel.getInstance().notifyErrorInLoadingDestinations(throwable.getMessage());
             }
         });
+    }
+
+    @Override
+    public void loadFestivals() {
+
+    }
+
+    @Override
+    public void loadHotels() {
+
+    }
+
+    @Override
+    public void loadPackage() {
+
     }
 }

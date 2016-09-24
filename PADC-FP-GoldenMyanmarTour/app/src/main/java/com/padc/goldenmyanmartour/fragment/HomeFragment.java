@@ -44,14 +44,11 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-
-
-public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
-
+public class HomeFragment extends BaseFragment
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
-
 
     @BindView(R.id.sp_fiterCity)
             Spinner spFilterCity;
@@ -81,7 +78,6 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
         super.onCreate(savedInstanceState);
         mAdapter = new DestinationAdapter(null, mController);
         setHasOptionsMenu(true);
-
     }
 
     @Override
@@ -101,13 +97,10 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
         return view;
     }
 
-
     @Override
-
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-
     }
 
 //    @Override
@@ -136,13 +129,14 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id= item.getItemId();
+        int id = item.getItemId();
         switch (id) {
             case R.id.spinner:
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
 
 
 
@@ -158,7 +152,6 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
         spinner.setAdapter(adapter);
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 
     // search action according to different fragment
     @Override
@@ -189,7 +182,6 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
     }
 
     @Override
-
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(),
                 DestinationContract.DestinationEntry.CONTENT_URI,
@@ -214,12 +206,10 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
-
     }
 
     @Override
     protected void onSendScreenHit() {
-
 
     }
 }

@@ -18,12 +18,10 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,7 +45,6 @@ import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.FestivalViewHolder;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
-
 
 import java.lang.reflect.Array;
 
@@ -75,7 +72,6 @@ public class HotelFragment extends BaseFragment
     private HotelAdapter mHotelAdapter;
     private HotelViewHolder.ControllerHotelItem controllerHotelItem;
 
-
     private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -83,7 +79,6 @@ public class HotelFragment extends BaseFragment
             mHotelAdapter.setNewData(newHotelList);
         }
     };
-
 
     MenuItem hotelCityItem;
     MenuItem hotelPriceItem;
@@ -117,9 +112,6 @@ public class HotelFragment extends BaseFragment
         List<HotelVO> hotelList = HotelModel.getInstance().getHotelList();
         rvHotels.setAdapter(mHotelAdapter);
 
-
-
-
         ArrayAdapter<CharSequence> adapterCity = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_city_item_array, android.R.layout.simple_spinner_item);
         adapterCity.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spFilterHotelCity.setAdapter(adapterCity);
@@ -134,8 +126,6 @@ public class HotelFragment extends BaseFragment
 
 
         return rootView;
-
-
     }
 
 //    @Override
@@ -278,7 +268,5 @@ public class HotelFragment extends BaseFragment
         if (!getUserVisibleHint()) {
             return;
         }
-
-
     }
 }

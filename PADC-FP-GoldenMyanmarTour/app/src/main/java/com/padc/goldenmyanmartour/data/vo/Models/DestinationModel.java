@@ -1,9 +1,10 @@
 package com.padc.goldenmyanmartour.data.vo.Models;
 
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.padc.goldenmyanmartour.GMTApp;
-import com.padc.goldenmyanmartour.data.vo.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import java.util.ArrayList;

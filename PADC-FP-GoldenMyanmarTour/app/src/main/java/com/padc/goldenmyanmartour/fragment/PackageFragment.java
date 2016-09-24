@@ -127,10 +127,6 @@ public class PackageFragment extends BaseFragment
            inflater.inflate(R.menu.menu_type_filter, menu);
 //           filterItem = menu.findItem(R.id.spinner);
 //           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
-
-
-
-
            packageItemType = menu.findItem(R.id.spinner);
           packageItemType.setTitle("TourType");
            Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
@@ -141,7 +137,6 @@ public class PackageFragment extends BaseFragment
        }
 
 //       @Override
-
 
 //       public boolean onOptionsItemSelected(MenuItem item) {
 //           int id = item.getItemId();
