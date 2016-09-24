@@ -2,9 +2,13 @@ package com.padc.goldenmyanmartour.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +26,17 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.activity.HomeActivity;
 import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
+
+import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
+import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
+
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +44,10 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
+
+public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
 
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
@@ -55,7 +72,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        mController = (DestinationViewHolder.ControllerDestinationItem) context;
+        mController = (DestinationViewHolder.ControllerDestinationItem) context;
     }
 
     @Override
@@ -83,6 +100,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
         return view;
     }
+
 
 //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -117,6 +135,12 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         }
 
         return super.onOptionsItemSelected(item);
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+
     }
 
     // search action according to different fragment
@@ -148,12 +172,39 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     }
 
     @Override
+
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(),
+                DestinationContract.DestinationEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                DestinationContract.DestinationEntry.COLUMN_TITLE + "ASC");
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        List<DestinationVO> destinationList = new ArrayList<>();
+        if (data != null && data.moveToFirst()) {
+            do {
+                DestinationVO destination = DestinationVO.parseFromCursor(data);
+                destination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(destination.getTitle()));
+                destinationList.add(destination);
+            } while (data.moveToNext());
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
 
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    protected void onSendScreenHit() {
+
 
     }
 }

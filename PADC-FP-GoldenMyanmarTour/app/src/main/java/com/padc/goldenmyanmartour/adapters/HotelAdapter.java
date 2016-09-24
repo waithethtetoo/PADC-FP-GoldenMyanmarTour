@@ -23,7 +23,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelViewHolder> {
     private HotelViewHolder.ControllerHotelItem mControllerHotelItem;
 
 
-    public HotelAdapter(List<HotelVO> hotelList,HotelViewHolder.ControllerHotelItem controllerHotelItem ) {
+    public HotelAdapter(List<HotelVO> hotelList, HotelViewHolder.ControllerHotelItem controllerHotelItem) {
         mInflater = LayoutInflater.from(GMTApp.getContext());
         mHotelList = hotelList;
         mControllerHotelItem = controllerHotelItem;
@@ -31,8 +31,8 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelViewHolder> {
 
     @Override
     public HotelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.view_item_hotel,parent,false);
-        return new HotelViewHolder(itemView,mControllerHotelItem);
+        View itemView = mInflater.inflate(R.layout.view_item_hotel, parent, false);
+        return new HotelViewHolder(itemView, mControllerHotelItem);
     }
 
     @Override
@@ -51,4 +51,8 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelViewHolder> {
     }
 
 
+    public void setNewData(List<HotelVO> newHotelList) {
+        this.mHotelList = newHotelList;
+        notifyDataSetChanged();
+    }
 }

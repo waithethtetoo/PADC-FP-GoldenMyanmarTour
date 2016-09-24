@@ -5,5 +5,11 @@ package com.padc.goldenmyanmartour.data.vo.agent;
  */
 public interface DestinationDataAgent {
     void loadDestinations();
+
+    void loadFestivals();
+
+    void loadHotels();
+
+    void loadPackage();
 }
 
