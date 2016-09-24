@@ -38,10 +38,6 @@ public class HotelDetailActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-//
-//    @BindView(R.id.fab)
-//    FloatingActionButton fab;
-
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -72,12 +68,6 @@ public class HotelDetailActivity extends BaseActivity {
 
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-
-
-
-
-
-
 
     public static Intent newIntent(String hotelName) {
         Intent intent = new Intent(GMTApp.getContext(), HotelDetailActivity.class);
