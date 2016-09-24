@@ -38,8 +38,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Optional;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+        DestinationViewHolder.ControllerDestinationItem {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -233,5 +234,11 @@ public class HomeActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, PLanOwnRouteFragment.newInstance())
                 .commit();
+    }
+
+    @Override
+    public void onTapDestination(DestinationVO destinationVO, ImageView iv_destination) {
+        Intent intent = DestinationDetailActivity.newIntent(destinationVO.getTitle());
+        startActivity(intent);
     }
 }
