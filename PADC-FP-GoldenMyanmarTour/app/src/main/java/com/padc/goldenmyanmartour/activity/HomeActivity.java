@@ -135,6 +135,7 @@ public class HomeActivity extends BaseActivity
 
         // Inflate the menu; this adds items to the action bar if it is present.
 
+
         getMenuInflater().inflate(R.menu.menu_home, menu);
 
 
@@ -156,6 +157,26 @@ public class HomeActivity extends BaseActivity
 
 
                 return true;
+
+
+
+
+       // ButterKnife.bind(menu,this);
+
+
+//        Spinner spinner = (Spinner)MenuItemCompat.getActionView(spinnerFilter);
+//
+//        if(spinner != null) {
+//            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                    R.array.spinner_list_item_array, android.R.layout.simple_spinner_item);
+//
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//            spinner.setAdapter(adapter);
+//
+//        }
+//        return true;
+
     }
 
 
