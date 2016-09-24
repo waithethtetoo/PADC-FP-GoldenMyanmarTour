@@ -61,4 +61,8 @@ public class PackageAdapter extends BaseAdapter {
         viewHolder.bindData();
         return convertView;
     }
+
+    public void setNewData(List<PackageVO> newPackage) {
+        this.packageVOList = newPackage;
+    }
 }

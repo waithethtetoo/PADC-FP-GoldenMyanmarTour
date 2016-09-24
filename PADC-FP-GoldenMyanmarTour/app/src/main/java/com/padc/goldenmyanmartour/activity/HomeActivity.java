@@ -3,6 +3,7 @@ package com.padc.goldenmyanmartour.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -35,9 +36,11 @@ import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Optional;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+        DestinationViewHolder.ControllerDestinationItem {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -59,6 +62,11 @@ public class HomeActivity extends AppCompatActivity
     public FloatingActionButton fab;
 
 
+   @Nullable @BindView(R.id.spinner_filter)
+   MenuItem spinnerFilter;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +83,11 @@ public class HomeActivity extends AppCompatActivity
 
         Menu leftMenu = navigationView.getMenu();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //spinner _ filter
+
+
 
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -117,8 +130,26 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
+
+
+
+//        ButterKnife.bind(menu,this);
+//
+//
+//        Spinner spinner = (Spinner)MenuItemCompat.getActionView(spinnerFilter);
+//
+//        if(spinner != null) {
+//            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                    R.array.spinner_list_item_array, android.R.layout.simple_spinner_item);
+//
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//            spinner.setAdapter(adapter);
+//
+//        }
         return true;
     }
 
@@ -198,5 +229,11 @@ public class HomeActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, PLanOwnRouteFragment.newInstance())
                 .commit();
+    }
+
+    @Override
+    public void onTapDestination(DestinationVO destinationVO, ImageView iv_destination) {
+        Intent intent = DestinationDetailActivity.newIntent(destinationVO.getTitle());
+        startActivity(intent);
     }
 }

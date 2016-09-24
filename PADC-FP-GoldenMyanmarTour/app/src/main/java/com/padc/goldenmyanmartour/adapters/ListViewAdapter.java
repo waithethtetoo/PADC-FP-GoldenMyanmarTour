@@ -8,10 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
+import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,23 +24,27 @@ import java.util.List;
 public class ListViewAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
-    private List<DestinationVO> destinationList;
+    private List<AttractionPlacesVO> attractionList;
     Context context;
 
-    public ListViewAdapter(List<DestinationVO> destinationList, Context context) {
-        this.destinationList = destinationList;
+    public ListViewAdapter(List<AttractionPlacesVO> attractionPlacesVOList, Context context) {
+        if (attractionList != null) {
+            this.attractionList = attractionPlacesVOList;
+        } else {
+            this.attractionList = new ArrayList<>();
+        }
         this.context = context;
         inflater = LayoutInflater.from(GMTApp.getContext());
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return attractionList.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public AttractionPlacesVO getItem(int position) {
+        return attractionList.get(position);
     }
 
     @Override
@@ -47,24 +55,36 @@ public class ListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = new ViewHolder();
-        convertView = inflater.inflate(R.layout.list_item_design, parent, false);
-        holder.ivDestOne = (ImageView) convertView.findViewById(R.id.iv_dest_one);
-        holder.ivDestTwo = (ImageView) convertView.findViewById(R.id.iv_dest_two);
-        holder.tvDestOne = (TextView) convertView.findViewById(R.id.tv_dest_one);
-        holder.tvDestTwo = (TextView) convertView.findViewById(R.id.tv_dest_two);
-
-        holder.ivDestOne.setImageResource(R.drawable.bagan);
-        holder.ivDestTwo.setImageResource(R.drawable.mandalay);
-        holder.tvDestOne.setText("Bagan Bagan Bagna");
-        holder.tvDestTwo.setText("Mandalay Mandalay Mandalay");
-
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.list_item_design, parent, false);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.bindData(getItem(position));
         return convertView;
+    }
+
+    public void setNewData(List<AttractionPlacesVO> newAttractionPlace) {
+        attractionList = newAttractionPlace;
+        notifyDataSetChanged();
     }
 
     private class ViewHolder {
         private TextView tvDestOne;
         private TextView tvDestTwo;
         private ImageView ivDestOne;
-        private ImageView ivDestTwo;
+
+        public void bindData(AttractionPlacesVO attractionPlacesVO) {
+            tvDestOne.setText(attractionPlacesVO.getDescription());
+            tvDestTwo.setText(attractionPlacesVO.getDescription());
+            String imageUrl = DestinationConstants.IMAGE_ROOT_DIR + attractionPlacesVO.getImage()[0];
+            Glide.with(ivDestOne.getContext())
+                    .load(imageUrl)
+                    .centerCrop()
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(ivDestOne);
+        }
     }
 }

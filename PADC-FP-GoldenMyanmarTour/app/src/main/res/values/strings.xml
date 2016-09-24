@@ -32,10 +32,37 @@
         <item>Air Balloons</item>
     </string-array>
     
+    <string-array name="spinner_city_item_array">City Filter
+        <item>Mandalay</item>
+        <item>Pyin Oo Lwin</item>
+        <item>Yangon</item>
+        <item>Bagan</item>
+        <item>Pindaya</item>
+        <item>Myeik</item>
+        <item>Monywa</item>
+        <item>Mawlamying</item>
+        <item>Kyaing Tong</item>
+        <item>Kalaw</item>
+    </string-array>
+
+    <string-array name="spinner_price_item_array">Price Filter
+        <item>80,015 MMK</item>
+        <item>61,575 MMK</item>
+        <item>65,490 MMK</item>
+        <item>50,225 MMK</item>
+        <item>50,521 MMK</item>
+        <item>55,395 MMK</item>
+
+    </string-array>
+    
     
     <string name="hotel_desc">"Offering a unique blend of gentle Myanmar hospitality combined with first class service and facilities, the Grand Plaza Parkroyal, Yangon stands resplendent amidst a magnificent landscape dotted with golden pagodas. It is located in Yangon's central business district, only minutes away from the legendary Shwedagon Pagoda and the famous Bogyoke Aung San Market.Our spacious and elegantly appointed 312 guest rooms and suites exude a sense of comfort and style. Moreover, the exclusive Orchid Club Floor offers an unprecedented level of privilege and a host of complimentary services to our valued guests."
                 + "\n\n" + "Feast your senses at the hotel's fine restaurants where you will find our unmistakable hospitality and culinary excellence. Whether it is a gathering of family or friends, our restaurants can satisfy any palate for any occasion.From contract signing to seminars, to conferences, or even lavish banquets, Grand Plaza Parkroyal is Yangon's preferred meeting and conference venue. Our functions and meeting rooms offer unique flexibility backed by impeccable, efficient services and facilities to please every event organizer. Moreover, a professional banquet service team is readily available to see to your needs.After a long day of site-seeing or business meetings, pamper yourself with long relaxing massages and traditional spa therapies. For fitness buffs, there's the gym, tennis court, swimming pool and aerobic studio. Sooth tired muscles with some time out in the sauna or steam bath.Be it for pleasure or business, Grand Plaza Parkroyal, Yangon, is the ultimate place for you in Yangon."</string>
-
     <!--Plan Own Route Fragment -->
     <string name="lbl_calculate">Calculate Price</string>
+
+    <string name="action_send_email">Book the Tourpackage via Email</string>
+    <string name="select_picture">Select Picture</string>
+    <string name="filter_type_package">Type</string>
+
 </resources>
