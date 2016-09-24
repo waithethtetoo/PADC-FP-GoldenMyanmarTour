@@ -38,4 +38,6 @@
 
     <!--Plan Own Route Fragment -->
     <string name="lbl_calculate">Calculate Price</string>
+    <string name="action_send_email">Book the Tourpackage via Email</string>
+    <string name="select_picture">Select Picture</string>
 </resources>

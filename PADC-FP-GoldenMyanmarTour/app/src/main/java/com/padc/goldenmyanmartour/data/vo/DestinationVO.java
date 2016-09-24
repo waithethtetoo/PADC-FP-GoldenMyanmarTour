@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +78,7 @@ public class DestinationVO {
         this.noteToVisitor = noteToVisitor;
     }
 
+
     public LocationVO getLocationVO() {
         return locationVO;
     }
@@ -103,6 +106,8 @@ public class DestinationVO {
 
     }
 
+
+
     private static void saveDestinationImage(String title, String[] photos) {
         ContentValues[] destCv = new ContentValues[photos.length];
         for (int index = 0; index < photos.length; index++) {
@@ -110,6 +115,7 @@ public class DestinationVO {
             ContentValues cv = new ContentValues();
             cv.put(DestinationContract.DestinationImageEntry.COLUMN_DESTINATION_TITLE, title);
             cv.put(DestinationContract.DestinationImageEntry.COLUMN_IMAGE, images);
+
             destCv[index] = cv;
         }
         Context context = GMTApp.getContext();
