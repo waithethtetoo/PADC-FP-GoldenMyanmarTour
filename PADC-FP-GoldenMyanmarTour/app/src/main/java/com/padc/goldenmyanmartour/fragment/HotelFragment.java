@@ -72,6 +72,7 @@ public class HotelFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_hotel, container, false);
         ButterKnife.bind(this, rootView);
         rvHotels.setAdapter(mHotelAdapter);
+
         rvHotels.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
 
@@ -83,6 +84,7 @@ public class HotelFragment extends Fragment {
         ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_price_item_array, android.R.layout.simple_spinner_item);
         adapterPrice.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spFilterHotelPrice.setAdapter(adapterPrice);
+
         return rootView;
 
 
