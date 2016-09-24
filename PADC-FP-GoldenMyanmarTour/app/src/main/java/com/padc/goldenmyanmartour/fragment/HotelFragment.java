@@ -24,6 +24,8 @@ import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.HotelAdapter;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
 
+import java.lang.reflect.Array;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,11 +37,15 @@ public class HotelFragment extends Fragment {
     @BindView(R.id.rv_hotels)
     RecyclerView rvHotels;
 
+    @BindView(R.id.sp_filterHotelCity)
+    Spinner spFilterHotelCity;
+
+    @BindView(R.id.sp_filterHotelPrice)
+    Spinner spFilterHotelPrice;
+
     private HotelAdapter mHotelAdapter;
     private HotelViewHolder.ControllerHotelItem controllerHotelItem;
 
-    MenuItem hotelCityItem;
-    MenuItem hotelPriceItem;
 
     public static HotelFragment newInstance() {
         HotelFragment fragment = new HotelFragment();
@@ -56,7 +62,7 @@ public class HotelFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHotelAdapter = new HotelAdapter(null, controllerHotelItem);
-        setHasOptionsMenu(true);
+
     }
 
     @Nullable
@@ -66,51 +72,63 @@ public class HotelFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_hotel, container, false);
         ButterKnife.bind(this, rootView);
         rvHotels.setAdapter(mHotelAdapter);
-        rvHotels.setLayoutManager(new GridLayoutManager(getContext(),1));
+        rvHotels.setLayoutManager(new GridLayoutManager(getContext(), 1));
+
+
+        ArrayAdapter<CharSequence> adapterCity = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_city_item_array, android.R.layout.simple_spinner_item);
+        adapterCity.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spFilterHotelCity.setAdapter(adapterCity);
+
+
+        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_price_item_array, android.R.layout.simple_spinner_item);
+        adapterPrice.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spFilterHotelPrice.setAdapter(adapterPrice);
         return rootView;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        inflater.inflate(R.menu.menu_city_price_filter,menu);
-
-        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
-        hotelPriceItem.setTitle("Price");
-
-
-
-        hotelCityItem = menu.findItem(R.id.spinnerCity);
-        hotelCityItem.setTitle("City");
-
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-
-
-        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
-        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
-        spinnerPrice.setAdapter(adapterPrice);
 
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id= item.getItemId();
-        switch (id) {
-            case R.id.spinnerPrice:
-                break;
-            case R.id.spinnerCity:
-               break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        menu.clear();
+//        inflater.inflate(R.menu.menu_city_price_filter,menu);
+//
+//        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
+//        hotelPriceItem.setTitle("Price");
+//
+//
+//
+//        hotelCityItem = menu.findItem(R.id.spinnerCity);
+//        hotelCityItem.setTitle("City");
+//
+//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//
+//
+//
+//        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
+//        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
+//        spinnerPrice.setAdapter(adapterPrice);
+//
+//
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id= item.getItemId();
+//        switch (id) {
+//            case R.id.spinnerPrice:
+//                break;
+//            case R.id.spinnerCity:
+//               break;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void setUserVisibleHint(boolean visible) {

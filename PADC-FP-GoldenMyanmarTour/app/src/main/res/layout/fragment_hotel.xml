@@ -6,15 +6,34 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_hotels"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/padding_bottom_for_hotel"
-        android:paddingLeft="@dimen/margin_medium"
-        android:paddingRight="@dimen/margin_medium"
-        android:scrollbarStyle="outsideOverlay"
-        ></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+
+        <Spinner
+            android:id="@+id/sp_filterHotelCity"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:prompt="@string/filter_prompt_city"
+            android:layout_toLeftOf="@+id/sp_filterHotelPrice"></Spinner>
+
+        <Spinner
+            android:id="@+id/sp_filterHotelPrice"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:prompt="@string/filter_prompt_price"
+            android:layout_alignParentRight="true"></Spinner>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_hotels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sp_filterHotelPrice"
+            ></android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

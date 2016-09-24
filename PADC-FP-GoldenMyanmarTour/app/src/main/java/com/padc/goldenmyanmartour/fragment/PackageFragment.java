@@ -35,6 +35,9 @@ public class PackageFragment extends Fragment {
     @BindView(R.id.gv_packages)
     GridView gvPackages;
 
+    @BindView(R.id.sp_filterType)
+    Spinner spFilterType;
+
     private PackageAdapter mAdapter;
     private PackageViewHolder.ControllerItem mController;
 
@@ -70,26 +73,31 @@ public class PackageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_packages, container, false);
         ButterKnife.bind(this, view);
         gvPackages.setAdapter(mAdapter);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),R.array.spinner_list_item_array,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spFilterType.setAdapter(adapter);
+
         return view;
     }
 
-      @Override
-       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-           inflater.inflate(R.menu.menu_type_filter, menu);
-//           filterItem = menu.findItem(R.id.spinner);
-//           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
-
-
-
-
-           packageItemType = menu.findItem(R.id.spinner);
-          packageItemType.setTitle("TourType");
-           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
-           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                   R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
-           spinner.setAdapter(adapter);
-           super.onCreateOptionsMenu(menu, inflater);
-       }
+//      @Override
+//       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//           inflater.inflate(R.menu.menu_type_filter, menu);
+////           filterItem = menu.findItem(R.id.spinner);
+////           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
+//
+//
+//
+//
+//           packageItemType = menu.findItem(R.id.spinner);
+//          packageItemType.setTitle("TourType");
+//           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
+//           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                   R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
+//           spinner.setAdapter(adapter);
+//           super.onCreateOptionsMenu(menu, inflater);
+//       }
 
 //       @Override
 //

@@ -5,6 +5,16 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+   <Spinner
+       android:id="@+id/sp_filterType"
+       android:layout_width="180dp"
+       android:layout_height="60dp"></Spinner>
+
     <GridView
         android:id="@+id/gv_packages"
         android:layout_width="match_parent"
@@ -15,5 +25,7 @@
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:verticalSpacing="@dimen/margin_medium" />
+
+    </LinearLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

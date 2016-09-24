@@ -34,6 +34,7 @@
 
 
     <string-array name="country_array">
+
         <item>Denmark</item>
         <item>Faroe Islands</item>
         <item>Finland</item>
@@ -44,6 +45,7 @@
     </string-array>
     
     <string-array name="spinner_city_item_array">City Filter
+        <item>City Filter</item>
         <item>Mandalay</item>
         <item>Pyin Oo Lwin</item>
         <item>Yangon</item>
@@ -57,6 +59,7 @@
     </string-array>
 
     <string-array name="spinner_price_item_array">Price Filter
+        <item>Price Filter</item>
         <item>80,015 MMK</item>
         <item>61,575 MMK</item>
         <item>65,490 MMK</item>
@@ -77,5 +80,7 @@
 
     <string name="filter_type_package">Type</string>
 
+    <string name="filter_prompt_price">Price</string>
+    <string name="filter_prompt_city">City</string>
 
 </resources>

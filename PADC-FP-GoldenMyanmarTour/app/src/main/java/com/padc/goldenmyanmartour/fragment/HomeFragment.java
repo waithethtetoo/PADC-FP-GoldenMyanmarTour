@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
@@ -29,10 +30,13 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
+
+    @BindView(R.id.sp_fiterCity)
+            Spinner spFilterCity;
 
     MenuItem destinationItemCity;
 
@@ -59,6 +63,8 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mAdapter = new DestinationAdapter(null, mController);
         setHasOptionsMenu(true);
+
+
     }
 
     @Override
@@ -66,33 +72,41 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
+
         gvDestinations.setAdapter(mAdapter);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.spinner_city_item_array,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spFilterCity.setAdapter(adapter);
+
+
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        inflater.inflate(R.menu.menu_type_filter,menu);
-
-
-
-        destinationItemCity = menu.findItem(R.id.spinner);
-
-        //destinationItemCity.setTitle("City");
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(destinationItemCity);
-        spinner.setDropDownVerticalOffset(-56);
-
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                 R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-        spinner.setAdapter(adapter);
-
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        menu.clear();
+//        inflater.inflate(R.menu.menu_type_filter,menu);
+//
+//
+//
+//        destinationItemCity = menu.findItem(R.id.spinner);
+//
+//        //destinationItemCity.setTitle("City");
+//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(destinationItemCity);
+//        spinner.setDropDownVerticalOffset(-56);
+//
+//
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                 R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//
+//        spinner.setAdapter(adapter);
+//
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -131,5 +145,15 @@ public class HomeFragment extends Fragment {
                 startActivity(intentToSearch);
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
