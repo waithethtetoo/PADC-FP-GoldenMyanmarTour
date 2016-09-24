@@ -136,9 +136,8 @@ public class HomeActivity extends BaseActivity
         // Inflate the menu; this adds items to the action bar if it is present.
 
 
+
         getMenuInflater().inflate(R.menu.menu_home, menu);
-
-
 
 //        ButterKnife.bind(menu,this);
 //
@@ -154,6 +153,7 @@ public class HomeActivity extends BaseActivity
 //            spinner.setAdapter(adapter);
 //
 //        }
+
 
 
                 return true;
@@ -176,6 +176,7 @@ public class HomeActivity extends BaseActivity
 //
 //        }
 //        return true;
+
 
     }
 

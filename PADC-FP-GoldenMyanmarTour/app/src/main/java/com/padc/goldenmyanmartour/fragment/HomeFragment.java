@@ -52,6 +52,7 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
 
+
     @BindView(R.id.sp_fiterCity)
             Spinner spFilterCity;
 
@@ -81,7 +82,6 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
         mAdapter = new DestinationAdapter(null, mController);
         setHasOptionsMenu(true);
 
-
     }
 
     @Override
@@ -101,6 +101,14 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
         return view;
     }
 
+
+    @Override
+
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+
+    }
 
 //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -136,12 +144,21 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
 
         return super.onOptionsItemSelected(item);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
 
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_type_filter, menu);
+
+        destinationItemCity = menu.findItem(R.id.spinner);
+        destinationItemCity.setTitle("City");
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(destinationItemCity);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        super.onCreateOptionsMenu(menu, inflater);
     }
+
 
     // search action according to different fragment
     @Override
@@ -172,8 +189,6 @@ public class HomeFragment extends BaseFragment implements LoaderManager.LoaderCa
     }
 
     @Override
-
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(),

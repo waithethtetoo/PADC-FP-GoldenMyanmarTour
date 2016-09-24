@@ -3,12 +3,12 @@ package com.padc.goldenmyanmartour.fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-=======
+
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -18,7 +18,12 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
->>>>>>> data display from response test
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,12 +48,11 @@ import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.FestivalViewHolder;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
 
-<<<<<<< HEAD
+
 import java.lang.reflect.Array;
-=======
+
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> data display from response test
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,8 +75,7 @@ public class HotelFragment extends BaseFragment
     private HotelAdapter mHotelAdapter;
     private HotelViewHolder.ControllerHotelItem controllerHotelItem;
 
-<<<<<<< HEAD
-=======
+
     private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -80,7 +83,10 @@ public class HotelFragment extends BaseFragment
             mHotelAdapter.setNewData(newHotelList);
         }
     };
->>>>>>> data display from response test
+
+
+    MenuItem hotelCityItem;
+    MenuItem hotelPriceItem;
 
     public static HotelFragment newInstance() {
         HotelFragment fragment = new HotelFragment();
@@ -98,6 +104,8 @@ public class HotelFragment extends BaseFragment
         super.onCreate(savedInstanceState);
         mHotelAdapter = new HotelAdapter(null, controllerHotelItem);
 
+        setHasOptionsMenu(true);
+
     }
 
     @Nullable
@@ -109,8 +117,7 @@ public class HotelFragment extends BaseFragment
         List<HotelVO> hotelList = HotelModel.getInstance().getHotelList();
         rvHotels.setAdapter(mHotelAdapter);
 
-<<<<<<< HEAD
-        rvHotels.setLayoutManager(new GridLayoutManager(getContext(), 1));
+
 
 
         ArrayAdapter<CharSequence> adapterCity = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_city_item_array, android.R.layout.simple_spinner_item);
@@ -121,10 +128,10 @@ public class HotelFragment extends BaseFragment
         ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_price_item_array, android.R.layout.simple_spinner_item);
         adapterPrice.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spFilterHotelPrice.setAdapter(adapterPrice);
-=======
+
         int gridColumnCount = getResources().getInteger(R.integer.attraction_list_grid);
         rvHotels.setLayoutManager(new GridLayoutManager(getContext(), gridColumnCount));
->>>>>>> data display from response test
+
 
         return rootView;
 
@@ -173,25 +180,15 @@ public class HotelFragment extends BaseFragment
 //        return super.onOptionsItemSelected(item);
 //    }
 
-    @Override
-    public void setUserVisibleHint(boolean visible) {
-        super.setUserVisibleHint(visible);
-        if (visible && isResumed()) {
-            onResume();
-        }
-    }
+
+
+
+
+
+
 
     @Override
-    public void onResume() {
-        super.onResume();
-        if (!getUserVisibleHint()) {
-            return;
-        }
 
-
-    }
-
-    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
@@ -240,6 +237,48 @@ public class HotelFragment extends BaseFragment
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+    }
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_city_price_filter,menu);
+
+        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
+        hotelPriceItem.setTitle("Price");
+
+
+
+        hotelCityItem = menu.findItem(R.id.spinnerCity);
+        hotelCityItem.setTitle("City");
+
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
+
+        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
+        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
+        spinnerPrice.setAdapter(adapterPrice);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean visible) {
+        super.setUserVisibleHint(visible);
+        if (visible && isResumed()) {
+            onResume();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!getUserVisibleHint()) {
+            return;
+        }
+
 
     }
 }

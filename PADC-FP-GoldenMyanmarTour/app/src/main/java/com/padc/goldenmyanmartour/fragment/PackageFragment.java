@@ -6,13 +6,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-<<<<<<< HEAD
-=======
+
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.GravityCompat;
->>>>>>> data display from response test
+
 import android.support.v4.view.MenuItemCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -101,6 +100,7 @@ public class PackageFragment extends BaseFragment
         return view;
     }
 
+
 //      @Override
 //       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 //           inflater.inflate(R.menu.menu_type_filter, menu);
@@ -121,6 +121,28 @@ public class PackageFragment extends BaseFragment
 
 //       @Override
 //
+
+      @Override
+       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+           inflater.inflate(R.menu.menu_type_filter, menu);
+//           filterItem = menu.findItem(R.id.spinner);
+//           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
+
+
+
+
+           packageItemType = menu.findItem(R.id.spinner);
+          packageItemType.setTitle("TourType");
+           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
+           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+                   R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
+           spinner.setAdapter(adapter);
+           super.onCreateOptionsMenu(menu, inflater);
+       }
+
+//       @Override
+
+
 //       public boolean onOptionsItemSelected(MenuItem item) {
 //           int id = item.getItemId();
 //           switch (id) {
