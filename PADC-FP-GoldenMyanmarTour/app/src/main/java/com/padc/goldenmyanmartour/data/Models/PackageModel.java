@@ -51,7 +51,7 @@ public class PackageModel extends BaseModel {
 
     public void notifyPackagesLoaded(List<PackageVO> packageVOList) {
         mPackageList = packageVOList;
-        PackageVO.savePackages(mPackageList);
+//        PackageVO.savePackages(mPackageList);
 
         broadcastPackagesLoadedWithLocalBroadcastManager();
     }

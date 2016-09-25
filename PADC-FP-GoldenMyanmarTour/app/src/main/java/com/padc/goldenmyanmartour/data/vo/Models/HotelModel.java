@@ -51,7 +51,7 @@ public class HotelModel extends BaseModel {
 
     public void notifyHotelsLoaded(List<HotelVO> hotelVOList) {
         hotelList = hotelVOList;
-        HotelVO.saveHotels(hotelList);
+        //HotelVO.saveHotels(hotelList);
     }
 
     public void notifyErrorInLoadingHotels(String message) {

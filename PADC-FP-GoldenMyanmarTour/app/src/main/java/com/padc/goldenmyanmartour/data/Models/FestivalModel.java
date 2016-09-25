@@ -49,7 +49,7 @@ public class FestivalModel extends BaseModel {
 
     public void notifyFestivalsLoaded(List<FestivalVO> festivalVOList) {
         mFestivalList = festivalVOList;
-        FestivalVO.saveFestivals(mFestivalList);
+        //FestivalVO.saveFestivals(mFestivalList);
 
         broadcastFestivalsLoadedWithLocalBroadcastManager();
     }

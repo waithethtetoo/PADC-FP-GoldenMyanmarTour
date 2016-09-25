@@ -51,7 +51,7 @@ public class FestivalModel extends BaseModel {
 
     public void notifyFestivalsLoaded(List<FestivalVO> festivalList) {
         mFestivalList = festivalList;
-        FestivalVO.saveFestivals(mFestivalList);
+        //FestivalVO.saveFestivals(mFestivalList);
     }
 
     public void notifyErrorInLoadingFestivals(String message) {

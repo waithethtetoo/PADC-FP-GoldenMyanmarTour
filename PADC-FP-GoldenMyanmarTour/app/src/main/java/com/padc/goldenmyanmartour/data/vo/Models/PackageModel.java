@@ -53,7 +53,7 @@ public class PackageModel extends BaseModel {
 
     public void notifyPackageLoaded(List<PackageVO> packageVOList) {
         mPackageList = packageVOList;
-        PackageVO.savePackages(mPackageList);
+       // PackageVO.savePackages(mPackageList);
     }
 
     public void notifyErrorInLoadingPackages(String message) {

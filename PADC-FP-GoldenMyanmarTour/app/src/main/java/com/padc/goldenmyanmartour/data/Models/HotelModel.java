@@ -52,7 +52,7 @@ public class HotelModel extends BaseModel {
 
     public void notifyHotelsLoaded(List<HotelVO> hotelVOList) {
         mHotelList = hotelVOList;
-        HotelVO.saveHotels(mHotelList);
+        //HotelVO.saveHotels(mHotelList);
         broadcastHotelsLoadedWithLocalBroadcastManager();
     }
 

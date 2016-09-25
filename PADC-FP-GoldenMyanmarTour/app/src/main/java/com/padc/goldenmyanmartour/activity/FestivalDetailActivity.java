@@ -133,8 +133,8 @@ public class FestivalDetailActivity extends BaseActivity
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
-            mFestival = FestivalVO.parseFromCursor(data);
-            mFestival.setPhotos(FestivalVO.loadFestivalImagesByTitle(mFestival.getFestivalName()));
+            //mFestival = FestivalVO.parseFromCursor(data);
+            //mFestival.setPhotos(FestivalVO.loadFestivalImagesByTitle(mFestival.getFestivalName()));
             bindData(mFestival);
         }
     }
