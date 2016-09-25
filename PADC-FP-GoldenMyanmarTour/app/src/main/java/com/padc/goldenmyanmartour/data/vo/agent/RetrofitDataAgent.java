@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitDataAgent implements DestinationDataAgent {
     private static RetrofitDataAgent retrofitDataAgent;
-    private final DestinationApi theApi;
+   private final DestinationApi theApi;
 
     public RetrofitDataAgent() {
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -31,7 +31,7 @@ public class RetrofitDataAgent implements DestinationDataAgent {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(GMTApp.DESTINATION_BASE_URL)
+                .baseUrl(DestinationConstants.DESTINATION_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(CommonInstances.getInstance())) // convert JSON with response
                 .client(okHttpClient)
                 .build();

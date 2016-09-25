@@ -24,14 +24,14 @@ import java.util.List;
 public class ListViewAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
-    private List<AttractionPlacesVO> attractionList;
+    private List<DestinationVO> destinationList;
     Context context;
 
-    public ListViewAdapter(List<AttractionPlacesVO> attractionPlacesVOList, Context context) {
-        if (attractionList != null) {
-            this.attractionList = attractionPlacesVOList;
+    public ListViewAdapter(List<DestinationVO> attractionPlacesVOList, Context context) {
+        if (destinationList != null) {
+            this.destinationList = attractionPlacesVOList;
         } else {
-            this.attractionList = new ArrayList<>();
+            this.destinationList = new ArrayList<>();
         }
         this.context = context;
         inflater = LayoutInflater.from(GMTApp.getContext());
@@ -39,13 +39,18 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return attractionList.size();
+        return 3;
     }
 
     @Override
-    public AttractionPlacesVO getItem(int position) {
-        return attractionList.get(position);
+    public Object getItem(int position) {
+        return null;
     }
+
+//    @Override
+//    public AttractionPlacesVO getItem(int position) {
+//        return destinationList.get(position);
+//    }
 
     @Override
     public long getItemId(int position) {
@@ -61,12 +66,12 @@ public class ListViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.bindData(getItem(position));
+       // holder.bindData(getItem(position));
         return convertView;
     }
 
     public void setNewData(List<AttractionPlacesVO> newAttractionPlace) {
-        attractionList = newAttractionPlace;
+      //  destinationList = newAttractionPlace;
         notifyDataSetChanged();
     }
 

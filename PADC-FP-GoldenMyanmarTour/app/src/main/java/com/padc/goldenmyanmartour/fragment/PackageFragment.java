@@ -48,8 +48,7 @@ import butterknife.ButterKnife;
 /**
  * Created by WT on 9/6/2016.
  */
-public class PackageFragment extends BaseFragment
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class PackageFragment extends Fragment {
 
     @BindView(R.id.gv_packages)
     GridView gvPackages;
@@ -76,7 +75,7 @@ public class PackageFragment extends BaseFragment
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mController = (PackageViewHolder.ControllerItem) context;
+//        mController = (PackageViewHolder.ControllerItem) context;
     }
 
     @Override
@@ -122,19 +121,19 @@ public class PackageFragment extends BaseFragment
 //       @Override
 //
 
-      @Override
-       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-           inflater.inflate(R.menu.menu_type_filter, menu);
-//           filterItem = menu.findItem(R.id.spinner);
-//           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
-           packageItemType = menu.findItem(R.id.spinner);
-          packageItemType.setTitle("TourType");
-           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
-           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                   R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
-           spinner.setAdapter(adapter);
-           super.onCreateOptionsMenu(menu, inflater);
-       }
+//      @Override
+//       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//           inflater.inflate(R.menu.menu_type_filter, menu);
+////           filterItem = menu.findItem(R.id.spinner);
+////           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
+//           packageItemType = menu.findItem(R.id.spinner);
+//          packageItemType.setTitle("TourType");
+//           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
+//           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                   R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
+//           spinner.setAdapter(adapter);
+//           super.onCreateOptionsMenu(menu, inflater);
+//       }
 
 //       @Override
 
@@ -178,44 +177,44 @@ public class PackageFragment extends BaseFragment
         });
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-    }
-
-    @Override
-    protected void onSendScreenHit() {
-
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getContext(),
-                DestinationContract.PackageEntry.CONTENT_URI,
-                null,
-                null,
-                null,
-                DestinationContract.PackageEntry.COLUMN_PACKAGE_NAME + "ASC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        List<PackageVO> packageVOList = new ArrayList<>();
-        if (data != null && data.moveToFirst()) {
-            do {
-                PackageVO packageVO = PackageVO.parseFromCursor(data);
-                packageVO.setPhotos(PackageVO.loadPackageImageByName(packageVO.getPackageName()));
-                ;
-                packageVOList.add(packageVO);
-            } while (data.moveToNext());
-        }
-        mAdapter.setNewData(packageVOList);
-        PackageModel.getInstance().setStoredData(packageVOList);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
-    }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+//    }
+//
+//    @Override
+//    protected void onSendScreenHit() {
+//
+//    }
+//
+//    @Override
+//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+//        return new CursorLoader(getContext(),
+//                DestinationContract.PackageEntry.CONTENT_URI,
+//                null,
+//                null,
+//                null,
+//                DestinationContract.PackageEntry.COLUMN_PACKAGE_NAME + "ASC");
+//    }
+//
+//    @Override
+//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+//        List<PackageVO> packageVOList = new ArrayList<>();
+//        if (data != null && data.moveToFirst()) {
+//            do {
+//                PackageVO packageVO = PackageVO.parseFromCursor(data);
+//                packageVO.setPhotos(PackageVO.loadPackageImageByName(packageVO.getPackageName()));
+//                ;
+//                packageVOList.add(packageVO);
+//            } while (data.moveToNext());
+//        }
+//        mAdapter.setNewData(packageVOList);
+//        PackageModel.getInstance().setStoredData(packageVOList);
+//    }
+//
+//    @Override
+//    public void onLoaderReset(Loader<Cursor> loader) {
+//
+//    }
 }

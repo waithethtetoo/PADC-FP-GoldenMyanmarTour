@@ -44,7 +44,7 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class HomeFragment extends BaseFragment
+public class HomeFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.gv_destinations)
@@ -208,8 +208,8 @@ public class HomeFragment extends BaseFragment
 
     }
 
-    @Override
-    protected void onSendScreenHit() {
-
-    }
+//    @Override
+//    protected void onSendScreenHit() {
+//
+//    }
 }
