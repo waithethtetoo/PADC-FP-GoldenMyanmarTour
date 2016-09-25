@@ -1,8 +1,15 @@
 package com.padc.goldenmyanmartour.data.vo;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+
 import com.google.gson.annotations.SerializedName;
+import com.padc.goldenmyanmartour.GMTApp;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hp user on 9/9/2016.
@@ -94,5 +101,57 @@ public class HotelVO {
 
     public void setRoomPriceVOArrayList(ArrayList<RoomPriceVO> roomPriceVOArrayList) {
         this.roomPriceVOArrayList = roomPriceVOArrayList;
+    }
+
+    public static void saveHotels(List<HotelVO> mHotelList) {
+        Context context = GMTApp.getContext();
+        ContentValues[] destCv = new ContentValues[mHotelList.size()];
+        for (int index = 0; index < mHotelList.size(); index++) {
+            HotelVO hotelVO = mHotelList.get(index);
+            HotelVO.saveHotelsImage(hotelVO.getHotelName(), hotelVO.getPhotos());
+        }
+        int insertedCount = context.getContentResolver().bulkInsert(DestinationContract.HotelEntry.CONTENT_URI, destCv);
+    }
+
+    private static void saveHotelsImage(String hotelName, String[] photos) {
+        ContentValues[] destCv = new ContentValues[photos.length];
+        for (int index = 0; index < photos.length; index++) {
+            String images = photos[index];
+            ContentValues cv = new ContentValues();
+            cv.put(DestinationContract.HotelEntry.COLUMN_NAME, hotelName);
+            cv.put(DestinationContract.HotelImageEntry.COLUMN_IMAGE, images);
+            destCv[index] = cv;
+        }
+        Context context = GMTApp.getContext();
+        int insertCount = context.getContentResolver().bulkInsert(DestinationContract.HotelImageEntry.CONTENT_URI, destCv);
+    }
+
+    private ContentValues parseToContentValues() {
+        ContentValues cv = new ContentValues();
+        cv.put(DestinationContract.HotelEntry.COLUMN_NAME, hotelName);
+        return cv;
+    }
+
+    public static HotelVO parseFromCursor(Cursor data) {
+        HotelVO hotelVO = new HotelVO();
+        hotelVO.hotelName = data.getString(data.getColumnIndex(DestinationContract.HotelEntry.COLUMN_NAME));
+        hotelVO.description = data.getString(data.getColumnIndex(DestinationContract.HotelEntry.COLUMN_DESC));
+        hotelVO.direction = data.getString(data.getColumnIndex(DestinationContract.HotelEntry.COLUMN_DIRECTION));
+        return hotelVO;
+    }
+
+    public static String[] loadHotelImagesByTitle(String title) {
+        Context context = GMTApp.getContext();
+        ArrayList<String> images = new ArrayList<>();
+        Cursor cursor = context.getContentResolver().query(DestinationContract.HotelImageEntry.buildHotelImageUriWithTitle(title),
+                null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                images.add(cursor.getString(cursor.getColumnIndex(DestinationContract.HotelImageEntry.COLUMN_IMAGE)));
+            } while (cursor.moveToNext());
+        }
+        String[] imageArray = new String[images.size()];
+        images.toArray(imageArray);
+        return imageArray;
     }
 }

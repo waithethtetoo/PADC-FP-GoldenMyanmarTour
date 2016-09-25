@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class CityVO {
     @SerializedName("city-id")
-    private  int cityId;
+    private  long cityId;
 
     @SerializedName("name")
     private String name;
@@ -15,11 +15,11 @@ public class CityVO {
     @SerializedName("description")
     private String description;
 
-    public int getCityId() {
+    public long getCityId() {
         return cityId;
     }
 
-    public void setCityId(int cityId) {
+    public void setCityId(long cityId) {
         this.cityId = cityId;
     }
 

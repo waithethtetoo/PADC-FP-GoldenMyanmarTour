@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class AttractionPlacesVO {
     @SerializedName("place-id")
-    public int placeId;
+    public long placeId;
     @SerializedName("title")
     public String title;
     @SerializedName("image")
@@ -17,11 +17,11 @@ public class AttractionPlacesVO {
     @SerializedName("note-to-visitor")
     public String noteToVisitor;
 
-    public int getPlaceId() {
+    public long getPlaceId() {
         return placeId;
     }
 
-    public void setPlaceId(int placeId) {
+    public void setPlaceId(long placeId) {
         this.placeId = placeId;
     }
 

@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,7 +24,9 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.adapters.ListViewAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.Models.DestinationModel;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import butterknife.BindDimen;
 import butterknife.BindView;
@@ -78,12 +81,30 @@ public class DestinationDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        mDestination = new DestinationVO();
+        bindData(mDestination);
+        collapsingToolbar.setTitle(mDestinationName);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    private void bindData(DestinationVO destinationVO) {
+//        tvDestDesc.setText(destinationVO.getTitle());
+        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
+
+        adapter = new ListViewAdapter(null, GMTApp.getContext());
+        lvDest.setAdapter(adapter);
 
         mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
+//        piDestinationImageSlider.setCurrentPage(destinationVO.getDestination_photos().length);
 
-//        piDestinationImageSlider.setCurrentPage(destinationVO.getImages().length);
         piDestinationImageSlider.setNumPage(3);
         String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay", "R.drawable.bagan", "R.drawable.inle"};
+
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerDestinationImages.setAdapter(adapter);
         pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -102,18 +123,5 @@ public class DestinationDetailActivity extends AppCompatActivity {
 
             }
         });
-        collapsingToolbar.setTitle(mDestinationName);
-        bindData();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    private void bindData() {
-        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
-        adapter = new ListViewAdapter(null, GMTApp.getContext());
-        lvDest.setAdapter(adapter);
     }
 }

@@ -2,10 +2,14 @@ package com.padc.goldenmyanmartour.activity;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -25,19 +29,23 @@ import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.Models.DestinationModel;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.fragment.FestivalFragment;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
 import com.padc.goldenmyanmartour.fragment.HotelFragment;
 import com.padc.goldenmyanmartour.fragment.PLanOwnRouteFragment;
 import com.padc.goldenmyanmartour.fragment.PackageFragment;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        DestinationViewHolder.ControllerDestinationItem {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -58,6 +66,7 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.fab)
     public FloatingActionButton fab;
 
+    DestinationVO mDestination;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,12 +97,15 @@ public class HomeActivity extends AppCompatActivity
 //        });
 
         if (savedInstanceState == null) {
-            navigateToHomeFragment();
+        navigateToHomeFragment();
         }
 
-        piImageSlider.setNumPage(5);
+//        piImageSlider.setNumPage(mDestination.getDestination_photos().length);
+        piImageSlider.setNumPage(3);
         String[] images = {"R.drawable.bagan", "R.mipmap.ic_launcher", "R.drawable.bagan", "R.mipmap.ic_launcher",
                 "R.drawable.bagan"};
+//        String[] imageUrl = mDestination.getDestination_photos();
+
         ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(images);
         pagerImages.setAdapter(pagerAdapter);
         pagerImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -112,7 +124,6 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
-
     }
 
     @Override
@@ -199,4 +210,11 @@ public class HomeActivity extends AppCompatActivity
                 .replace(R.id.fl_container, PLanOwnRouteFragment.newInstance())
                 .commit();
     }
+
+    @Override
+    public void onTapDestination(DestinationVO destinationVO, ImageView iv_destination) {
+        Intent intentToDetail = DestinationDetailActivity.newIntent(destinationVO.getTitle());
+        startActivity(intentToDetail);
+    }
+
 }

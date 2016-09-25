@@ -8,6 +8,7 @@ import com.padc.goldenmyanmartour.data.agent.RetrofitDataAgent;
  */
 public abstract class BaseModel {
     private static final int INIT_DATA_AGENT_RETROFIT = 1;
+
     protected DestinationDataAgent dataAgent;
 
     public BaseModel() {
@@ -19,4 +20,9 @@ public abstract class BaseModel {
             dataAgent = RetrofitDataAgent.getInstance();
         }
     }
+
+    public void onEventMainThread(Object obj) {
+
+    }
+
 }
