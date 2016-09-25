@@ -27,20 +27,23 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.HotelVO;
 import com.padc.goldenmyanmartour.fragment.FestivalFragment;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
 import com.padc.goldenmyanmartour.fragment.HotelFragment;
 import com.padc.goldenmyanmartour.fragment.PLanOwnRouteFragment;
 import com.padc.goldenmyanmartour.fragment.PackageFragment;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
+import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Optional;
 
-public class HomeActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        DestinationViewHolder.ControllerDestinationItem {
+public class HomeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,  DestinationViewHolder.ControllerDestinationItem
+
+   {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -240,4 +243,5 @@ public class HomeActivity extends BaseActivity
         Intent intent = DestinationDetailActivity.newIntent(destinationVO.getTitle());
         startActivity(intent);
     }
-}
+
+   }

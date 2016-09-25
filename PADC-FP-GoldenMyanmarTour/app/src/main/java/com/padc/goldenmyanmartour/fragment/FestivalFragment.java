@@ -37,8 +37,7 @@ import butterknife.ButterKnife;
 /**
  * Created by WT on 9/10/2016.
  */
-public class FestivalFragment extends BaseFragment
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class FestivalFragment extends Fragment {
 
     @BindView(R.id.rv_festivals)
     RecyclerView rvFestivals;
@@ -46,14 +45,14 @@ public class FestivalFragment extends BaseFragment
     private FestivalAdapter mAdapter;
     private FestivalViewHolder.ControllerFestivalItem mController;
 
-    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String extra = intent.getStringExtra("key-for-extra");
-            List<FestivalVO> newFestival = FestivalModel.getInstance().getFestivalList();
-            mAdapter.setNewData(newFestival);
-        }
-    };
+//    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String extra = intent.getStringExtra("key-for-extra");
+//            List<FestivalVO> newFestival = FestivalModel.getInstance().getFestivalList();
+//            mAdapter.setNewData(newFestival);
+//        }
+//    };
 
     public FestivalFragment() {
     }
@@ -63,11 +62,11 @@ public class FestivalFragment extends BaseFragment
         return fragment;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mController = (FestivalViewHolder.ControllerFestivalItem) context;
-    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        mController = (FestivalViewHolder.ControllerFestivalItem) context;
+//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,50 +80,50 @@ public class FestivalFragment extends BaseFragment
         View view = inflater.inflate(R.layout.fragment_festival, container, false);
         ButterKnife.bind(this, view);
 
-        List<FestivalVO> festivalVOList = FestivalModel.getInstance().getFestivalList();
-        mAdapter = new FestivalAdapter(festivalVOList, mController);
+//        List<FestivalVO> festivalVOList = FestivalModel.getInstance().getFestivalList();
+//        mAdapter = new FestivalAdapter(festivalVOList, mController);
         rvFestivals.setAdapter(mAdapter);
         rvFestivals.setLayoutManager(new GridLayoutManager(getContext(), 1));
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-    }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+//    }
 
-    @Override
-    protected void onSendScreenHit() {
-
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getContext(),
-                DestinationContract.FestivalEntry.CONTENT_URI,
-                null,
-                null,
-                null,
-                DestinationContract.FestivalEntry.COLUMN_NAME + "DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        List<FestivalVO> festivalVOList = new ArrayList<>();
-        if (data != null && data.moveToFirst()) {
-            do {
-                FestivalVO festivalVO = FestivalVO.parseFromCursor(data);
-                festivalVO.setPhotos(FestivalVO.loadFestivalImagesByTitle(festivalVO.getFestivalName()));
-                festivalVOList.add(festivalVO);
-            } while (data.moveToNext());
-        }
-        mAdapter.setNewData(festivalVOList);
-        FestivalModel.getInstance().setStoredData(festivalVOList);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
-    }
+//    @Override
+//    protected void onSendScreenHit() {
+//
+//    }
+//
+//    @Override
+//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+//        return new CursorLoader(getContext(),
+//                DestinationContract.FestivalEntry.CONTENT_URI,
+//                null,
+//                null,
+//                null,
+//                DestinationContract.FestivalEntry.COLUMN_NAME + "DESC");
+//    }
+//
+//    @Override
+//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+//        List<FestivalVO> festivalVOList = new ArrayList<>();
+//        if (data != null && data.moveToFirst()) {
+//            do {
+//                FestivalVO festivalVO = FestivalVO.parseFromCursor(data);
+//                festivalVO.setPhotos(FestivalVO.loadFestivalImagesByTitle(festivalVO.getFestivalName()));
+//                festivalVOList.add(festivalVO);
+//            } while (data.moveToNext());
+//        }
+//        mAdapter.setNewData(festivalVOList);
+//        FestivalModel.getInstance().setStoredData(festivalVOList);
+//    }
+//
+//    @Override
+//    public void onLoaderReset(Loader<Cursor> loader) {
+//
+//    }
 }

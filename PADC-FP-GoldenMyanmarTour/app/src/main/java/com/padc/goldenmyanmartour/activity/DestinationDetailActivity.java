@@ -42,8 +42,8 @@ import butterknife.OnClick;
 /**
  * Created by WT on 9/5/2016.
  */
-public class DestinationDetailActivity extends BaseActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class DestinationDetailActivity extends AppCompatActivity
+       {
 
     private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
 
@@ -89,10 +89,10 @@ public class DestinationDetailActivity extends BaseActivity
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        bindData();
 
-        mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
 
-        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+      //  getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
 
     }
 
@@ -101,14 +101,22 @@ public class DestinationDetailActivity extends BaseActivity
         super.onBackPressed();
     }
 
-    private void bindData(DestinationVO destinationVO) {
-//        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
-        tvDestDesc.setText(destinationVO.getNoteToVisitor());
-        adapter = new ListViewAdapter(mAttraction, GMTApp.getContext());
+    private void bindData() {
+        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
+//        tvDestDesc.setText(destinationVO.getNoteToVisitor());
+        adapter = new ListViewAdapter(null, GMTApp.getContext());
         lvDest.setAdapter(adapter);
 
-        piDestinationImageSlider.setNumPage(destinationVO.getDestination_photos().length);
-        ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
+        mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
+
+   //     piDestinationImageSlider.setNumPage(destinationVO.getDestination_photos().length);
+        piDestinationImageSlider.setNumPage(3);
+
+        String[] images = {"image1","image2","image3"};
+       // ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
+
+
+        ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerDestinationImages.setAdapter(adapter);
         pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -129,32 +137,32 @@ public class DestinationDetailActivity extends BaseActivity
         collapsingToolbar.setTitle(mDestinationName);
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this,
-                DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestinationName),
-                null,
-                null,
-                null,
-                null);
-    }
+//    @Override
+//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+//        return new CursorLoader(this,
+//                DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestinationName),
+//                null,
+//                null,
+//                null,
+//                null);
+//    }
+//
+//    @Override
+//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+//        if (data != null && data.moveToFirst()) {
+//            mDestination = DestinationVO.parseFromCursor(data);
+//            mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
+//            bindData();
+//        }
+//    }
+//
+//    @Override
+//    public void onLoaderReset(Loader<Cursor> loader) {
+//
+//    }
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data != null && data.moveToFirst()) {
-            mDestination = DestinationVO.parseFromCursor(data);
-            mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
-            bindData(mDestination);
-        }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
-    }
-
-    @Override
-    protected void onSendScreenHit() {
-        super.onSendScreenHit();
-    }
+//    @Override
+//    protected void onSendScreenHit() {
+//        super.onSendScreenHit();
+//    }
 }

@@ -32,9 +32,9 @@ public class HotelModel extends BaseModel {
         return model;
     }
 
-    public void loadHotels() {
-        dataAgent.loadHotels();
-    }
+//    public void loadHotels() {
+//        dataAgent.loadHotels();
+//    }
 
     public List<HotelVO> getHotelList() {
         return hotelList;

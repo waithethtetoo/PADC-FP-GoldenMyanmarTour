@@ -50,7 +50,10 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalViewHolder> {
 
     @Override
     public int getItemCount() {
-        return festivalVOList.size();
+        //return festivalVOList.size();
+
+        return 2;
+
     }
 
     public void setNewData(List<FestivalVO> newFestivalList) {

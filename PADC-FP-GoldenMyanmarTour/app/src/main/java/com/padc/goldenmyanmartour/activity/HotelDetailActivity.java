@@ -42,8 +42,8 @@ public class HotelDetailActivity extends BaseActivity {
 //    @BindView(R.id.fab)
 //    FloatingActionButton fab;
 
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
 
 
 //    @BindView(R.id.tv_hotel_desc)
