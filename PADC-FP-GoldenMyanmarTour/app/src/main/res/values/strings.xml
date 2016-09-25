@@ -38,4 +38,5 @@
 
     <!--Plan Own Route Fragment -->
     <string name="lbl_calculate">Calculate Price</string>
+    <string name="content_authority">com.padc.goldenmyanmartour</string>
 </resources>
