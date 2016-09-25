@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,12 +28,18 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.adapters.ListViewAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+<<<<<<< 6955c9987e8038d3ea336b3d849060fcdce94769
 import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import java.util.List;
+=======
+import com.padc.goldenmyanmartour.data.Models.DestinationModel;
+import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
+>>>>>>> 1. add eventbus library in build.gradle;
 
 import butterknife.BindDimen;
 import butterknife.BindView;
@@ -89,10 +96,16 @@ public class DestinationDetailActivity extends AppCompatActivity
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+<<<<<<< 6955c9987e8038d3ea336b3d849060fcdce94769
         bindData();
 
 
       //  getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+=======
+        mDestination = new DestinationVO();
+        bindData(mDestination);
+        collapsingToolbar.setTitle(mDestinationName);
+>>>>>>> 1. add eventbus library in build.gradle;
 
     }
 
@@ -101,20 +114,33 @@ public class DestinationDetailActivity extends AppCompatActivity
         super.onBackPressed();
     }
 
+<<<<<<< 6955c9987e8038d3ea336b3d849060fcdce94769
     private void bindData() {
         tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
 //        tvDestDesc.setText(destinationVO.getNoteToVisitor());
+=======
+    private void bindData(DestinationVO destinationVO) {
+//        tvDestDesc.setText(destinationVO.getTitle());
+        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
+
+>>>>>>> 1. add eventbus library in build.gradle;
         adapter = new ListViewAdapter(null, GMTApp.getContext());
         lvDest.setAdapter(adapter);
 
         mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
+//        piDestinationImageSlider.setCurrentPage(destinationVO.getDestination_photos().length);
 
+<<<<<<< 6955c9987e8038d3ea336b3d849060fcdce94769
    //     piDestinationImageSlider.setNumPage(destinationVO.getDestination_photos().length);
         piDestinationImageSlider.setNumPage(3);
 
         String[] images = {"image1","image2","image3"};
        // ImagesPagerAdapter adapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
 
+=======
+        piDestinationImageSlider.setNumPage(3);
+        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay", "R.drawable.bagan", "R.drawable.inle"};
+>>>>>>> 1. add eventbus library in build.gradle;
 
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerDestinationImages.setAdapter(adapter);
@@ -134,6 +160,7 @@ public class DestinationDetailActivity extends AppCompatActivity
 
             }
         });
+<<<<<<< 6955c9987e8038d3ea336b3d849060fcdce94769
         collapsingToolbar.setTitle(mDestinationName);
     }
 
@@ -165,4 +192,7 @@ public class DestinationDetailActivity extends AppCompatActivity
 //    protected void onSendScreenHit() {
 //        super.onSendScreenHit();
 //    }
+=======
+    }
+>>>>>>> 1. add eventbus library in build.gradle;
 }

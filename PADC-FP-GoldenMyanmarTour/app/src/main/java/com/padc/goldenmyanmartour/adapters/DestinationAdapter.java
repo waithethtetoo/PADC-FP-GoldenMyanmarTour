@@ -19,34 +19,26 @@ import java.util.List;
  */
 public class DestinationAdapter extends BaseAdapter {
 
-    private List<DestinationVO> destinationList;
+    private List<DestinationVO> mDestinationList;
     private LayoutInflater inflater;
     private DestinationViewHolder.ControllerDestinationItem controllerDestinationItem;
 
     public DestinationAdapter(List<DestinationVO> destinationList, DestinationViewHolder.ControllerDestinationItem mController) {
-        if (destinationList != null) {
-            this.destinationList = destinationList;
-        } else {
-            destinationList = new ArrayList<>();
-        }
         inflater = LayoutInflater.from(GMTApp.getContext());
-        this.controllerDestinationItem = mController;
+        mDestinationList = destinationList;
+        controllerDestinationItem = mController;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return mDestinationList.size();
     }
-
-   /* @Override
-    public DestinationVO getItem(int position) {
-        return destinationList.get(position);
-    } */
 
     @Override
-    public Object getItem(int position) {
-        return 0;
+    public DestinationVO getItem(int position) {
+        return mDestinationList.get(position);
     }
+
 
     @Override
     public long getItemId(int position) {
@@ -64,8 +56,12 @@ public class DestinationAdapter extends BaseAdapter {
         } else {
             viewHolder = (DestinationViewHolder) convertView.getTag();
         }
-//        viewHolder.bindData(getItem(position));
-        viewHolder.bindData();
+        viewHolder.bindData(getItem(position));
         return convertView;
+    }
+
+    public void setNewData(List<DestinationVO> newDestination) {
+        mDestinationList = newDestination;
+        notifyDataSetChanged();
     }
 }

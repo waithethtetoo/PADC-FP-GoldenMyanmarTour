@@ -5,75 +5,66 @@ import android.support.v4.content.LocalBroadcastManager;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.events.DataEvent;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
+import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by Lenovo on 9/21/2016.
  */
 public class DestinationModel extends BaseModel {
-    public static final String BROADCAST_DATA_LOADED = "BROADCAST_DATA_LOADED";
-    private static DestinationModel model;
-    private List<DestinationVO> mDestinationList;
 
-    private DestinationModel() {
+    private static DestinationModel obj;
+    private List<DestinationVO> mDestList;
+
+    public DestinationModel() {
         super();
-        mDestinationList = new ArrayList<>();
+        mDestList = new ArrayList<>();
     }
 
     public static DestinationModel getInstance() {
-        if (model == null) {
-            model = new DestinationModel();
+        if (obj == null) {
+            obj = new DestinationModel();
         }
-        return model;
+        return obj;
     }
 
     public void loadDestinations() {
         dataAgent.loadDestinations();
     }
 
-    public List<DestinationVO> getDestinationList() {
-        return mDestinationList;
+    public List<DestinationVO> getmDestList() {
+        return mDestList;
     }
 
-    public DestinationVO getDestinationByName(String destinationName) {
-        for (DestinationVO destination : mDestinationList) {
-            if (destination.getTitle().equals(destinationName)) {
-                return destination;
-            }
+    public DestinationVO getDestinationByName(String destName) {
+        for (DestinationVO destinationVO : mDestList) {
+            if (destinationVO.getTitle().equals(destName)) ;
+            return destinationVO;
         }
         return null;
     }
 
-    public void notifyDestinationsLoaded(List<DestinationVO> destinationVOList) {
-        mDestinationList = destinationVOList;
-        DestinationVO.saveDestinations(mDestinationList);
+    public void notifyDestinationLoaded(List<DestinationVO> destinationVOList) {
+        mDestList = destinationVOList;
+        broadcastDestinationLoadedWithEventBus();
+    }
 
-        broadcastDestinationLoadedWithLocalBroadcastManager();
+    private void broadcastDestinationLoadedWithEventBus() {
+        EventBus.getDefault().post(new DataEvent.DestinationDataLoaded("extra-in-broadcast", mDestList));
     }
 
     public void notifyErrorInLoadingDestinations(String message) {
-
     }
 
-    public String getRandomDestinationImage() {
-        if (mDestinationList == null || mDestinationList.size() == 0) {
-            return null;
-        }
-        Random random = new Random();
-        int randomInt = random.nextInt(mDestinationList.size());
-
-        DestinationVO destinationVO = mDestinationList.get(randomInt);
-        return DestinationConstants.IMAGE_ROOT_DIR + destinationVO.getDestination_photos()[destinationVO.getDestination_photos().length - 1];
-    }
-
-    private void broadcastDestinationLoadedWithLocalBroadcastManager() {
-        Intent intent = new Intent(BROADCAST_DATA_LOADED);
-        intent.putExtra("key-for-extra", "extra-in-broadcast");
-        LocalBroadcastManager.getInstance(GMTApp.getContext()).sendBroadcast(intent);
+    public void setStoredData(List<DestinationVO> destList) {
+        mDestList = destList;
     }
 }

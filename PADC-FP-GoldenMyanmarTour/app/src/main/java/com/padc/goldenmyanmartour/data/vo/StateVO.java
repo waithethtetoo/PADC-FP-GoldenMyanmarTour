@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class StateVO {
     @SerializedName("state-id")
-    private int stateId;
+    private long stateId;
 
     @SerializedName("name")
     private String name;
@@ -31,11 +31,11 @@ public class StateVO {
         this.name = name;
     }
 
-    public int getStateId() {
+    public long getStateId() {
         return stateId;
     }
 
-    public void setStateId(int stateId) {
+    public void setStateId(long stateId) {
         this.stateId = stateId;
     }
 }

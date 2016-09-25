@@ -2,11 +2,15 @@ package com.padc.goldenmyanmartour.activity;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -26,6 +30,8 @@ import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.Models.DestinationModel;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
 import com.padc.goldenmyanmartour.fragment.FestivalFragment;
@@ -33,6 +39,7 @@ import com.padc.goldenmyanmartour.fragment.HomeFragment;
 import com.padc.goldenmyanmartour.fragment.HotelFragment;
 import com.padc.goldenmyanmartour.fragment.PLanOwnRouteFragment;
 import com.padc.goldenmyanmartour.fragment.PackageFragment;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
 
@@ -40,10 +47,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Optional;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,  DestinationViewHolder.ControllerDestinationItem
-
-   {
+public class HomeActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, DestinationViewHolder.ControllerDestinationItem {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -64,10 +69,11 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.fab)
     public FloatingActionButton fab;
 
+    DestinationVO mDestination;
 
-   @Nullable @BindView(R.id.spinner_filter)
-   MenuItem spinnerFilter;
-
+    @Nullable
+    @BindView(R.id.spinner_filter)
+    MenuItem spinnerFilter;
 
 
     @Override
@@ -93,7 +99,6 @@ public class HomeActivity extends AppCompatActivity
         //spinner _ filter
 
 
-
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -109,9 +114,12 @@ public class HomeActivity extends AppCompatActivity
             navigateToHomeFragment();
         }
 
-        piImageSlider.setNumPage(5);
+//        piImageSlider.setNumPage(mDestination.getDestination_photos().length);
+        piImageSlider.setNumPage(3);
         String[] images = {"R.drawable.bagan", "R.mipmap.ic_launcher", "R.drawable.bagan", "R.mipmap.ic_launcher",
                 "R.drawable.bagan"};
+//        String[] imageUrl = mDestination.getDestination_photos();
+
         ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(images);
         pagerImages.setAdapter(pagerAdapter);
         pagerImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -130,14 +138,12 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-
 
 
         getMenuInflater().inflate(R.menu.menu_home, menu);
@@ -243,5 +249,4 @@ public class HomeActivity extends AppCompatActivity
         Intent intent = DestinationDetailActivity.newIntent(destinationVO.getTitle());
         startActivity(intent);
     }
-
-   }
+}

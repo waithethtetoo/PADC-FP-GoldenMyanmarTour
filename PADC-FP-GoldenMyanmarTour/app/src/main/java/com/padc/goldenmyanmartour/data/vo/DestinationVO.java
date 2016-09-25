@@ -18,15 +18,15 @@ import java.util.List;
  */
 public class DestinationVO {
     @SerializedName("destination_id")
-    private int id;
+    private long id;
 
-    @SerializedName("destination_title")
+    @SerializedName("destination-title")
     private String title;
 
     @SerializedName("sort_order")
     private int sort_order;
 
-    @SerializedName("destination_photos")
+    @SerializedName("destination-photos")
     private String[] destination_photos;
 
     @SerializedName("note-to-visitor")
@@ -38,11 +38,11 @@ public class DestinationVO {
     @SerializedName("attraction-places")
     private ArrayList<AttractionPlacesVO> attractionPlacesVOs;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -131,6 +131,7 @@ public class DestinationVO {
     public static DestinationVO parseFromCursor(Cursor data) {
         DestinationVO destinationVO = new DestinationVO();
         destinationVO.title = data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_TITLE));
+        destinationVO.noteToVisitor=data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_NOTE_TO_VISITOR));
         return destinationVO;
     }
 
