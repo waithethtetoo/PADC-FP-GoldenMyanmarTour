@@ -90,10 +90,10 @@ public class PLanOwnRouteFragment extends Fragment {
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spInterestedPlaces.setAdapter(adapter);
-        spInterestedPlaces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spInterestedPlaces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
                     case 1:
                         ivOne.setVisibility(View.VISIBLE);
                         ivTwo.setVisibility(View.VISIBLE);
@@ -113,8 +113,8 @@ public class PLanOwnRouteFragment extends Fragment {
                             }
                         });
 
-
                         break;
+
                     case 2:
                         ivOne.setVisibility(View.VISIBLE);
                         ivTwo.setVisibility(View.VISIBLE);
@@ -143,42 +143,21 @@ public class PLanOwnRouteFragment extends Fragment {
                             }
                         });
                         break;
-                    case 3:
-                        ivOne.setVisibility(View.VISIBLE);
-                        ivTwo.setVisibility(View.VISIBLE);
-                        ivThree.setVisibility(View.VISIBLE);
-                        ivFour.setVisibility(View.VISIBLE);
+                }
+            }
 
-                        vOne.setVisibility(View.VISIBLE);
-                        vTwo.setVisibility(View.VISIBLE);
-                        vThree.setVisibility(View.VISIBLE);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-                        ivOne.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showBookMarkList();
-                            }
-                        });
-                        ivTwo.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showBookMarkList();
-                            }
-                        });
+            }
+        });
+                spInterestedPlaces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
 
-                        ivThree.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showBookMarkList();
-                            }
-                        });
-                        ivFour.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showBookMarkList();
-                            }
-                        });
-                        break;
+
+
                     case 4:
                         ivOne.setVisibility(View.VISIBLE);
                         ivTwo.setVisibility(View.VISIBLE);
