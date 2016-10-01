@@ -172,7 +172,7 @@ public class HomeActivity extends BaseActivity
     }
 
     @Override
-    public void onTapDestinations(DestinationVO destination, ImageView ivDestination) {
+    public void onTapDestination(DestinationVO destination, ImageView ivDestination) {
         Intent intent = DestinationDetailActivity.newIntent(destination.getTitle());
         startActivity(intent);
     }

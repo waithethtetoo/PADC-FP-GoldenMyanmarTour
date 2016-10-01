@@ -30,7 +30,7 @@ public class GMTApp extends Application {
         objInstance = this;
 
         RetrofitDataAgent.getInstance().loadDestinations();
-        RetrofitDataAgent.getInstance().loadPackages();
+//        RetrofitDataAgent.getInstance().loadPackages();
 //        RetrofitDataAgent.getInstance().loadHotels();
 //        RetrofitDataAgent.getInstance().loadFestivals();
     }

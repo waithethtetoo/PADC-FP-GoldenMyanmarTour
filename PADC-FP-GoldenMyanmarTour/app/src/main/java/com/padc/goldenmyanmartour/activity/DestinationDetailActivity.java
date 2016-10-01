@@ -50,16 +50,15 @@ import butterknife.OnClick;
 /**
  * Created by WT on 9/5/2016.
  */
-public class DestinationDetailActivity extends BaseActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class DestinationDetailActivity extends BaseActivity {
 
-   private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
+    private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
 
     @BindView(R.id.tv_dest_desc)
     TextView tvDestDesc;
@@ -96,8 +95,9 @@ public class DestinationDetailActivity extends BaseActivity
         }
 
         mDestTitle = getIntent().getStringExtra(IE_DESTINATION_NAME);
-
-        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+        Log.v(GMTApp.TAG, mDestTitle);
+        bindData();
+//        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
     }
 
     @Override
@@ -105,38 +105,42 @@ public class DestinationDetailActivity extends BaseActivity
         super.onBackPressed();
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    /*
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-        return new CursorLoader(this,
-               DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestTitle),
-                null,
-                null,
-                null,
-                null);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
-        if (data != null && data.moveToFirst()) {
-            mDestination = DestinationVO.parseFromCursor(data);
-            mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
-            bindData(mDestination);
+            return new CursorLoader(this,
+                   DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestTitle),
+                    null,
+                    null,
+                    null,
+                    null);
         }
-    }
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
-    }
+            if (data != null && data.moveToFirst()) {
+                mDestination = DestinationVO.parseFromCursor(data);
+                mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
+                bindData(mDestination);
+            }
+        }
 
-    private void bindData(DestinationVO destinationVO) {
-        tvDestDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {
 
-        piDestImageSlider.setNumPage(destinationVO.getDestination_photos().length);
+        }
+    */
+    private void bindData() {
+//        tvDestDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
+        tvDestDesc.setText("Yangon, the commercial capital, is the main gateway to Myanmar. Evergreen and cool with lush tropical trees, shady parks and beautiful lakes, Yangon has earned the name of The Garden City of the East. Yangon was founded by King Alaungpaya on the site of a small settlement called Dagon when he conquered Lower Myanmar in 1755.");
+//        piDestImageSlider.setNumPage(destinationVO.getDestination_photos().length);
 
-        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
+        piDestImageSlider.setNumPage(3);
+        String[]imageurl={"image"};
+        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(imageurl);
+//        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
         pagerDestImages.setAdapter(pagerAdapter);
 
         pagerDestImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
