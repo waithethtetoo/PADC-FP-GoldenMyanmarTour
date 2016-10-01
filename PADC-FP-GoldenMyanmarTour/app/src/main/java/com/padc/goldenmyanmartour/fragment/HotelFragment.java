@@ -40,8 +40,6 @@ import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.HotelAdapter;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
-import com.padc.goldenmyanmartour.data.vo.Models.HotelModel;
-import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.FestivalViewHolder;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
@@ -90,7 +88,7 @@ public class HotelFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-       // controllerHotelItem = (HotelViewHolder.ControllerHotelItem) context;
+        // controllerHotelItem = (HotelViewHolder.ControllerHotelItem) context;
     }
 
     @Override
@@ -170,11 +168,6 @@ public class HotelFragment extends Fragment {
 //    }
 
 
-
-
-
-
-
 //
 //    @Override
 //
@@ -192,10 +185,10 @@ public class HotelFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-     //   LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mDataLoaded);
+        //   LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mDataLoaded);
     }
 
-//    @Override
+    //    @Override
 //    protected void onSendScreenHit() {
 //
 //    }
@@ -228,11 +221,10 @@ public class HotelFragment extends Fragment {
 //    public void onLoaderReset(Loader<Cursor> loader) {
 //    }
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_city_price_filter,menu);
+        inflater.inflate(R.menu.menu_city_price_filter, menu);
 
         hotelPriceItem = menu.findItem(R.id.spinnerPrice);
         hotelPriceItem.setTitle("Price");
-
 
 
         hotelCityItem = menu.findItem(R.id.spinnerCity);
@@ -244,8 +236,7 @@ public class HotelFragment extends Fragment {
         spinner.setAdapter(adapter);
 
 
-
-        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
+        Spinner spinnerPrice = (Spinner) MenuItemCompat.getActionView(hotelPriceItem);
         ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
                 R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
         spinnerPrice.setAdapter(adapterPrice);

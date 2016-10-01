@@ -23,6 +23,13 @@ public interface DestinationApi {
     Call<DestinationListResponse> loadDestinations(
             @Field(DestinationConstants.PARAM_ACCESS_TOKEN) String param);
 
+
+    // package api
+    @FormUrlEncoded
+    @POST(DestinationConstants.API_GET_PACKAGE_LIST)
+    Call<PackageListResponse> loadPackages(
+            @Field(DestinationConstants.PARAM_ACCESS_TOKEN) String param);
+
     // hotel api
     @FormUrlEncoded
     @POST(DestinationConstants.API_GET_HOTEL_LIST)
@@ -33,11 +40,6 @@ public interface DestinationApi {
     @FormUrlEncoded
     @POST(DestinationConstants.API_GET_FESTIVAL_LIST)
     Call<FestivalListResponse> loadFestivals(
-            @Field(DestinationConstants.PARAM_ACCESS_TOKEN)String param);
+            @Field(DestinationConstants.PARAM_ACCESS_TOKEN) String param);
 
-    // package api
-    @FormUrlEncoded
-    @POST(DestinationConstants.API_GET_PACKAGE_LIST)
-    Call<PackageListResponse>loadPackages(
-            @Field(DestinationConstants.PARAM_ACCESS_TOKEN)String param);
 }

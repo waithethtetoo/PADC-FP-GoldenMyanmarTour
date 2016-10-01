@@ -1,6 +1,7 @@
 package com.padc.goldenmyanmartour.events;
 
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.PackageVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,24 @@ public class DataEvent {
 
         public List<DestinationVO> getDestinationVOList() {
             return destinationVOList;
+        }
+    }
+
+    public static class PackageDataLoaded {
+        private String message;
+        private List<PackageVO> packageVOList;
+
+        public PackageDataLoaded(String message, List<PackageVO> packageVOList) {
+            this.message = message;
+            this.packageVOList = packageVOList;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public List<PackageVO> getPackageVOList() {
+            return packageVOList;
         }
     }
 

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.padc.goldenmyanmartour.data.Models.DestinationModel;
@@ -20,17 +21,21 @@ public class GMTApp extends Application {
 
     private static Context context;
 
-    public static String DESTINATION_BASE_URL = null;
+    public static GMTApp objInstance;
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        objInstance = this;
+
         RetrofitDataAgent.getInstance().loadDestinations();
+        RetrofitDataAgent.getInstance().loadPackages();
+//        RetrofitDataAgent.getInstance().loadHotels();
+//        RetrofitDataAgent.getInstance().loadFestivals();
     }
 
     public static Context getContext() {
         return context;
     }
-
 }

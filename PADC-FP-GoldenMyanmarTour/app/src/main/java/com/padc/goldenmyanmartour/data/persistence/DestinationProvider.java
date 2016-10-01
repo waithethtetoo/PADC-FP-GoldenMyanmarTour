@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 
 /**
@@ -22,13 +23,15 @@ public class DestinationProvider extends ContentProvider {
     public static final int CITY = 50;
     public static final int STATE = 60;
     public static final int ATTRACTION_PLACES = 70;
+    public static final int ATTRACTION_PLACE_IMAGES = 80;
 
     private static final String sDestinationTitle = DestinationContract.DestinationEntry.COLUMN_TITLE + "=?";
     private static final String sDestinationImageWithTitle = DestinationContract.DestinationImageEntry.COLUMN_DESTINATION_TITLE + "=?";
-    private static final String sLocationName = DestinationContract.LocationEntry.COLUMN_TITLE + "=?";
+    private static final String sLocationName = DestinationContract.LocationEntry.COLUMN_ADDRESS + "=?";
     private static final String sCityName = DestinationContract.CityEntry.COLUMN_NAME + "=?";
     private static final String sStateName = DestinationContract.StateEntry.COLUMN_NAME + "=?";
     private static final String sAttractionPlace = DestinationContract.DestinationEntry.COLUMN_TITLE + "=?";
+    private static final String sAttractionPlaceImageWithTitle = DestinationContract.AttractionPlaceImageEntry.COLUMN_ATTRACTION_TITLE + "=?";
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private DestinationDBHelper mDestinationDBHelper;
@@ -42,6 +45,7 @@ public class DestinationProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor queryCursor;
         int matchUri = sUriMatcher.match(uri);
+        Log.d("Uri", uri.toString());
         switch (matchUri) {
             case DESTINATION:
                 String destinationTitle = DestinationContract.DestinationEntry.getTitleFromParam(uri);
@@ -119,7 +123,7 @@ public class DestinationProvider extends ContentProvider {
                 break;
 
             case ATTRACTION_PLACES:
-                String attractionName = DestinationContract.DestinationEntry.getTitleFromParam(uri);
+                String attractionName = DestinationContract.AttractionPlacesEntry.getTitleFromParam(uri);
                 if (!TextUtils.isEmpty(attractionName)) {
                     selection = sAttractionPlace;
                     selectionArgs = new String[]{attractionName};
@@ -132,7 +136,20 @@ public class DestinationProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
-
+            case ATTRACTION_PLACE_IMAGES:
+                String name = DestinationContract.AttractionPlaceImageEntry.getAttractionPlaceTitleFromParam(uri);
+                if (!TextUtils.isEmpty(name)) {
+                    selection = sAttractionPlaceImageWithTitle;
+                    selectionArgs = new String[]{name};
+                }
+                queryCursor = mDestinationDBHelper.getReadableDatabase().query(DestinationContract.AttractionPlaceImageEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("unknown uri :" + uri);
         }
@@ -159,6 +176,8 @@ public class DestinationProvider extends ContentProvider {
                 return DestinationContract.StateEntry.DIR_TYPE;
             case ATTRACTION_PLACES:
                 return DestinationContract.AttractionPlacesEntry.DIR_TYPE;
+            case ATTRACTION_PLACE_IMAGES:
+                return DestinationContract.AttractionPlaceImageEntry.DIR_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri :" + uri);
         }
@@ -166,6 +185,7 @@ public class DestinationProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+
         final SQLiteDatabase db = mDestinationDBHelper.getWritableDatabase();
         final int matchUri = sUriMatcher.match(uri);
         Uri insertedUri;
@@ -214,6 +234,14 @@ public class DestinationProvider extends ContentProvider {
                 long places_id = db.insert(DestinationContract.AttractionPlacesEntry.TABLE_NAME, null, values);
                 if (places_id > 0) {
                     insertedUri = DestinationContract.AttractionPlacesEntry.buildPlaceUri(places_id);
+                } else {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            case ATTRACTION_PLACE_IMAGES:
+                long image_id = db.insert(DestinationContract.AttractionPlaceImageEntry.TABLE_NAME, null, values);
+                if (image_id > 0) {
+                    insertedUri = DestinationContract.AttractionPlaceImageEntry.buildAttractionPlaceImageUri(image_id);
                 } else {
                     throw new SQLException("Failed to insert row into " + uri);
                 }
@@ -288,6 +316,7 @@ public class DestinationProvider extends ContentProvider {
         uriMatcher.addURI(DestinationContract.CONTENT_AUTHORITY, DestinationContract.PATH_CITY, CITY);
         uriMatcher.addURI(DestinationContract.CONTENT_AUTHORITY, DestinationContract.PATH_STATE, STATE);
         uriMatcher.addURI(DestinationContract.CONTENT_AUTHORITY, DestinationContract.PATH_ATTRACTION_PLACES, ATTRACTION_PLACES);
+        uriMatcher.addURI(DestinationContract.CONTENT_AUTHORITY, DestinationContract.PATH_ATTRACTION_PLACE_IMAGE, ATTRACTION_PLACE_IMAGES);
         return uriMatcher;
     }
 
@@ -306,6 +335,8 @@ public class DestinationProvider extends ContentProvider {
                 return DestinationContract.StateEntry.TABLE_NAME;
             case ATTRACTION_PLACES:
                 return DestinationContract.AttractionPlacesEntry.TABLE_NAME;
+            case ATTRACTION_PLACE_IMAGES:
+                return DestinationContract.AttractionPlaceImageEntry.TABLE_NAME;
             default:
                 throw new UnsupportedOperationException("Unknown uri :" + uri);
         }

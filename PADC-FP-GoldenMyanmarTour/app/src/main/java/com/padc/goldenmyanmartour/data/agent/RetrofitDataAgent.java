@@ -10,11 +10,13 @@ import com.padc.goldenmyanmartour.data.responses.DestinationListResponse;
 import com.padc.goldenmyanmartour.data.responses.FestivalListResponse;
 import com.padc.goldenmyanmartour.data.responses.HotelListResponse;
 import com.padc.goldenmyanmartour.data.responses.PackageListResponse;
+import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.events.DataEvent;
 import com.padc.goldenmyanmartour.utils.CommonInstances;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -37,14 +39,15 @@ public class RetrofitDataAgent implements DestinationDataAgent {
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(50, TimeUnit.SECONDS)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(DestinationConstants.DESTINATION_BASE_URL)
+                .baseUrl(DestinationConstants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(CommonInstances.getInstance()))
                 .client(okHttpClient)
                 .build();
+
         theApi = retrofit.create(DestinationApi.class);
     }
 
@@ -58,7 +61,6 @@ public class RetrofitDataAgent implements DestinationDataAgent {
     // destinations
     @Override
     public void loadDestinations() {
-
         Call<DestinationListResponse> loadDestCall = theApi.loadDestinations(DestinationConstants.ACCESS_TOKEN);
         loadDestCall.enqueue(new Callback<DestinationListResponse>() {
             @Override
@@ -83,6 +85,32 @@ public class RetrofitDataAgent implements DestinationDataAgent {
         });
     }
 
+
+    // packages
+    @Override
+    public void loadPackages() {
+        Call<PackageListResponse> loadPackageCall = theApi.loadPackages(DestinationConstants.ACCESS_TOKEN);
+        loadPackageCall.enqueue(new Callback<PackageListResponse>() {
+            @Override
+            public void onResponse(Call<PackageListResponse> call, retrofit2.Response<PackageListResponse> response) {
+                if (response.isSuccessful()) {
+                    PackageListResponse packageListResponse = response.body();
+                    if (packageListResponse == null) {
+                        PackageModel.getInstance().notifyErrorInLoadingPackages(response.message());
+                    } else {
+                        PackageModel.getInstance().notifyPackagesLoaded(packageListResponse.getPackagesList());
+                    }
+                } else {
+                    Log.d("Data", "Unsuccessful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PackageListResponse> call, Throwable t) {
+                PackageModel.getInstance().notifyErrorInLoadingPackages(t.getMessage());
+            }
+        });
+    }
 
     // festivals
     @Override
@@ -128,26 +156,5 @@ public class RetrofitDataAgent implements DestinationDataAgent {
         });
     }
 
-    // packages
-    @Override
-    public void loadPackages() {
-        Call<PackageListResponse> loadPackageCall = theApi.loadPackages(DestinationConstants.ACCESS_TOKEN);
-        loadPackageCall.enqueue(new Callback<PackageListResponse>() {
-            @Override
-            public void onResponse(Call<PackageListResponse> call, retrofit2.Response<PackageListResponse> response) {
-                PackageListResponse packageListResponse = response.body();
-                if (packageListResponse == null) {
-                    PackageModel.getInstance().notifyErrorInLoadingPackages(response.message());
-                } else {
-                    PackageModel.getInstance().notifyPackagesLoaded(packageListResponse.getPackagesList());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PackageListResponse> call, Throwable t) {
-                PackageModel.getInstance().notifyErrorInLoadingPackages(t.getMessage());
-            }
-        });
-    }
 
 }

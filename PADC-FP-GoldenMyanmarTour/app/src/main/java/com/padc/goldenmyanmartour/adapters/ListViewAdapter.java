@@ -24,14 +24,14 @@ import java.util.List;
 public class ListViewAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
-    private List<DestinationVO> destinationList;
+    private List<AttractionPlacesVO> attractionPlacesVOList;
     Context context;
 
-    public ListViewAdapter(List<DestinationVO> attractionPlacesVOList, Context context) {
-        if (destinationList != null) {
-            this.destinationList = attractionPlacesVOList;
+    public ListViewAdapter(List<AttractionPlacesVO> attractionPlacesList, Context context) {
+        if (attractionPlacesVOList != null) {
+            this.attractionPlacesVOList = attractionPlacesList;
         } else {
-            this.destinationList = new ArrayList<>();
+            this.attractionPlacesVOList = new ArrayList<>();
         }
         this.context = context;
         inflater = LayoutInflater.from(GMTApp.getContext());
@@ -39,18 +39,14 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return attractionPlacesVOList.size();
     }
+
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public AttractionPlacesVO getItem(int position) {
+        return attractionPlacesVOList.get(position);
     }
-
-//    @Override
-//    public AttractionPlacesVO getItem(int position) {
-//        return destinationList.get(position);
-//    }
 
     @Override
     public long getItemId(int position) {
@@ -66,24 +62,24 @@ public class ListViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-       // holder.bindData(getItem(position));
+        holder.bindData(getItem(position));
         return convertView;
     }
 
     public void setNewData(List<AttractionPlacesVO> newAttractionPlace) {
-      //  destinationList = newAttractionPlace;
+        attractionPlacesVOList = newAttractionPlace;
         notifyDataSetChanged();
     }
 
     private class ViewHolder {
+        private TextView tvDestTitle;
         private TextView tvDestOne;
-        private TextView tvDestTwo;
         private ImageView ivDestOne;
 
         public void bindData(AttractionPlacesVO attractionPlacesVO) {
+            tvDestTitle.setText(attractionPlacesVO.getTitle());
             tvDestOne.setText(attractionPlacesVO.getDescription());
-            tvDestTwo.setText(attractionPlacesVO.getDescription());
-            String imageUrl = DestinationConstants.IMAGE_ROOT_DIR + attractionPlacesVO.getImage()[0];
+            String imageUrl = DestinationConstants.ATTRACTION_IMAGE_ROOT_DIR + attractionPlacesVO.getImage()[0];
             Glide.with(ivDestOne.getContext())
                     .load(imageUrl)
                     .centerCrop()

@@ -23,6 +23,7 @@ import com.padc.goldenmyanmartour.R;
  * Created by hp user on 9/10/2016.
  */
 public class BaseActivity extends AppCompatActivity {
+
     private static final int PERMISSION_REQUEST_CALL_PHONE = 100;
     private static final int PERMISSION_READ_EXTERNAL_STORAGE = 101;
 

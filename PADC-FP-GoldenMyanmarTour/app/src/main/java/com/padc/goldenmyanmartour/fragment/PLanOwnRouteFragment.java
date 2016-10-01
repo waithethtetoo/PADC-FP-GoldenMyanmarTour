@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +40,10 @@ import butterknife.OnClick;
 /**
  * Created by WT on 9/14/2016.
  */
-public class PLanOwnRouteFragment extends Fragment
-        implements View.OnClickListener {
+public class PLanOwnRouteFragment extends Fragment {
+
+    @BindView(R.id.sp_interested_places)
+    Spinner spInterestedPlaces;
 
     @BindView(R.id.image_one)
     ImageView ivOne;
@@ -47,13 +51,20 @@ public class PLanOwnRouteFragment extends Fragment
     ImageView ivTwo;
     @BindView(R.id.image_three)
     ImageView ivThree;
+    @BindView(R.id.image_four)
+    ImageView ivFour;
+    @BindView(R.id.image_fifth)
+    ImageView ivFifth;
 
-    @BindView(R.id.tv_one)
-    TextView tvOne;
-    @BindView(R.id.tv_two)
-    TextView tvTwo;
-    @BindView(R.id.tv_three)
-    TextView tvThree;
+    @BindView(R.id.v_one)
+    View vOne;
+    @BindView(R.id.v_two)
+    View vTwo;
+    @BindView(R.id.v_three)
+    View vThree;
+    @BindView(R.id.v_four)
+    View vFour;
+
 
     BookMarkAdapter adapter;
     List<String> names;
@@ -75,27 +86,167 @@ public class PLanOwnRouteFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_planownroute, container, false);
         ButterKnife.bind(this, view);
 
-        ivOne.setOnClickListener(this);
-        ivTwo.setOnClickListener(this);
-        ivThree.setOnClickListener(this);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.interested_places,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spInterestedPlaces.setAdapter(adapter);
+        spInterestedPlaces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 1:
+                        ivOne.setVisibility(View.VISIBLE);
+                        ivTwo.setVisibility(View.VISIBLE);
+                        vOne.setVisibility(View.VISIBLE);
+
+
+                        ivOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+
+                        break;
+                    case 2:
+                        ivOne.setVisibility(View.VISIBLE);
+                        ivTwo.setVisibility(View.VISIBLE);
+                        ivThree.setVisibility(View.VISIBLE);
+
+                        vOne.setVisibility(View.VISIBLE);
+                        vTwo.setVisibility(View.VISIBLE);
+
+                        ivOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+                        ivThree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        break;
+                    case 3:
+                        ivOne.setVisibility(View.VISIBLE);
+                        ivTwo.setVisibility(View.VISIBLE);
+                        ivThree.setVisibility(View.VISIBLE);
+                        ivFour.setVisibility(View.VISIBLE);
+
+                        vOne.setVisibility(View.VISIBLE);
+                        vTwo.setVisibility(View.VISIBLE);
+                        vThree.setVisibility(View.VISIBLE);
+
+                        ivOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+                        ivThree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivFour.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        break;
+                    case 4:
+                        ivOne.setVisibility(View.VISIBLE);
+                        ivTwo.setVisibility(View.VISIBLE);
+                        ivThree.setVisibility(View.VISIBLE);
+                        ivFour.setVisibility(View.VISIBLE);
+                        ivFifth.setVisibility(View.VISIBLE);
+
+                        vOne.setVisibility(View.VISIBLE);
+                        vTwo.setVisibility(View.VISIBLE);
+                        vThree.setVisibility(View.VISIBLE);
+                        vFour.setVisibility(View.VISIBLE);
+
+                        ivOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+                        ivThree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivFour.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+                        ivFifth.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+
+                        break;
+                }
+            }
+        });
 
         return view;
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.image_one:
-                showBookMarkList();
-                break;
-            case R.id.image_two:
-                showBookMarkList();
-                break;
-            case R.id.image_three:
-                showBookMarkList();
-                break;
-        }
-    }
+//
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.image_one:
+//                showBookMarkList();
+//                break;
+//            case R.id.image_two:
+//                showBookMarkList();
+//                break;
+//            case R.id.image_three:
+//                showBookMarkList();
+//                break;
+//        }
+//    }
 
 
     public void showBookMarkList() {
@@ -118,7 +269,6 @@ public class PLanOwnRouteFragment extends Fragment
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // selected place image will show here
                 ivOne.setImageResource(R.drawable.mandalay);
-                tvOne.setText("Mandalay");
 
 
 

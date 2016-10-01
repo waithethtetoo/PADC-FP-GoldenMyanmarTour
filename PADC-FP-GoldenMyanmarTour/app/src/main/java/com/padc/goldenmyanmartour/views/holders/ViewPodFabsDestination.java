@@ -40,11 +40,11 @@ public class ViewPodFabsDestination extends FrameLayout {
         objAnim.setInterpolator(new AccelerateInterpolator());
         objAnim.start();
 
-        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY(), fabBookMark.getY() - 310f);
+        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX(), fabBookMark.getX() - 310f);
         objAnimBookMarkFW.setDuration(500);
         objAnimBookMarkFW.setInterpolator(new AccelerateDecelerateInterpolator());
 
-        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY() - 310, fabBookMark.getY() - 280f);
+        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX() - 310, fabBookMark.getX() - 280f);
         objAnimBookMarkBW.setDuration(100);
         objAnimBookMarkBW.setInterpolator(new AccelerateDecelerateInterpolator());
 
@@ -85,12 +85,11 @@ public class ViewPodFabsDestination extends FrameLayout {
         objAnimRotation.setInterpolator(new AccelerateInterpolator());
         objAnimRotation.start();
 
-
-        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY(), fabBookMark.getY() - 30f);
+        ObjectAnimator objAnimBookMarkFW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX(), fabBookMark.getY() - 30f);
         objAnimBookMarkFW.setDuration(100);
         objAnimBookMarkFW.setInterpolator(new AccelerateDecelerateInterpolator());
 
-        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "y", fabBookMark.getY() - 30, fabBookMark.getY() + 280f);
+        ObjectAnimator objAnimBookMarkBW = ObjectAnimator.ofFloat(fabBookMark, "x", fabBookMark.getX() - 30, fabBookMark.getX() + 280f);
         objAnimBookMarkBW.setDuration(500);
         objAnimBookMarkBW.setInterpolator(new AccelerateDecelerateInterpolator());
 

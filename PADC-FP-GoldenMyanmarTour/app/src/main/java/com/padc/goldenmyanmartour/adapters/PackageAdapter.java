@@ -27,7 +27,7 @@ public class PackageAdapter extends BaseAdapter {
         if (packageVOList != null) {
             this.packageVOList = packageVOList;
         } else {
-            packageVOList = new ArrayList<>();
+            this.packageVOList = new ArrayList<>();
         }
         inflater = LayoutInflater.from(GMTApp.getContext());
         this.mController = mController;
@@ -35,12 +35,17 @@ public class PackageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return packageVOList.size();
     }
+//
+//    @Override
+//    public Object getItem(int position) {
+//        return null;
+//  }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public PackageVO getItem(int position) {
+        return packageVOList.get(position);
     }
 
     @Override
@@ -58,7 +63,8 @@ public class PackageAdapter extends BaseAdapter {
         } else {
             viewHolder = (PackageViewHolder) convertView.getTag();
         }
-        viewHolder.bindData();
+        viewHolder.bindData(getItem(position));
+//        viewHolder.bindData();
         return convertView;
     }
 

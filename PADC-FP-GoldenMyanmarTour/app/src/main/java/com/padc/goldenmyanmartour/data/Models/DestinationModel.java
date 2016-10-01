@@ -54,7 +54,9 @@ public class DestinationModel extends BaseModel {
 
     public void notifyDestinationLoaded(List<DestinationVO> destinationVOList) {
         mDestList = destinationVOList;
-        broadcastDestinationLoadedWithEventBus();
+        /* save to persistence layer */
+        DestinationVO.saveDestinations(mDestList);
+//        broadcastDestinationLoadedWithEventBus();
     }
 
     private void broadcastDestinationLoadedWithEventBus() {

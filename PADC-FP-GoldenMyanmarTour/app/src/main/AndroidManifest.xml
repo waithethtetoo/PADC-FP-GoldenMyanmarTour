@@ -6,14 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <!-- Implicit Intents -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".GMTApp"
@@ -39,21 +33,33 @@
             android:label="@string/destinations"
             android:parentActivityName=".activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".activity.PackageDetailActivity"
             android:label="@string/packages"
             android:parentActivityName=".activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".activity.HotelDetailActivity"
             android:label="Hotels"
             android:parentActivityName=".activity.HomeActivity" />
+
         <activity android:name=".activity.SearchActivity" />
+
         <activity
             android:name=".activity.FestivalDetailActivity"
             android:label="@string/festivals"
             android:parentActivityName=".activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <!--<provider-->
+            <!--android:name=".data.persistence.DestinationProvider"-->
+            <!--android:authorities="@string/content_authority"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false"-->
+            <!--android:syncable="true" />-->
+
     </application>
 
 </manifest>

@@ -20,12 +20,12 @@ import butterknife.ButterKnife;
 public class PackageViewHolder implements View.OnClickListener {
     @BindView(R.id.iv_package)
     ImageView ivPackage;
+
     @BindView(R.id.tv_package_name)
     TextView tvPackageName;
-//    @BindView(R.id.tv_package_price)
-//    TextView tvPackagePrice;
 
-    private PackageVO packageVO;
+
+    private PackageVO mPackageVO;
     private ControllerItem mController;
 
     public PackageViewHolder(View view, ControllerItem mController) {
@@ -34,13 +34,11 @@ public class PackageViewHolder implements View.OnClickListener {
         this.mController = mController;
     }
 
-    public void bindData() {
-//        mDestination = destination;
-//        tv_destination_name.setText(destination.getName());
-//        tv_destination_desc.setText(destination.getDesc());
-        tvPackageName.setText("2 Days/1 Night From Kalaw to Inle Lake");
-//        tvPackagePrice.setText("Price : 20,000 Ks");
-
+    public void bindData(PackageVO packageVO) {
+        mPackageVO = packageVO;
+        tvPackageName.setText(packageVO.getPackageName());
+//        tvPackageName.setText("Yangon-Bago-Thanlyin-Yangon");
+//        String imageUrl = packageVO.getPhotos()[0];
         Glide.with(ivPackage.getContext())
                 .load(R.drawable.inle)
                 .centerCrop()
@@ -51,9 +49,10 @@ public class PackageViewHolder implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intentToPackageDetail = PackageDetailActivity.newIntent("2 Days/1 Night From Kalaw to Inle Lake");
-        intentToPackageDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        GMTApp.getContext().startActivity(intentToPackageDetail);
+        mController.onTapPackage(mPackageVO,ivPackage);
+//        Intent intentToPackageDetail = PackageDetailActivity.newIntent("Yangon-Bago-Thanlyin-Yangon");
+//        intentToPackageDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        GMTApp.getContext().startActivity(intentToPackageDetail);
     }
 
     public interface ControllerItem {

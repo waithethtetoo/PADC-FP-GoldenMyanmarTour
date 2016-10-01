@@ -3,6 +3,7 @@ package com.padc.goldenmyanmartour.data.vo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 import com.padc.goldenmyanmartour.GMTApp;
@@ -100,26 +101,29 @@ public class DestinationVO {
         ContentValues[] destCv = new ContentValues[destinationLst.size()];
         for (int index = 0; index < destinationLst.size(); index++) {
             DestinationVO destinationVO = destinationLst.get(index);
+
+            destCv[index] = destinationVO.parseToContentValues();
             DestinationVO.saveDestinationImage(destinationVO.getTitle(), destinationVO.getDestination_photos());
         }
-        int insertedCount = context.getContentResolver().bulkInsert(DestinationContract.DestinationEntry.CONTENT_URI, destCv);
 
+        int insertedCount = context.getContentResolver().bulkInsert(DestinationContract.DestinationEntry.CONTENT_URI, destCv);
+//        Log.d(GMTApp.TAG, "Bulk inserted into destination_images table : " + insertedCount);
     }
 
-
-
     private static void saveDestinationImage(String title, String[] photos) {
-        ContentValues[] destCv = new ContentValues[photos.length];
+        ContentValues[] destImgCvs = new ContentValues[photos.length];
+
         for (int index = 0; index < photos.length; index++) {
             String images = photos[index];
             ContentValues cv = new ContentValues();
             cv.put(DestinationContract.DestinationImageEntry.COLUMN_DESTINATION_TITLE, title);
             cv.put(DestinationContract.DestinationImageEntry.COLUMN_IMAGE, images);
 
-            destCv[index] = cv;
+            destImgCvs[index] = cv;
         }
+
         Context context = GMTApp.getContext();
-        int insertCount = context.getContentResolver().bulkInsert(DestinationContract.DestinationImageEntry.CONTENT_URI, destCv);
+        int insertCount = context.getContentResolver().bulkInsert(DestinationContract.DestinationImageEntry.CONTENT_URI, destImgCvs);
     }
 
     private ContentValues parseToContentValues() {
@@ -131,7 +135,7 @@ public class DestinationVO {
     public static DestinationVO parseFromCursor(Cursor data) {
         DestinationVO destinationVO = new DestinationVO();
         destinationVO.title = data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_TITLE));
-        destinationVO.noteToVisitor=data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_NOTE_TO_VISITOR));
+        destinationVO.noteToVisitor = data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_NOTE_TO_VISITOR));
         return destinationVO;
     }
 

@@ -28,15 +28,19 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.adapters.ListViewAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
-import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
+import com.padc.goldenmyanmartour.dialog.SharedDialog;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import java.util.List;
+
 import com.padc.goldenmyanmartour.data.Models.DestinationModel;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
+
+import org.w3c.dom.Text;
 
 import butterknife.BindDimen;
 import butterknife.BindView;
@@ -46,43 +50,40 @@ import butterknife.OnClick;
 /**
  * Created by WT on 9/5/2016.
  */
-public class DestinationDetailActivity extends AppCompatActivity
-       {
+public class DestinationDetailActivity extends BaseActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
+   private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
     @BindView(R.id.tv_dest_desc)
     TextView tvDestDesc;
+
+    @BindView(R.id.pager_destination_images)
+    ViewPager pagerDestImages;
 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
 
-    @BindView(R.id.pager_destination_images)
-    ViewPager pagerDestinationImages;
-
     @BindView(R.id.pi_destination_image_slider)
-    PageIndicatorView piDestinationImageSlider;
+    PageIndicatorView piDestImageSlider;
 
-    @BindView(R.id.lv_destination)
-    ListView lvDest;
-
-    private String mDestinationName;
+    private String mDestTitle;
     private DestinationVO mDestination;
-    private List<AttractionPlacesVO> mAttraction;
-    private MenuItemCompat.OnActionExpandListener mOnActionExpandListener;
-    private ListViewAdapter adapter;
 
-    public static Intent newIntent(String name) {
+    public static Intent newIntent(String destinationName) {
         Intent intent = new Intent(GMTApp.getContext(), DestinationDetailActivity.class);
-        intent.putExtra(IE_DESTINATION_NAME, name);
+        intent.putExtra(IE_DESTINATION_NAME, destinationName);
         return intent;
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination_detail);
         ButterKnife.bind(this, this);
@@ -94,10 +95,9 @@ public class DestinationDetailActivity extends AppCompatActivity
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        mDestination = new DestinationVO();
-        bindData(mDestination);
-        collapsingToolbar.setTitle(mDestinationName);
+        mDestTitle = getIntent().getStringExtra(IE_DESTINATION_NAME);
 
+        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
     }
 
     @Override
@@ -105,22 +105,41 @@ public class DestinationDetailActivity extends AppCompatActivity
         super.onBackPressed();
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+
+        return new CursorLoader(this,
+               DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestTitle),
+                null,
+                null,
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+        if (data != null && data.moveToFirst()) {
+            mDestination = DestinationVO.parseFromCursor(data);
+            mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
+            bindData(mDestination);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
     private void bindData(DestinationVO destinationVO) {
-//        tvDestDesc.setText(destinationVO.getTitle());
-        tvDestDesc.setText("It is situated on the eastern bank of Ayeyarwaddy River and 688 km from Yangon. Bagan is one of the most remarkable archaeological sites in Asia with over 40000 ancient monuments built during 11- 13 century. It is also known as the centre of Myanmar Lacquer ware industry. Bagan was the capital of the first unified Empire of Anawrahta founded in 849 AD, and flourished from 1044 to 13th century.");
+        tvDestDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
 
-        adapter = new ListViewAdapter(null, GMTApp.getContext());
-        lvDest.setAdapter(adapter);
+        piDestImageSlider.setNumPage(destinationVO.getDestination_photos().length);
 
-        mDestinationName = getIntent().getStringExtra(IE_DESTINATION_NAME);
-//        piDestinationImageSlider.setCurrentPage(destinationVO.getDestination_photos().length);
+        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
+        pagerDestImages.setAdapter(pagerAdapter);
 
-        piDestinationImageSlider.setNumPage(3);
-        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay", "R.drawable.bagan", "R.drawable.inle"};
-
-        ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
-        pagerDestinationImages.setAdapter(adapter);
-        pagerDestinationImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pagerDestImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -128,7 +147,7 @@ public class DestinationDetailActivity extends AppCompatActivity
 
             @Override
             public void onPageSelected(int position) {
-                piDestinationImageSlider.setCurrentPage(position);
+                piDestImageSlider.setCurrentPage(position);
             }
 
             @Override
@@ -136,35 +155,41 @@ public class DestinationDetailActivity extends AppCompatActivity
 
             }
         });
-        collapsingToolbar.setTitle(mDestinationName);
+
+        collapsingToolbar.setTitle(mDestTitle);
     }
 
-//    @Override
-//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-//        return new CursorLoader(this,
-//                DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestinationName),
-//                null,
-//                null,
-//                null,
-//                null);
-//    }
-//
-//    @Override
-//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-//        if (data != null && data.moveToFirst()) {
-//            mDestination = DestinationVO.parseFromCursor(data);
-//            mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
-//            bindData();
-//        }
-//    }
-//
-//    @Override
-//    public void onLoaderReset(Loader<Cursor> loader) {
-//
-//    }
+    @OnClick(R.id.fab_share)
+    public void onTapShare(View view) {
+        //        String imageUrl = DestinationConstants.IMAGE_ROOT_DIR + mDestination.getDestination_photos()[0];
+//        sendViaShareIntent(mDestination.getTitle() + "-" + imageUrl);
+        sendViaShareIntent("Destination");
+    }
 
-//    @Override
-//    protected void onSendScreenHit() {
-//        super.onSendScreenHit();
-//    }
+    @OnClick(R.id.fab_bookmark)
+    public void onTapBook(View view) {
+
+        String msg = getString(R.string.format_contact_option_confirmation, mDestination.getTitle());
+
+        SharedDialog.confirmYesNoWithTheme(this, msg,
+                getString(R.string.booking_phone), getString(R.string.booking_email), new SharedDialog.YesNoConfirmDelegate() {
+                    @Override
+                    public void onConfirmYes() {
+                        makeCall(DestinationConstants.CUSTOMER_SUPPORT_PHONE);
+                    }
+
+                    @Override
+                    public void onConfirmNo() {
+
+                        sendEmail(DestinationConstants.CUSTOMER_SUPPORT_EMAIL, getString(R.string.book_the_package),
+                                getString(R.string.format_book_the_package_message, mDestination.getTitle()));
+                    }
+                });
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        super.onSendScreenHit();
+    }
+
 }

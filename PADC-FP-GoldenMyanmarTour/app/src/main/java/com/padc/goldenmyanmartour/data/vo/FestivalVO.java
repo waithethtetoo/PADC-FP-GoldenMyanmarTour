@@ -6,7 +6,6 @@ import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 import com.padc.goldenmyanmartour.GMTApp;
-import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.annotations.SerializedName;

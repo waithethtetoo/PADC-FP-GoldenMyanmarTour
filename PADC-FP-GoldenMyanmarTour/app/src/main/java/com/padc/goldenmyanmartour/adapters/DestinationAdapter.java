@@ -19,35 +19,37 @@ import java.util.List;
  */
 public class DestinationAdapter extends BaseAdapter {
 
-    private List<DestinationVO> mDestinationList;
+   private List<DestinationVO> destinationList;
     private LayoutInflater inflater;
     private DestinationViewHolder.ControllerDestinationItem controllerDestinationItem;
 
-    public DestinationAdapter(List<DestinationVO> destinationList, DestinationViewHolder.ControllerDestinationItem mController) {
+    public DestinationAdapter(List<DestinationVO> destinationList, DestinationViewHolder.ControllerDestinationItem controllerDestinationItem) {
+        if (destinationList != null) {
+            this.destinationList = destinationList;
+        } else {
+            this.destinationList = new ArrayList<>();
+        }
         inflater = LayoutInflater.from(GMTApp.getContext());
-        mDestinationList = destinationList;
-        controllerDestinationItem = mController;
+        this.controllerDestinationItem = controllerDestinationItem;
     }
 
     @Override
     public int getCount() {
-        return mDestinationList.size();
+        return destinationList.size();
     }
 
     @Override
     public DestinationVO getItem(int position) {
-        return mDestinationList.get(position);
+        return destinationList.get(position);
     }
 
-
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int i) {
         return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         DestinationViewHolder viewHolder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.view_item_destinations, parent, false);
@@ -56,12 +58,14 @@ public class DestinationAdapter extends BaseAdapter {
         } else {
             viewHolder = (DestinationViewHolder) convertView.getTag();
         }
+
         viewHolder.bindData(getItem(position));
         return convertView;
     }
 
-    public void setNewData(List<DestinationVO> newDestination) {
-        mDestinationList = newDestination;
+
+    public void setNewData(List<DestinationVO> newDestinationList) {
+        destinationList = newDestinationList;
         notifyDataSetChanged();
     }
 }

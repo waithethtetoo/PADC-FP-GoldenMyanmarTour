@@ -41,6 +41,8 @@ public class SearchActivity extends AppCompatActivity {
     DestinationAdapter dAdapter;
     PackageAdapter pAdapter;
 
+    DestinationVO destinationVO;
+
     DestinationViewHolder.ControllerDestinationItem dController;
     PackageViewHolder.ControllerItem pController;
     private String searchHint;
@@ -61,9 +63,9 @@ public class SearchActivity extends AppCompatActivity {
 
         switch (fragmentName) {
             case "Home Fragment":
-                            searchView.setHint("Search by destination");
+                searchView.setHint("Search by destination");
                 // destination list
-                final String[] nameList = {"Yangon", "Mandalay", "Bagan", "Inle Lake", "Golden Rock Pagoda"};
+                final String[] nameList = {"Yangon", "Bagan", "Mandalay", "Inle Lake", "Maruk U", "Nay Pyi Taw"};
                 ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(GMTApp.getContext(),
                         android.R.layout.simple_dropdown_item_1line, nameList);
                 searchView.setThreshold(1);
@@ -74,15 +76,15 @@ public class SearchActivity extends AppCompatActivity {
                         searchHint = parent.getItemAtPosition(position).toString();
 ////                        searchAction(searchHint);
                          /*search function do here */
-                ivSearch.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        gvSearchResult.setVisibility(View.VISIBLE);
+                        ivSearch.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                gvSearchResult.setVisibility(View.VISIBLE);
 
-                        dAdapter = new DestinationAdapter(null, dController);
-                        gvSearchResult.setAdapter(dAdapter);
-                    }
-                });
+                                dAdapter = new DestinationAdapter(null, dController);
+                                gvSearchResult.setAdapter(dAdapter);
+                            }
+                        });
 
                     }
                 });

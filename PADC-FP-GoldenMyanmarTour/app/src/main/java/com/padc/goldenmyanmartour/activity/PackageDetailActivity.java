@@ -24,6 +24,8 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.vo.PackageVO;
+import com.padc.goldenmyanmartour.dialog.SharedDialog;
+import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PackageDetailActivity extends AppCompatActivity {
+public class PackageDetailActivity extends BaseActivity {
 
     private static final String IE_PACKAGE_NAME = "IE_PACKAGE_NAME";
 
@@ -48,8 +50,8 @@ public class PackageDetailActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.tv_package_name)
-    TextView tvPackageName;
+//    @BindView(R.id.tv_package_name)
+//    TextView tvPackageName;
 
     @BindView(R.id.tv_package_price)
     TextView tvPackagePrice;
@@ -61,7 +63,7 @@ public class PackageDetailActivity extends AppCompatActivity {
     TextView tvPackageDescOne;
 
     @BindView(R.id.tv_package_desc_title_two)
-    TextView tvPackaDescTitleTwo;
+    TextView tvPackageDescTitleTwo;
 
     @BindView(R.id.tv_package_desc_two)
     TextView tvPackDescTwo;
@@ -94,6 +96,8 @@ public class PackageDetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         bindData();
+        mPackageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
+        collapsingToolbar.setTitle(mPackageName);
     }
 
     @Override
@@ -102,29 +106,20 @@ public class PackageDetailActivity extends AppCompatActivity {
     }
 
     private void bindData() {
-        tvPackageName.setText("Kalaw-Chaung Pauk-Khaung Dine-Inle Lake");
-        tvPackagePrice.setText("Price : 20,000 Ks");
-        tvPackDescTitleOne.setText("Day 1:Kalaw-Changyi Pauk-Khaung Dine");
-        tvPackageDescOne.setText("Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village, \n" +
-                "the starting point for the 2 days trekking trip to Khaung Dine. \n" +
-                "Your local station tour guide Ko Paul will introduce you to the villagers along the way \n" +
-                "and will show you the traditional way of life. \n" +
-                "At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch. \n" +
-                "Only a 30 minutes away is a bathing place where you can have a bath and \n" +
-                "then proceed to Chaunggyi Pauk a typical Taung Yoe village.\n" +
-                " The people in this village are well known for their bamboo mattresses and handicrafts. \n" +
-                "Dinner and overnight at Chaungyi Pauk.");
-        tvPackaDescTitleTwo.setText("Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake");
-        tvPackDescTwo.setText("From Chaungyi Pauk it is only a 2 ½ hours walk to the Hot Spa, \n" +
-                "the only place where you can go for a hot bath. Don't miss the change. \n" +
-                "Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake. \n" +
-                "This Intha village is well known for the production of soybean Cakes and noodles. \n" +
-                "From here transfer by boat to your hotel.");
+//        tvPackageName.setText("Yangon-Bago-Thanlyin-Yangon");
+        tvPackagePrice.setText("Price : 50000");
+        tvPackDescTitleOne.setText("Day-1: Arrival Yangon");
+        tvPackageDescOne.setText("Arrive at Yangon International Airport. Meet and greet our experienced guide. Transfer to hotel. After refreshment, sightseeing begins from Sule Pagoda , in the heart of the city. We'll explore the downtown area, where the ghost of the British Colonial influence still prevails From there we will visit the (64m)long massive reclining Buddha at Chaukhtagyi Paya. We've scheduled a late afternoon visit to most revered and most famous landmark, one of the World's wonder \\\" Shwedagon Pagoda \\\" at dusk, as the Sun begins to fall over the City. Overnight at hotel in Yangon.");
+        tvPackageDescTitleTwo.setText("Day-2 :Yangon-Bago-Kyaikhtiyo");
+        tvPackDescTwo.setText("After breakfast at hotel, drive to Kyaikhtiyo, known as Golden Rock. It is 200 km north east of Yangon, 5 hour drive. On the way visit Bago for its highlights: Kyaikpon Pagoda.4 Buddha Images, Shwe Thalyaung Pagoda and Shwemawdaw Pagoda. Proceed to Kyaikhtyo. Arrive Kimpun based camp and from there take open truck to drive up to Yahte camp. And then take trekking about 1 hour to the summit. (Sedan Chair Service is available at US $ 20 per pax per way). The Panoramic view from the pagoda platform is magnificent over Sittaung Valley. Overnight at hotel.");
 
-        mPackageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
 
         piPackageImageSlider.setNumPage(5);
-        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay"};
+        String[] images = {"http://mandalayholidays.com/images/tour-program/yangon1.jpg",
+                "http://mandalayholidays.com/images/tour-program/yangon-01.jpg",
+                "http://mandalayholidays.com/images/tour-program/bago-01.jpg",
+                "http://mandalayholidays.com/images/destination/yangon-06.jpg",
+                "http://mandalayholidays.com/images/destination/yangon-19.jpg"};
 
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerPackageImages.setAdapter(adapter);
@@ -144,17 +139,37 @@ public class PackageDetailActivity extends AppCompatActivity {
 
             }
         });
-        collapsingToolbar.setTitle(mPackageName);
+
     }
 
-//    @OnClick(R.id.fab_package_book_mark)
-//    public void clickOnPackageBookMark() {
-//        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
-//    }
+    @OnClick(R.id.fab_bookmark)
+    public void clickOnPackageBookMark() {
+        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
+    }
 
-//    @OnClick(R.id.iv_book_the_package)
-//    public void clickOnBook() {
-//        Toast.makeText(GMTApp.getContext(), "Your booking is successful.", Toast.LENGTH_SHORT).show();
-//    }
+    @OnClick(R.id.fab_call)
+    public void clickOnCall() {
 
+        String msg = getString(R.string.format_contact_option_confirmation);
+        SharedDialog.confirmYesNoWithTheme(this, msg,
+                getString(R.string.booking_phone), getString(R.string.booking_email), new SharedDialog.YesNoConfirmDelegate() {
+                    @Override
+                    public void onConfirmYes() {
+                        makeCall(DestinationConstants.CUSTOMER_SUPPORT_PHONE);
+                    }
+
+                    @Override
+                    public void onConfirmNo() {
+                        sendEmail(DestinationConstants.CUSTOMER_SUPPORT_EMAIL, getString(R.string.book_the_package),
+                                getString(R.string.format_book_the_package_message));
+                    }
+                });
+    }
+
+    @OnClick(R.id.fab_share)
+    public void clickOnShare() {
+//        String imageUrl = DestinationConstants.IMAGE_ROOT_DIR + mDestination.getDestination_photos()[0];
+//        sendViaShareIntent(mDestination.getTitle() + "-" + imageUrl);
+        sendViaShareIntent("Package");
+    }
 }

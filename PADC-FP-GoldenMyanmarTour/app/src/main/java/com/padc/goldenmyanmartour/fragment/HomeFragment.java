@@ -2,6 +2,7 @@ package com.padc.goldenmyanmartour.fragment;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -33,8 +34,9 @@ import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.agent.RetrofitDataAgent;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
-import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import com.padc.goldenmyanmartour.data.Models.DestinationModel;
@@ -53,21 +55,33 @@ import de.greenrobot.event.EventBus;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class HomeFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
 
     @BindView(R.id.sp_fiterCity)
-            Spinner spFilterCity;
+    Spinner spFilterCity;
 
     MenuItem destinationItemCity;
-
 
     private DestinationAdapter mAdapter;
     private DestinationViewHolder.ControllerDestinationItem mController;
 
+    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String extra = intent.getStringExtra("key-for-extra");
+            List<DestinationVO> newDestList = DestinationModel.getInstance().getmDestList();
+            mAdapter.setNewData(newDestList);
+        }
+    };
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+//        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+    }
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -83,6 +97,10 @@ public class HomeFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        List<DestinationVO> destinationVOList = DestinationModel.getInstance().getmDestList();
+//        Log.d("DataList", DestinationModel.getInstance().getmDestList().toString());
+//        mAdapter = new DestinationAdapter(destinationVOList, mController);
         mAdapter = new DestinationAdapter(null, mController);
         setHasOptionsMenu(true);
     }
@@ -92,10 +110,6 @@ public class HomeFragment extends Fragment
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-
-        List<DestinationVO> destinationVOList = DestinationModel.getInstance().getmDestList();
-        Log.d("DataList", DestinationModel.getInstance().getmDestList().toString());
-        mAdapter = new DestinationAdapter(destinationVOList, mController);
         gvDestinations.setAdapter(mAdapter);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.spinner_city_item_array,
@@ -107,11 +121,6 @@ public class HomeFragment extends Fragment
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-    }
 
 //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -149,17 +158,8 @@ public class HomeFragment extends Fragment
     }
 
 
-
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_type_filter, menu);
-
-        destinationItemCity = menu.findItem(R.id.spinner);
-        destinationItemCity.setTitle("City");
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(destinationItemCity);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        inflater.inflate(R.menu.menu_home, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -190,7 +190,8 @@ public class HomeFragment extends Fragment
         });
     }
 
-    @Override
+    // data retrieve from persistence layer
+ /*   @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(),
                 DestinationContract.DestinationEntry.CONTENT_URI,
@@ -210,17 +211,15 @@ public class HomeFragment extends Fragment
                 destinationList.add(destination);
             } while (data.moveToNext());
         }
+        mAdapter.setNewData(destinationList);
+        DestinationModel.getInstance().setStoredData(destinationList);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
-
-//    @Override
-//    protected void onSendScreenHit() {
-//
-//    }
+*/
     public void onStart() {
         super.onStart();
         EventBus eventBus = EventBus.getDefault();
@@ -236,11 +235,17 @@ public class HomeFragment extends Fragment
         eventBus.unregister(this);
     }
 
+    @Override
+    protected void onSendScreenHit() {
+
+    }
+
+
     public void onEventMainThread(DataEvent.DestinationDataLoaded event) {
         String extra = event.getMessage();
         Toast.makeText(getContext(), "Extra :" + extra, Toast.LENGTH_SHORT).show();
 
-        List<DestinationVO> newDestinationList = DestinationModel.getInstance().getmDestList();
+        List<DestinationVO> newDestinationList = event.getDestinationVOList();
         mAdapter.setNewData(newDestinationList);
         mAdapter.notifyDataSetChanged();
     }

@@ -9,6 +9,8 @@ import com.padc.goldenmyanmartour.data.persistence.DestinationContract.Destinati
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract.LocationEntry;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract.CityEntry;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract.StateEntry;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract.AttractionPlacesEntry;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract.AttractionPlaceImageEntry;
 
 /**
  * Created by WT on 9/22/2016.
@@ -16,43 +18,64 @@ import com.padc.goldenmyanmartour.data.persistence.DestinationContract.StateEntr
 public class DestinationDBHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 10;
-    public static final String DATABASE_NAME = "destination.db";
+    public static final String DATABASE_NAME = "golden_myanmar.db";
 
     private static final String SQL_CREATE_DESTINATION_TABLE = "CREATE TABLE" + DestinationEntry.TABLE_NAME + "(" +
             DestinationEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
             DestinationEntry.COLUMN_TITLE + "TEXT NOT NULL, " +
+            DestinationEntry.COLUMN_SORTED_ORDER + "INTEGER NOT NULL," +
             DestinationEntry.COLUMN_NOTE_TO_VISITOR + "TEXT NOT NULL," +
             "UNIQUE (" + DestinationEntry.COLUMN_TITLE + ") ON CONFLICT IGNORE" +
             ");";
+
     private static final String SQL_CREATE_DESTINATION_IMAGE_TABLE = "CREATE TABLE" + DestinationImageEntry.TABLE_NAME + "(" +
             DestinationImageEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
             DestinationImageEntry.COLUMN_DESTINATION_TITLE + "TEXT NOT NULL," +
             DestinationImageEntry.COLUMN_IMAGE + "TEXT NOT NULL," +
-            "UNIQUE (" + DestinationImageEntry.COLUMN_IMAGE + ") ON CONFLICT IGNORE" +
+            "UNIQUE (" + DestinationImageEntry.COLUMN_DESTINATION_TITLE + "," +
+            DestinationImageEntry.COLUMN_IMAGE + ") ON CONFLICT IGNORE" +
             ");";
 
     private static final String SQL_CREATE_LOCATION_TABLE = "CREATE TABLE" + LocationEntry.TABLE_NAME + "(" +
+            LocationEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
             LocationEntry.COLUMN_LAT + "TEXT NOT NULL, " +
             LocationEntry.COLUMN_LNG + "TEXT NOT NULL, " +
             LocationEntry.COLUMN_ADDRESS + "TEXT NOT NULL," +
             LocationEntry.COLUMN_CITY_ID + "LONG NOT NULL," +
             LocationEntry.COLUMN_STATE_ID + "LONG NOT NULL," +
+            LocationEntry.COLUMN_DESTINATION_TITLE + "TEXT NOT NULL," +
             "UNIQUE (" + LocationEntry.COLUMN_ADDRESS + ")ON CONFLICT IGNORE" +
             ");";
 
-
     private static final String SQL_CREATE_CITY_TABLE = "CREATE TABLE" + CityEntry.TABLE_NAME + "(" +
-            CityEntry.COLUMN_ID + "LONG PRIMARY KEY AUTOINCREMENT," +
+            CityEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
             CityEntry.COLUMN_NAME + "TEXT NOT NULL," +
             CityEntry.COLUMN_DESC + "TEXT NOT NULL," +
-            "UNIQUE (" + CityEntry.COLUMN_ID + ") ON CONFLICT IGNORE" +
+            "UNIQUE (" + CityEntry.COLUMN_NAME + ") ON CONFLICT IGNORE" +
             ");";
 
     private static final String SQL_CREATE_STATE_TABLE = "CREATE TABLE" + StateEntry.TABLE_NAME + "(" +
-            StateEntry.COLUMN_ID + "LONG PRIMARY KEY AUTOINCREMENT," +
+            StateEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
             StateEntry.COLUMN_NAME + "TEXT NOT NULL, " +
             StateEntry.COLUMN_DESC + "TEXT NOT NULL, " +
-            "UNIQUE (" + StateEntry.COLUMN_ID + ") ON CONFLICT IGNORE " +
+            "UNIQUE (" + StateEntry.COLUMN_NAME + ") ON CONFLICT IGNORE " +
+            ");";
+
+    private static final String SQL_CREATE_ATTRACTION_PLACES_TABLE = "CREATE TABLE" + AttractionPlacesEntry.TABLE_NAME + "(" +
+            AttractionPlacesEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+            AttractionPlacesEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
+            AttractionPlacesEntry.COLUMN_DESC + "TEXT NOT NULL," +
+            AttractionPlacesEntry.COLUMN_NOTE + "TEXT NOT NULL," +
+            AttractionPlacesEntry.COLUMN_DESTINATION_TITLE + "TEXT NOT NULL," +
+            "UNIQUE (" + AttractionPlacesEntry.COLUMN_TITLE + ") ON CONFLICT IGNORE" +
+            ");";
+
+    private static final String SQL_CREATE_ATTRACTION_PLACE_IMAGES_TABLE = "CREATE TABLE" + AttractionPlaceImageEntry.TABLE_NAME + "(" +
+            AttractionPlaceImageEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+            AttractionPlaceImageEntry.COLUMN_ATTRACTION_TITLE + "TEXT NOT NULL," +
+            AttractionPlaceImageEntry.COLUMN_IMAGES + "TEXT NOT NULL," +
+            "UNIQUE (" + AttractionPlaceImageEntry.COLUMN_ATTRACTION_TITLE + "," +
+            AttractionPlaceImageEntry.COLUMN_IMAGES + ")ON CONFLICT IGNORE" +
             ");";
 
     public DestinationDBHelper(Context context) {
@@ -66,15 +89,19 @@ public class DestinationDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_LOCATION_TABLE);
         db.execSQL(SQL_CREATE_CITY_TABLE);
         db.execSQL(SQL_CREATE_STATE_TABLE);
+        db.execSQL(SQL_CREATE_ATTRACTION_PLACES_TABLE);
+        db.execSQL(SQL_CREATE_ATTRACTION_PLACE_IMAGES_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS" + DestinationImageEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DestinationEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS "+LocationEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS "+CityEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS "+StateEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + LocationEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + CityEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + StateEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + AttractionPlacesEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + AttractionPlaceImageEntry.TABLE_NAME);
         onCreate(db);
     }
 }

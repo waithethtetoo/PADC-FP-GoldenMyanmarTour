@@ -45,13 +45,15 @@ public class DestinationViewHolder implements View.OnClickListener {
     public void bindData(DestinationVO destinationVO) {
         mDestination = destinationVO;
         tvDestinationName.setText(destinationVO.getTitle());
-        tvDestinationDesc.setText(destinationVO.getNoteToVisitor());
+        tvDestinationDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
 
         String imageUrl = destinationVO.getDestination_photos()[0];
+
 //        if (!imageUrl.contains(DestinationConstants.IMAGE_ROOT_DIR)) {
 //            imageUrl = DestinationConstants.IMAGE_ROOT_DIR + imageUrl;
 //        }
-        Log.d("DestViewHolder", "imageUrl : " +  imageUrl);
+
+        Log.d("DestViewHolder", "imageUrl : " + imageUrl);
 
         Glide.with(ivDestination.getContext())
                 .load(imageUrl)

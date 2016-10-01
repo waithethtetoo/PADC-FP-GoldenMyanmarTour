@@ -22,8 +22,6 @@ import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 import com.padc.goldenmyanmartour.adapters.FestivalAdapter;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
-import com.padc.goldenmyanmartour.data.vo.Models.FestivalModel;
-import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 import com.padc.goldenmyanmartour.views.holders.FestivalViewHolder;

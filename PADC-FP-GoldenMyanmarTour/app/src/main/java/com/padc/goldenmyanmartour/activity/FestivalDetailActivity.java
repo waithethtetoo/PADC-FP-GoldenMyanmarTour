@@ -18,10 +18,10 @@ import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
-import com.padc.goldenmyanmartour.data.vo.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import butterknife.BindView;
@@ -123,7 +123,7 @@ public class FestivalDetailActivity extends BaseActivity
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(this,
-                DestinationContract.FestivalEntry.buildFestivalUriWithTitle(mFestivalName),
+                DestinationContract.FestivalEntry.buildFestivalUriWithName(mFestivalName),
                 null,
                 null,
                 null,

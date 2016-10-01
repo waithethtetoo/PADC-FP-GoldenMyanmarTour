@@ -31,9 +31,11 @@ import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.Models.DestinationModel;
+import com.padc.goldenmyanmartour.data.agent.RetrofitDataAgent;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
+import com.padc.goldenmyanmartour.data.vo.PackageVO;
 import com.padc.goldenmyanmartour.fragment.FestivalFragment;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
 import com.padc.goldenmyanmartour.fragment.HotelFragment;
@@ -42,15 +44,18 @@ import com.padc.goldenmyanmartour.fragment.PackageFragment;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
+import com.padc.goldenmyanmartour.views.holders.PackageViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Optional;
 
 public class HomeActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DestinationViewHolder.ControllerDestinationItem {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        DestinationViewHolder.ControllerDestinationItem,
+        PackageViewHolder.ControllerItem {
 
-    @BindView(R.id.drawer_layout)
+   @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     @BindView(R.id.toolbar)
@@ -59,12 +64,12 @@ public class HomeActivity extends BaseActivity
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
-    @BindView(R.id.pager_images)
+ /*   @BindView(R.id.pager_images)
     ViewPager pagerImages;
 
     @BindView(R.id.pi_image_slider)
     PageIndicatorView piImageSlider;
-
+*/
 
     @BindView(R.id.fab)
     public FloatingActionButton fab;
@@ -95,7 +100,6 @@ public class HomeActivity extends BaseActivity
         Menu leftMenu = navigationView.getMenu();
         navigationView.setNavigationItemSelectedListener(this);
 
-
         //spinner _ filter
 
 
@@ -115,10 +119,10 @@ public class HomeActivity extends BaseActivity
         }
 
 //        piImageSlider.setNumPage(mDestination.getDestination_photos().length);
-        piImageSlider.setNumPage(3);
+  /*      piImageSlider.setNumPage(3);
         String[] images = {"R.drawable.bagan", "R.mipmap.ic_launcher", "R.drawable.bagan", "R.mipmap.ic_launcher",
                 "R.drawable.bagan"};
-//        String[] imageUrl = mDestination.getDestination_photos();
+//        String[] images = mDestination.getDestination_photos();
 
         ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(images);
         pagerImages.setAdapter(pagerAdapter);
@@ -138,6 +142,7 @@ public class HomeActivity extends BaseActivity
 
             }
         });
+        */
     }
 
     @Override
@@ -166,6 +171,17 @@ public class HomeActivity extends BaseActivity
         return true;
     }
 
+    @Override
+    public void onTapDestinations(DestinationVO destination, ImageView ivDestination) {
+        Intent intent = DestinationDetailActivity.newIntent(destination.getTitle());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onTapPackage(PackageVO packageVO, ImageView iv_package) {
+        Intent intent = PackageDetailActivity.newIntent(packageVO.getPackageName());
+        startActivity(intent);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -242,11 +258,5 @@ public class HomeActivity extends BaseActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, PLanOwnRouteFragment.newInstance())
                 .commit();
-    }
-
-    @Override
-    public void onTapDestination(DestinationVO destinationVO, ImageView iv_destination) {
-        Intent intent = DestinationDetailActivity.newIntent(destinationVO.getTitle());
-        startActivity(intent);
     }
 }

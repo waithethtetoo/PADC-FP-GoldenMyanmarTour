@@ -80,23 +80,23 @@
                 android:textColor="@color/price_text_color"
                 android:textSize="@dimen/text_regular" />
 
-            <TextView
-                android:id="@+id/tv_package_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_package_price"
-                android:layout_marginBottom="@dimen/margin_medium_2"
-                android:layout_marginLeft="@dimen/margin_medium_3"
-                android:layout_marginRight="@dimen/margin_medium_3"
-                android:text="TREK 06 - 2 DAYS / 1 NIGHT FROM KALAW TO INLE LAKE \n KALAW – CHAUNGYI PAUK – KHAUNG DINE – INLE LAKE"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_regular_2x" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_package_name"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/tv_package_price"-->
+                <!--android:layout_marginBottom="@dimen/margin_medium_2"-->
+                <!--android:layout_marginLeft="@dimen/margin_medium_3"-->
+                <!--android:layout_marginRight="@dimen/margin_medium_3"-->
+                <!--android:text="TREK 06 - 2 DAYS / 1 NIGHT FROM KALAW TO INLE LAKE \n KALAW – CHAUNGYI PAUK – KHAUNG DINE – INLE LAKE"-->
+                <!--android:textColor="@color/primary_text"-->
+                <!--android:textSize="@dimen/text_regular_2x" />-->
 
             <TextView
                 android:id="@+id/tv_package_desc_title_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_package_name"
+                android:layout_below="@id/tv_package_price"
                 android:layout_marginBottom="@dimen/margin_medium_2"
                 android:layout_marginLeft="@dimen/margin_medium_3"
                 android:layout_marginRight="@dimen/margin_medium_3"
