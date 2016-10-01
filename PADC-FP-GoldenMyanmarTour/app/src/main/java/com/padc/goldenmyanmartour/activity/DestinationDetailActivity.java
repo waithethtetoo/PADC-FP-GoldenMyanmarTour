@@ -50,7 +50,8 @@ import butterknife.OnClick;
 /**
  * Created by WT on 9/5/2016.
  */
-public class DestinationDetailActivity extends BaseActivity {
+public class DestinationDetailActivity extends BaseActivity
+implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
 
@@ -96,8 +97,8 @@ public class DestinationDetailActivity extends BaseActivity {
 
         mDestTitle = getIntent().getStringExtra(IE_DESTINATION_NAME);
         Log.v(GMTApp.TAG, mDestTitle);
-        bindData();
-//        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+//        bindData();
+        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
     }
 
     @Override
@@ -105,7 +106,7 @@ public class DestinationDetailActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    /*
+
         @Override
         public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
@@ -131,16 +132,16 @@ public class DestinationDetailActivity extends BaseActivity {
         public void onLoaderReset(Loader<Cursor> loader) {
 
         }
-    */
-    private void bindData() {
-//        tvDestDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
-        tvDestDesc.setText("Yangon, the commercial capital, is the main gateway to Myanmar. Evergreen and cool with lush tropical trees, shady parks and beautiful lakes, Yangon has earned the name of The Garden City of the East. Yangon was founded by King Alaungpaya on the site of a small settlement called Dagon when he conquered Lower Myanmar in 1755.");
-//        piDestImageSlider.setNumPage(destinationVO.getDestination_photos().length);
 
-        piDestImageSlider.setNumPage(3);
-        String[]imageurl={"image"};
-        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(imageurl);
-//        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
+    private void bindData(DestinationVO destinationVO) {
+        tvDestDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
+//        tvDestDesc.setText("Yangon, the commercial capital, is the main gateway to Myanmar. Evergreen and cool with lush tropical trees, shady parks and beautiful lakes, Yangon has earned the name of The Garden City of the East. Yangon was founded by King Alaungpaya on the site of a small settlement called Dagon when he conquered Lower Myanmar in 1755.");
+        piDestImageSlider.setNumPage(destinationVO.getDestination_photos().length);
+
+//        piDestImageSlider.setNumPage(3);
+//        String[]imageurl={"image"};
+//        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(imageurl);
+        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(destinationVO.getDestination_photos());
         pagerDestImages.setAdapter(pagerAdapter);
 
         pagerDestImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

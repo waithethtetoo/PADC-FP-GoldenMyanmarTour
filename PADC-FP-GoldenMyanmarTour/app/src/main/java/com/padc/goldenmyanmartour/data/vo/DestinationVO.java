@@ -92,7 +92,7 @@ public class DestinationVO {
         return attractionPlacesVOs;
     }
 
- /*   public void setAttractionPlacesVOs(ArrayList<AttractionPlacesVO> attractionPlacesVOs) {
+  public void setAttractionPlacesVOs(ArrayList<AttractionPlacesVO> attractionPlacesVOs) {
         this.attractionPlacesVOs = attractionPlacesVOs;
     }
 
@@ -153,5 +153,5 @@ public class DestinationVO {
         images.toArray(imageArray);
         return imageArray;
     }
-    */
+
 }

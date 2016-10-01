@@ -143,19 +143,6 @@ public class PLanOwnRouteFragment extends Fragment {
                             }
                         });
                         break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-                spInterestedPlaces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-
 
 
                     case 4:
@@ -206,6 +193,11 @@ public class PLanOwnRouteFragment extends Fragment {
 
                         break;
                 }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
