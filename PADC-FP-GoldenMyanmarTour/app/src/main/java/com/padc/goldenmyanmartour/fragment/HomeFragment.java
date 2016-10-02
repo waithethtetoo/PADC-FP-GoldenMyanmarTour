@@ -36,7 +36,9 @@ import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.agent.RetrofitDataAgent;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
+import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.LocationVO;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import com.padc.goldenmyanmartour.data.Models.DestinationModel;
@@ -55,7 +57,8 @@ import de.greenrobot.event.EventBus;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
@@ -68,19 +71,19 @@ public class HomeFragment extends BaseFragment {
     private DestinationAdapter mAdapter;
     private DestinationViewHolder.ControllerDestinationItem mController;
 
-    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String extra = intent.getStringExtra("key-for-extra");
-            List<DestinationVO> newDestList = DestinationModel.getInstance().getmDestList();
-            mAdapter.setNewData(newDestList);
-        }
-    };
+//    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String extra = intent.getStringExtra("key-for-extra");
+//            List<DestinationVO> newDestList = DestinationModel.getInstance().getmDestList();
+//            mAdapter.setNewData(newDestList);
+//        }
+//    };
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
+        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
     }
 
     public static HomeFragment newInstance() {
@@ -100,8 +103,8 @@ public class HomeFragment extends BaseFragment {
 
         List<DestinationVO> destinationVOList = DestinationModel.getInstance().getmDestList();
 //        Log.d("DataList", DestinationModel.getInstance().getmDestList().toString());
-//        mAdapter = new DestinationAdapter(destinationVOList, mController);
-        mAdapter = new DestinationAdapter(null, mController);
+        mAdapter = new DestinationAdapter(destinationVOList, mController);
+//        mAdapter = new DestinationAdapter(null, mController);
         setHasOptionsMenu(true);
     }
 
@@ -191,14 +194,14 @@ public class HomeFragment extends BaseFragment {
     }
 
     // data retrieve from persistence layer
- /*   @Override
+    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(),
                 DestinationContract.DestinationEntry.CONTENT_URI,
                 null,
                 null,
                 null,
-                DestinationContract.DestinationEntry.COLUMN_TITLE + "ASC");
+                DestinationContract.DestinationEntry.COLUMN_TITLE + " ASC");
     }
 
     @Override
@@ -208,6 +211,8 @@ public class HomeFragment extends BaseFragment {
             do {
                 DestinationVO destination = DestinationVO.parseFromCursor(data);
                 destination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(destination.getTitle()));
+                destination.setLocationVO(LocationVO.loadLocationByDestinationTitle(destination.getTitle()));
+                destination.setAttractionPlacesVOs(AttractionPlacesVO.loadAttractionPlacesByDestinationTitle(destination.getTitle()));
                 destinationList.add(destination);
             } while (data.moveToNext());
         }
@@ -219,28 +224,13 @@ public class HomeFragment extends BaseFragment {
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
-*/
-    public void onStart() {
-        super.onStart();
-        EventBus eventBus = EventBus.getDefault();
-        if (!eventBus.isRegistered(this)) {
-            eventBus.register(this);
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus eventBus = EventBus.getDefault();
-        eventBus.unregister(this);
-    }
 
     @Override
     protected void onSendScreenHit() {
 
     }
 
-
+    /*
     public void onEventMainThread(DataEvent.DestinationDataLoaded event) {
         String extra = event.getMessage();
         Toast.makeText(getContext(), "Extra :" + extra, Toast.LENGTH_SHORT).show();
@@ -249,4 +239,5 @@ public class HomeFragment extends BaseFragment {
         mAdapter.setNewData(newDestinationList);
         mAdapter.notifyDataSetChanged();
     }
+    */
 }

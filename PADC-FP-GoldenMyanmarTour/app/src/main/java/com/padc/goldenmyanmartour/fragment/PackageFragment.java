@@ -54,8 +54,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by WT on 9/6/2016.
  */
-public class PackageFragment extends BaseFragment {
-
+public class PackageFragment extends Fragment {
     @BindView(R.id.gv_packages)
     GridView gvPackages;
 
@@ -81,17 +80,13 @@ public class PackageFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mController = (PackageViewHolder.ControllerItem) context;
+//        mController = (PackageViewHolder.ControllerItem) context;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        List<PackageVO> packageVOList = PackageModel.getInstance().getPackageList();
-        mAdapter = new PackageAdapter(packageVOList, mController);
-//        mAdapter = new PackageAdapter(null, mController);
-        setHasOptionsMenu(true);
+        mAdapter = new PackageAdapter(null, mController);
     }
 
     @Nullable
@@ -99,9 +94,7 @@ public class PackageFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_packages, container, false);
         ButterKnife.bind(this, view);
-
         gvPackages.setAdapter(mAdapter);
-
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.spinner_list_item_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -109,6 +102,57 @@ public class PackageFragment extends BaseFragment {
 
         return view;
     }
+
+
+//      @Override
+//       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//           inflater.inflate(R.menu.menu_type_filter, menu);
+////           filterItem = menu.findItem(R.id.spinner);
+////           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
+//
+//
+//
+//
+//           packageItemType = menu.findItem(R.id.spinner);
+//          packageItemType.setTitle("TourType");
+//           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
+//           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                   R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
+//           spinner.setAdapter(adapter);
+//           super.onCreateOptionsMenu(menu, inflater);
+//       }
+
+//       @Override
+//
+
+//      @Override
+//       public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//           inflater.inflate(R.menu.menu_type_filter, menu);
+////           filterItem = menu.findItem(R.id.spinner);
+////           MenuItemCompat.setOnActionExpandListener(filterItem, mOnActionExpandListener);
+//           packageItemType = menu.findItem(R.id.spinner);
+//          packageItemType.setTitle("TourType");
+//           Spinner spinner = (Spinner) MenuItemCompat.getActionView(packageItemType);
+//           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                   R.array.spinner_list_item_array, android.R.layout.simple_spinner_dropdown_item);
+//           spinner.setAdapter(adapter);
+//           super.onCreateOptionsMenu(menu, inflater);
+//       }
+
+//       @Override
+
+//       public boolean onOptionsItemSelected(MenuItem item) {
+//           int id = item.getItemId();
+//           switch (id) {
+//               case R.id.action_search:
+//                   Toast.makeText(GMTApp.getContext(), "Action filter is clicked", Toast.LENGTH_SHORT).show();
+//                   return true;
+//               case R.id.action_tour_type_filter:
+//                   return true;
+//           }
+//
+//           return super.onOptionsItemSelected(item);
+//       }
 
     @Override
     public void setUserVisibleHint(boolean visible) {
@@ -137,16 +181,16 @@ public class PackageFragment extends BaseFragment {
         });
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
 //        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-    }
-
-    @Override
-    protected void onSendScreenHit() {
-
-    }
+//    }
+//
+//    @Override
+//    protected void onSendScreenHit() {
+//
+//    }
 //
 //    @Override
 //    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -177,28 +221,5 @@ public class PackageFragment extends BaseFragment {
 //    public void onLoaderReset(Loader<Cursor> loader) {
 //
 //    }
-
-    public void onStart() {
-        super.onStart();
-        EventBus eventBus = EventBus.getDefault();
-        if (!eventBus.isRegistered(this)) {
-            eventBus.register(this);
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus eventBus = EventBus.getDefault();
-        eventBus.unregister(this);
-    }
-
-    public void onEventMainThread(DataEvent.PackageDataLoaded event) {
-        String extra = event.getMessage();
-        Toast.makeText(getContext(), "Extra :" + extra, Toast.LENGTH_SHORT).show();
-
-        List<PackageVO> newPackageList = event.getPackageVOList();
-        mAdapter.setNewData(newPackageList);
-        mAdapter.notifyDataSetChanged();
-    }
 }
+

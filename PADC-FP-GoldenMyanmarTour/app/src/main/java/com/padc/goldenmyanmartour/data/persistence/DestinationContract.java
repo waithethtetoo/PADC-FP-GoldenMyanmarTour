@@ -237,7 +237,7 @@ public class DestinationContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildAttractionPlaceImagetUriWithTitle(String title) {
+        public static Uri buildAttractionPlaceImageUriWithTitle(String title) {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_ATTRACTION_TITLE, title)
                     .build();

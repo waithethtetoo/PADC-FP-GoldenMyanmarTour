@@ -13,6 +13,8 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -25,12 +27,14 @@ import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
+import com.padc.goldenmyanmartour.adapters.AttractionPlacesAdapter;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.adapters.ListViewAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.LocationVO;
 import com.padc.goldenmyanmartour.dialog.SharedDialog;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
@@ -51,7 +55,7 @@ import butterknife.OnClick;
  * Created by WT on 9/5/2016.
  */
 public class DestinationDetailActivity extends BaseActivity
-implements LoaderManager.LoaderCallbacks<Cursor>{
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String IE_DESTINATION_NAME = "IE_DESTINATION_NAME";
 
@@ -73,8 +77,13 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
     @BindView(R.id.pi_destination_image_slider)
     PageIndicatorView piDestImageSlider;
 
+    @BindView(R.id.rv_destinations)
+    RecyclerView rvDest;
+
     private String mDestTitle;
     private DestinationVO mDestination;
+    private AttractionPlacesVO mAttraction;
+    private AttractionPlacesAdapter attractionPlacesAdapter;
 
     public static Intent newIntent(String destinationName) {
         Intent intent = new Intent(GMTApp.getContext(), DestinationDetailActivity.class);
@@ -97,45 +106,67 @@ implements LoaderManager.LoaderCallbacks<Cursor>{
 
         mDestTitle = getIntent().getStringExtra(IE_DESTINATION_NAME);
         Log.v(GMTApp.TAG, mDestTitle);
+
+        attractionPlacesAdapter = new AttractionPlacesAdapter(null);
+
 //        bindData();
         getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this,
+                DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestTitle),
+                null,
+                null,
+                null,
+                null);
 
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    }
 
-            return new CursorLoader(this,
-                   DestinationContract.DestinationEntry.buildDestinationUriWithTitle(mDestTitle),
-                    null,
-                    null,
-                    null,
-                    null);
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+        if (data != null && data.moveToFirst()) {
+            mDestination = DestinationVO.parseFromCursor(data);
+            mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
+            mDestination.setLocationVO(LocationVO.loadLocationByDestinationTitle(mDestination.getTitle()));
+            mDestination.setAttractionPlacesVOs(AttractionPlacesVO.loadAttractionPlacesByDestinationTitle(mDestination.getTitle()));
+            bindData(mDestination);
         }
+    }
 
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
 
-            if (data != null && data.moveToFirst()) {
-                mDestination = DestinationVO.parseFromCursor(data);
-                mDestination.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(mDestination.getTitle()));
-                bindData(mDestination);
-            }
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {
-
-        }
+    }
 
     private void bindData(DestinationVO destinationVO) {
         tvDestDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
 //        tvDestDesc.setText("Yangon, the commercial capital, is the main gateway to Myanmar. Evergreen and cool with lush tropical trees, shady parks and beautiful lakes, Yangon has earned the name of The Garden City of the East. Yangon was founded by King Alaungpaya on the site of a small settlement called Dagon when he conquered Lower Myanmar in 1755.");
+
+
+        rvDest.setAdapter(attractionPlacesAdapter);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(DestinationDetailActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        rvDest.setLayoutManager(horizontalLayoutManager);
+
         piDestImageSlider.setNumPage(destinationVO.getDestination_photos().length);
 
 //        piDestImageSlider.setNumPage(3);

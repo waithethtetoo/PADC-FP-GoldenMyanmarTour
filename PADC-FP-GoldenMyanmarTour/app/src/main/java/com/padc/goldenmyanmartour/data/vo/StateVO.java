@@ -1,6 +1,14 @@
 package com.padc.goldenmyanmartour.data.vo;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
+import com.padc.goldenmyanmartour.GMTApp;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 
 /**
  * Created by Lenovo on 9/21/2016.
@@ -37,5 +45,38 @@ public class StateVO {
 
     public void setStateId(long stateId) {
         this.stateId = stateId;
+    }
+
+    private static StateVO parseFromCursor(Cursor cursor) {
+        StateVO stateVO = new StateVO();
+        stateVO.setStateId(cursor.getLong(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_ID)));
+        stateVO.setName(cursor.getString(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_NAME)));
+        stateVO.setDescription(cursor.getString(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_DESC)));
+        return stateVO;
+    }
+
+    public static StateVO loadStateByDestinationTitle(String title) {
+        Context context = GMTApp.getContext();
+        Cursor stateCursor = context.getContentResolver().query(DestinationContract.StateEntry.CONTENT_URI,
+                null,
+                DestinationContract.StateEntry.COLUMN_DESTINATION_TITLE + " = ?",
+                new String[]{title},
+                null);
+        if (stateCursor != null && stateCursor.moveToFirst()) {
+            return StateVO.parseFromCursor(stateCursor);
+        }
+        return null;
+
+    }
+
+    public static void saveStateByDestinationTitle(String title, StateVO stateVO) {
+        Context context = GMTApp.getContext();
+        ContentValues cv = new ContentValues();
+        cv.put(DestinationContract.StateEntry.COLUMN_ID, stateVO.getStateId());
+        cv.put(DestinationContract.StateEntry.COLUMN_NAME, stateVO.getName());
+        cv.put(DestinationContract.StateEntry.COLUMN_DESC, stateVO.getDescription());
+        cv.put(DestinationContract.StateEntry.COLUMN_DESTINATION_TITLE, title);
+        Uri insertedUri = context.getContentResolver().insert(DestinationContract.StateEntry.CONTENT_URI, cv);
+        Log.d(GMTApp.TAG, " Location Inserted Uri : " + insertedUri);
     }
 }

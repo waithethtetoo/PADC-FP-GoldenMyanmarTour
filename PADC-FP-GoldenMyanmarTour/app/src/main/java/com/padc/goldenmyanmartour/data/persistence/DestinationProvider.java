@@ -27,10 +27,10 @@ public class DestinationProvider extends ContentProvider {
 
     private static final String sDestinationTitle = DestinationContract.DestinationEntry.COLUMN_TITLE + "=?";
     private static final String sDestinationImageWithTitle = DestinationContract.DestinationImageEntry.COLUMN_DESTINATION_TITLE + "=?";
-    private static final String sLocationName = DestinationContract.LocationEntry.COLUMN_ADDRESS + "=?";
-    private static final String sCityName = DestinationContract.CityEntry.COLUMN_NAME + "=?";
-    private static final String sStateName = DestinationContract.StateEntry.COLUMN_NAME + "=?";
-    private static final String sAttractionPlace = DestinationContract.DestinationEntry.COLUMN_TITLE + "=?";
+    private static final String sLocationName = DestinationContract.LocationEntry.COLUMN_DESTINATION_TITLE + "=?";
+    private static final String sCityName = DestinationContract.CityEntry.COLUMN_DESTINATION_TITLE + "=?";
+    private static final String sStateName = DestinationContract.StateEntry.COLUMN_DESTINATION_TITLE + "=?";
+    private static final String sAttractionPlace = DestinationContract.AttractionPlacesEntry.COLUMN_DESTINATION_TITLE + "=?";
     private static final String sAttractionPlaceImageWithTitle = DestinationContract.AttractionPlaceImageEntry.COLUMN_ATTRACTION_TITLE + "=?";
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
@@ -185,7 +185,6 @@ public class DestinationProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-
         final SQLiteDatabase db = mDestinationDBHelper.getWritableDatabase();
         final int matchUri = sUriMatcher.match(uri);
         Uri insertedUri;
@@ -220,6 +219,7 @@ public class DestinationProvider extends ContentProvider {
                     insertedUri = DestinationContract.CityEntry.buildCityUri(city_id);
                 } else {
                     throw new SQLException("Failed to insert row into " + uri);
+//                    return null;
                 }
                 break;
             case STATE:
@@ -253,6 +253,7 @@ public class DestinationProvider extends ContentProvider {
         if (context != null) {
             context.getContentResolver().notifyChange(uri, null);
         }
+        db.close();
         return insertedUri;
     }
 

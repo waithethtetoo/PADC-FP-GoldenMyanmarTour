@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.padc.goldenmyanmartour.R;
@@ -22,8 +23,6 @@ import butterknife.ButterKnife;
  * Created by hp user on 9/13/2016.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
-
-
     @Nullable @BindView(R.id.tv_ListHeader)
     TextView tvListHeader;
 
@@ -93,6 +92,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         tvListHeader.setTypeface(null, Typeface.BOLD);
         tvListHeader.setText(headerTitle);
 
+
+        ExpandableListView eLV = (ExpandableListView) parent;
+        eLV.expandGroup(groupPosition);
+
         return convertView;
     }
 
@@ -108,8 +111,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         ButterKnife.bind(this,convertView);
 
-
-        tvListItem.setTypeface(null,Typeface.BOLD);
         tvListItem.setText(childText);
 
         return convertView;

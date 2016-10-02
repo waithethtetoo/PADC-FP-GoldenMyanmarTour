@@ -92,7 +92,7 @@ public class DestinationVO {
         return attractionPlacesVOs;
     }
 
-  public void setAttractionPlacesVOs(ArrayList<AttractionPlacesVO> attractionPlacesVOs) {
+    public void setAttractionPlacesVOs(ArrayList<AttractionPlacesVO> attractionPlacesVOs) {
         this.attractionPlacesVOs = attractionPlacesVOs;
     }
 
@@ -104,6 +104,9 @@ public class DestinationVO {
 
             destCv[index] = destinationVO.parseToContentValues();
             DestinationVO.saveDestinationImage(destinationVO.getTitle(), destinationVO.getDestination_photos());
+
+            LocationVO.saveLocationByDestination(destinationVO.getTitle(), destinationVO.getLocationVO());
+            AttractionPlacesVO.saveAttractionPlaceByDestination(destinationVO.getTitle(), destinationVO.getAttractionPlacesVOs());
         }
 
         int insertedCount = context.getContentResolver().bulkInsert(DestinationContract.DestinationEntry.CONTENT_URI, destCv);
@@ -153,5 +156,6 @@ public class DestinationVO {
         images.toArray(imageArray);
         return imageArray;
     }
+
 
 }

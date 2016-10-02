@@ -44,12 +44,12 @@ public class HotelViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public void bindData()//HotelVO hotel
     {
-       // mHotel = hotel;
+        // mHotel = hotel;
         tvHotelName.setText("Park Royal Yangon");
         tvHotelAddress.setText("33 Alan Pya Phaya Road, Dagon Township, Yangon, Myanmar");
         //tvHotelDesc.setText("Offering a unique blend of gentle Myanmar hospitality combined with first class service and facilities, the Grand Plaza Parkroyal");//hotel.getHotelDesc()
 
-       // String imageUrl = hotel.getHotelImage()[0];
+        // String imageUrl = hotel.getHotelImage()[0];
 
         Glide.with(ivHotel.getContext())
                 .load(R.drawable.ygnhotel_1)
@@ -62,7 +62,7 @@ public class HotelViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View view) {
-       // mController.onTapHotel(mHotel,ivHotel);
+        // mController.onTapHotel(mHotel,ivHotel);
 
         Intent intentToHotelDetail = HotelDetailActivity.newIntent("Yangon");
         intentToHotelDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

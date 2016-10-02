@@ -85,12 +85,20 @@
                 android:textColor="@color/price_text_color"
                 android:textSize="@dimen/text_regular_2x" />
 
-            <ListView
-                android:id="@+id/lv_destination"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_medium_3"
-                android:layout_marginRight="@dimen/margin_medium_3" />
+            <!--<ListView-->
+            <!--android:id="@+id/lv_destination"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/margin_medium_3"-->
+            <!--android:layout_marginRight="@dimen/margin_medium_3" />-->
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_destinations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

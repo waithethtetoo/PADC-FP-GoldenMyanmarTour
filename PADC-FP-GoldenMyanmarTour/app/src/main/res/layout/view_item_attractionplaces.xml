@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_medium">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.padc.goldenmyanmartour.components.DynamicImageView
+            android:id="@+id/iv_attractionPlaces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bagan_museum1" />
+
+        <TextView
+            android:id="@+id/tv_attractionPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_attractionPlaces"
+            android:textColor="@color/primary_text"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+</LinearLayout>

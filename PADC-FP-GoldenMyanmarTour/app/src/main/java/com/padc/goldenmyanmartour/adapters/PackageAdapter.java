@@ -18,7 +18,6 @@ import java.util.List;
  * Created by WT on 9/8/2016.
  */
 public class PackageAdapter extends BaseAdapter {
-
     private List<PackageVO> packageVOList;
     private LayoutInflater inflater;
     private PackageViewHolder.ControllerItem mController;
@@ -27,7 +26,7 @@ public class PackageAdapter extends BaseAdapter {
         if (packageVOList != null) {
             this.packageVOList = packageVOList;
         } else {
-            this.packageVOList = new ArrayList<>();
+            packageVOList = new ArrayList<>();
         }
         inflater = LayoutInflater.from(GMTApp.getContext());
         this.mController = mController;
@@ -35,17 +34,12 @@ public class PackageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return packageVOList.size();
+        return 6;
     }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        return null;
-//  }
 
     @Override
-    public PackageVO getItem(int position) {
-        return packageVOList.get(position);
+    public Object getItem(int position) {
+        return null;
     }
 
     @Override
@@ -63,12 +57,12 @@ public class PackageAdapter extends BaseAdapter {
         } else {
             viewHolder = (PackageViewHolder) convertView.getTag();
         }
-        viewHolder.bindData(getItem(position));
-//        viewHolder.bindData();
+        viewHolder.bindData();
         return convertView;
     }
 
     public void setNewData(List<PackageVO> newPackage) {
         this.packageVOList = newPackage;
     }
+
 }

@@ -1,6 +1,15 @@
 package com.padc.goldenmyanmartour.data.vo;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
+import com.padc.goldenmyanmartour.GMTApp;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
+
+import java.util.ArrayList;
 
 /**
  * Created by Lenovo on 9/21/2016.
@@ -55,5 +64,70 @@ public class AttractionPlacesVO {
 
     public void setNoteToVisitor(String noteToVisitor) {
         this.noteToVisitor = noteToVisitor;
+    }
+
+    public static ArrayList<AttractionPlacesVO> loadAttractionPlacesByDestinationTitle(String title) {
+        Context context = GMTApp.getContext();
+        ArrayList<AttractionPlacesVO> attractionPlacesVOs = new ArrayList<>();
+        Cursor attractionPlaceCursor = context.getContentResolver().query(DestinationContract.AttractionPlacesEntry.CONTENT_URI,
+                null,
+                DestinationContract.AttractionPlacesEntry.COLUMN_DESTINATION_TITLE + " = ?",
+                new String[]{title},
+                null);
+
+        if (attractionPlaceCursor != null && attractionPlaceCursor.moveToFirst()) {
+            return AttractionPlacesVO.parseFromCursor(attractionPlaceCursor);
+        }
+        return null;
+    }
+
+    public static void saveAttractionPlaceByDestination(String title, ArrayList<AttractionPlacesVO> attractionPlacesVOs) {
+        Context context = GMTApp.getContext();
+        ContentValues[] cvs = new ContentValues[attractionPlacesVOs.size()];
+        for (int index = 0; index < attractionPlacesVOs.size(); index++) {
+            AttractionPlacesVO attractionPlace = attractionPlacesVOs.get(index);
+            cvs[index] = attractionPlace.parseToContentValues(title);
+        }
+        int count = context.getContentResolver().bulkInsert(DestinationContract.AttractionPlacesEntry.CONTENT_URI, cvs);
+        Log.d(GMTApp.TAG, "Bulk inserted into attraction place table : " + count);
+    }
+
+    private ContentValues parseToContentValues(String destTitle) {
+        ContentValues cv = new ContentValues();
+        cv.put(DestinationContract.AttractionPlacesEntry.COLUMN_TITLE, title);
+        cv.put(DestinationContract.AttractionPlacesEntry.COLUMN_DESC, description);
+        cv.put(DestinationContract.AttractionPlacesEntry.COLUMN_NOTE, noteToVisitor);
+        cv.put(DestinationContract.AttractionPlacesEntry.COLUMN_DESTINATION_TITLE, destTitle);
+        return cv;
+    }
+
+    private static ArrayList<AttractionPlacesVO> parseFromCursor(Cursor cursor) {
+        AttractionPlacesVO attractionPlacesVO = new AttractionPlacesVO();
+        attractionPlacesVO.setDescription(cursor.getString(cursor.getColumnIndex(DestinationContract.AttractionPlacesEntry.COLUMN_DESC)));
+        attractionPlacesVO.setTitle(cursor.getString(cursor.getColumnIndex(DestinationContract.AttractionPlacesEntry.COLUMN_TITLE)));
+        attractionPlacesVO.setNoteToVisitor(cursor.getString(cursor.getColumnIndex(DestinationContract.AttractionPlacesEntry.COLUMN_NOTE)));
+        attractionPlacesVO.setPlaceId(cursor.getLong(cursor.getColumnIndex(DestinationContract.AttractionPlacesEntry.COLUMN_PLACES_ID)));
+        ArrayList<AttractionPlacesVO> newAttractionList = new ArrayList<>();
+        newAttractionList.add(attractionPlacesVO);
+        return newAttractionList;
+    }
+
+
+    public static String[] loadAttractionImagesByTitle(String title) {
+        Context context = GMTApp.getContext();
+        ArrayList<String> images = new ArrayList<>();
+        Cursor cursor = context.getContentResolver().query(DestinationContract.AttractionPlacesEntry.buildPlaceUriWithName(title),
+                null,
+                null,
+                null,
+                null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                images.add(cursor.getString(cursor.getColumnIndex(DestinationContract.AttractionPlaceImageEntry.COLUMN_IMAGES)));
+            } while (cursor.moveToNext());
+        }
+        String[] imageArray = new String[images.size()];
+        images.toArray(imageArray);
+        return imageArray;
     }
 }

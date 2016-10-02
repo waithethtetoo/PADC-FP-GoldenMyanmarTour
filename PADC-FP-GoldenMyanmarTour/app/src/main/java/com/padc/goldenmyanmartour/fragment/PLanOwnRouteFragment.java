@@ -93,7 +93,7 @@ public class PLanOwnRouteFragment extends Fragment {
         spInterestedPlaces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 1:
                         ivOne.setVisibility(View.VISIBLE);
                         ivTwo.setVisibility(View.VISIBLE);
@@ -150,6 +150,43 @@ public class PLanOwnRouteFragment extends Fragment {
                         ivTwo.setVisibility(View.VISIBLE);
                         ivThree.setVisibility(View.VISIBLE);
                         ivFour.setVisibility(View.VISIBLE);
+
+                        vOne.setVisibility(View.VISIBLE);
+                        vTwo.setVisibility(View.VISIBLE);
+                        vThree.setVisibility(View.VISIBLE);
+
+                        ivOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+                        ivThree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+                        ivFour.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showBookMarkList();
+                            }
+                        });
+
+                        break;
+                    case 5:
+                        ivOne.setVisibility(View.VISIBLE);
+                        ivTwo.setVisibility(View.VISIBLE);
+                        ivThree.setVisibility(View.VISIBLE);
+                        ivFour.setVisibility(View.VISIBLE);
                         ivFifth.setVisibility(View.VISIBLE);
 
                         vOne.setVisibility(View.VISIBLE);
@@ -182,15 +219,12 @@ public class PLanOwnRouteFragment extends Fragment {
                                 showBookMarkList();
                             }
                         });
-
                         ivFifth.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 showBookMarkList();
                             }
                         });
-
-
                         break;
                 }
             }
@@ -222,7 +256,7 @@ public class PLanOwnRouteFragment extends Fragment {
 
     public void showBookMarkList() {
 
-        Dialog dialog = new Dialog(GMTApp.getContext());
+        final Dialog dialog = new Dialog(GMTApp.getContext());
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.setContentView(R.layout.custom_popup_window);
         dialog.setTitle("Your Bookmark");
@@ -240,23 +274,19 @@ public class PLanOwnRouteFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // selected place image will show here
                 ivOne.setImageResource(R.drawable.mandalay);
+                dialog.dismiss();
 
-
-
-       /*         ivTwo.setImageResource(R.drawable.inle);
-=======
                 ivTwo.setImageResource(R.drawable.inle);
->>>>>>> 1. change fab setVisbility from INVISIBLE to VISIBLE at HomeActivity.java;
-=======
-       /*         ivTwo.setImageResource(R.drawable.inle);
->>>>>>> add comment at line number 123 to 128 at PlanOwnRoute.java;
-                tvTwo.setText("Inle");
-
+                dialog.dismiss();
                 ivThree.setImageResource(R.drawable.bagan);
-                tvThree.setText("Bagan");
-<<<<<<< 4cabdce795aa1e810dfd294a830927b18b1fa21d
-<<<<<<< afd2ca82146820f0ed191ecd63a02bfa826cf80a
-*/
+                dialog.dismiss();
+
+                ivFour.setImageResource(R.drawable.bagan_museum1);
+                dialog.dismiss();
+
+                ivFifth.setImageResource(R.drawable.ananda_pagoda_festival);
+                dialog.dismiss();
+
 
             }
         });

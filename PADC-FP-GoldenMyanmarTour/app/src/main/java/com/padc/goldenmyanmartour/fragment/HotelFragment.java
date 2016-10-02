@@ -77,8 +77,6 @@ public class HotelFragment extends Fragment {
 //        }
 //    };
 
-    MenuItem hotelCityItem;
-    MenuItem hotelPriceItem;
 
     public static HotelFragment newInstance() {
         HotelFragment fragment = new HotelFragment();
@@ -95,8 +93,6 @@ public class HotelFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHotelAdapter = new HotelAdapter(null, controllerHotelItem);
-
-        setHasOptionsMenu(true);
 
     }
 
@@ -120,7 +116,6 @@ public class HotelFragment extends Fragment {
 
         int gridColumnCount = getResources().getInteger(R.integer.attraction_list_grid);
         rvHotels.setLayoutManager(new GridLayoutManager(getContext(), gridColumnCount));
-
 
         return rootView;
     }
@@ -188,7 +183,7 @@ public class HotelFragment extends Fragment {
         //   LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mDataLoaded);
     }
 
-    //    @Override
+//    @Override
 //    protected void onSendScreenHit() {
 //
 //    }
@@ -220,29 +215,31 @@ public class HotelFragment extends Fragment {
 //    @Override
 //    public void onLoaderReset(Loader<Cursor> loader) {
 //    }
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_city_price_filter, menu);
-
-        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
-        hotelPriceItem.setTitle("Price");
-
-
-        hotelCityItem = menu.findItem(R.id.spinnerCity);
-        hotelCityItem.setTitle("City");
-
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-
-        Spinner spinnerPrice = (Spinner) MenuItemCompat.getActionView(hotelPriceItem);
-        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
-                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
-        spinnerPrice.setAdapter(adapterPrice);
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.menu_city_price_filter,menu);
+//
+//        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
+//        hotelPriceItem.setTitle("Price");
+//
+//
+//
+//        hotelCityItem = menu.findItem(R.id.spinnerCity);
+//        hotelCityItem.setTitle("City");
+//
+//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//
+//
+//
+//        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
+//        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
+//                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
+//        spinnerPrice.setAdapter(adapterPrice);
+//
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
 
     @Override
     public void setUserVisibleHint(boolean visible) {

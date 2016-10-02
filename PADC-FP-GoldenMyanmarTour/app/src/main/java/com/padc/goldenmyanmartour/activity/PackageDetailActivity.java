@@ -63,7 +63,7 @@ public class PackageDetailActivity extends BaseActivity {
     TextView tvPackageDescOne;
 
     @BindView(R.id.tv_package_desc_title_two)
-    TextView tvPackageDescTitleTwo;
+    TextView tvPackaDescTitleTwo;
 
     @BindView(R.id.tv_package_desc_two)
     TextView tvPackDescTwo;
@@ -96,30 +96,52 @@ public class PackageDetailActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         bindData();
-        mPackageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
-        collapsingToolbar.setTitle(mPackageName);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
-    private void bindData() {
-//        tvPackageName.setText("Yangon-Bago-Thanlyin-Yangon");
-        tvPackagePrice.setText("Price : 50000");
-        tvPackDescTitleOne.setText("Day-1: Arrival Yangon");
-        tvPackageDescOne.setText("Arrive at Yangon International Airport. Meet and greet our experienced guide. Transfer to hotel. After refreshment, sightseeing begins from Sule Pagoda , in the heart of the city. We'll explore the downtown area, where the ghost of the British Colonial influence still prevails From there we will visit the (64m)long massive reclining Buddha at Chaukhtagyi Paya. We've scheduled a late afternoon visit to most revered and most famous landmark, one of the World's wonder \\\" Shwedagon Pagoda \\\" at dusk, as the Sun begins to fall over the City. Overnight at hotel in Yangon.");
-        tvPackageDescTitleTwo.setText("Day-2 :Yangon-Bago-Kyaikhtiyo");
-        tvPackDescTwo.setText("After breakfast at hotel, drive to Kyaikhtiyo, known as Golden Rock. It is 200 km north east of Yangon, 5 hour drive. On the way visit Bago for its highlights: Kyaikpon Pagoda.4 Buddha Images, Shwe Thalyaung Pagoda and Shwemawdaw Pagoda. Proceed to Kyaikhtyo. Arrive Kimpun based camp and from there take open truck to drive up to Yahte camp. And then take trekking about 1 hour to the summit. (Sedan Chair Service is available at US $ 20 per pax per way). The Panoramic view from the pagoda platform is magnificent over Sittaung Valley. Overnight at hotel.");
 
+    private void bindData() {
+//        tvPackageName.setText("Kalaw-Chaung Pauk-Khaung Dine-Inle Lake");
+        tvPackagePrice.setText("Price : 20,000 Ks");
+        tvPackDescTitleOne.setText("Day 1:Kalaw-Changyi Pauk-Khaung Dine");
+        tvPackageDescOne.setText("Early morning drive to Thayepoo (appr. 1 hour), a Danu â€“ Taung Yoe â€“ Pa O village, \n" +
+                "the starting point for the 2 days trekking trip to Khaung Dine. \n" +
+                "Your local station tour guide Ko Paul will introduce you to the villagers along the way \n" +
+                "and will show you the traditional way of life. \n" +
+                "At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch. \n" +
+                "Only a 30 minutes away is a bathing place where you can have a bath and \n" +
+                "then proceed to Chaunggyi Pauk a typical Taung Yoe village.\n" +
+                " The people in this village are well known for their bamboo mattresses and handicrafts. \n" +
+                "Dinner and overnight at Chaungyi Pauk.");
+        tvPackaDescTitleTwo.setText("Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake");
+        tvPackDescTwo.setText("From Chaungyi Pauk it is only a 2 Â½ hours walk to the Hot Spa, \n" +
+                "the only place where you can go for a hot bath. Don't miss the change. \n" +
+                "Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake. \n" +
+                "This Intha village is well known for the production of soybean Cakes and noodles. \n" +
+                "From here transfer by boat to your hotel.");
+
+        mPackageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
 
         piPackageImageSlider.setNumPage(5);
-        String[] images = {"http://mandalayholidays.com/images/tour-program/yangon1.jpg",
-                "http://mandalayholidays.com/images/tour-program/yangon-01.jpg",
-                "http://mandalayholidays.com/images/tour-program/bago-01.jpg",
-                "http://mandalayholidays.com/images/destination/yangon-06.jpg",
-                "http://mandalayholidays.com/images/destination/yangon-19.jpg"};
+        String[] images = {"R.drawable.bagan", "R.drawable.inle", "R.drawable.mandalay"};
 
         ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
         pagerPackageImages.setAdapter(adapter);
@@ -139,8 +161,9 @@ public class PackageDetailActivity extends BaseActivity {
 
             }
         });
-
+        collapsingToolbar.setTitle(mPackageName);
     }
+
 
     @OnClick(R.id.fab_bookmark)
     public void clickOnPackageBookMark() {
@@ -172,4 +195,5 @@ public class PackageDetailActivity extends BaseActivity {
 //        sendViaShareIntent(mDestination.getTitle() + "-" + imageUrl);
         sendViaShareIntent("Package");
     }
+
 }

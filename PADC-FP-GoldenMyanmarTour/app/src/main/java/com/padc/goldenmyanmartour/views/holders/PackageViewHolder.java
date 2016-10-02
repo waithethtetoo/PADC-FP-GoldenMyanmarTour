@@ -34,10 +34,11 @@ public class PackageViewHolder implements View.OnClickListener {
         this.mController = mController;
     }
 
-    public void bindData(PackageVO packageVO) {
-        mPackageVO = packageVO;
-        tvPackageName.setText(packageVO.getPackageName());
-//        tvPackageName.setText("Yangon-Bago-Thanlyin-Yangon");
+    public void bindData() {
+//        mPackageVO = packageVO;
+//        tvPackageName.setText(packageVO.getPackageName());
+
+        tvPackageName.setText("2 Days/1 Night From Kalaw to Inle Lake");
 //        String imageUrl = packageVO.getPhotos()[0];
         Glide.with(ivPackage.getContext())
                 .load(R.drawable.inle)
@@ -49,10 +50,10 @@ public class PackageViewHolder implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        mController.onTapPackage(mPackageVO,ivPackage);
-//        Intent intentToPackageDetail = PackageDetailActivity.newIntent("Yangon-Bago-Thanlyin-Yangon");
-//        intentToPackageDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        GMTApp.getContext().startActivity(intentToPackageDetail);
+//        mController.onTapPackage(mPackageVO, ivPackage);
+        Intent intentToPackageDetail = PackageDetailActivity.newIntent("Yangon-Bago-Thanlyin-Yangon");
+        intentToPackageDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        GMTApp.getContext().startActivity(intentToPackageDetail);
     }
 
     public interface ControllerItem {

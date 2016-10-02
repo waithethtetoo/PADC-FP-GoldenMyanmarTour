@@ -74,7 +74,7 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         searchHint = parent.getItemAtPosition(position).toString();
-////                        searchAction(searchHint);
+//                        searchAction(searchHint);
                          /*search function do here */
                         ivSearch.setOnClickListener(new View.OnClickListener() {
                             @Override
