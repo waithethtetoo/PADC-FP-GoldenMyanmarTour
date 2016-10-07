@@ -6,6 +6,8 @@ import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 import com.padc.goldenmyanmartour.GMTApp;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +16,34 @@ import java.util.List;
  */
 public class PackageVO {
     @SerializedName("package-id")
-    private String packageId;
+    private long packageId;
 
     @SerializedName("package-name")
     private String packageName;
 
-    @SerializedName("description")
-    private String description;
+    @SerializedName("description-title-one")
+    private String descTitleOne;
+
+    @SerializedName("description-one")
+    private String descriptionOne;
+
+    @SerializedName("description-title-two")
+    private String descTitleTwo;
+
+    @SerializedName("description-two")
+    private String descriptionTwo;
+
+    @SerializedName("description-title-three")
+    private String descTitleThree;
+
+    @SerializedName("description-three")
+    private String descriptionThree;
+
+    @SerializedName("description-title-four")
+    private String descTitleFour;
+
+    @SerializedName("description-four")
+    private String descriptionFour;
 
     @SerializedName("photos")
     private String[] photos;
@@ -31,73 +54,176 @@ public class PackageVO {
     @SerializedName("total-days")
     private String totalDays;
 
-    @SerializedName("sub-destinations")
-    private ArrayList<DestinationVO> destinationVOs;
+    @SerializedName("destination-title-one")
+    private String destTitleOne;
 
-    @SerializedName("tour-company")
-    private TourCompanyVO tourCompanyVO;
+    @SerializedName("destination-title-two")
+    private String destTitleTwo;
 
-    public String getPackageId() {
-        return packageId;
+    @SerializedName("destination-title-three")
+    private String destTitleThree;
+
+    @SerializedName("destination-title-four")
+    private String destTitleFour;
+
+    @SerializedName("destination-photo-one")
+    private String destPhotoOne;
+
+    @SerializedName("destination-photo-two")
+    private String destPhotoTwo;
+
+    @SerializedName("destination-photo-three")
+    private String destPhotoThree;
+
+    @SerializedName("destination-photo-four")
+    private String destPhotoFour;
+
+    @SerializedName("company-id")
+    private long companyID;
+
+    @SerializedName("company-name")
+    private String companyName;
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("phone-numbers")
+    private String[] phones;
+
+    @SerializedName("address")
+    private String address;
+
+    public PackageVO(long packageId, String packageName, String descTitleOne, String descriptionOne, String descTitleTwo, String descriptionTwo, String descTitleThree, String descriptionThree, String descTitleFour, String descriptionFour, String[] photos, String price, String totalDays, String destTitleOne, String destTitleTwo, String destTitleThree, String destTitleFour, String destPhotoOne, String destPhotoTwo, String destPhotoThree, String destPhotoFour, long companyID, String companyName, String description, String[] phones, String address) {
+        this.packageId = packageId;
+        this.packageName = packageName;
+        this.descTitleOne = descTitleOne;
+        this.descriptionOne = descriptionOne;
+        this.descTitleTwo = descTitleTwo;
+        this.descriptionTwo = descriptionTwo;
+        this.descTitleThree = descTitleThree;
+        this.descriptionThree = descriptionThree;
+        this.descTitleFour = descTitleFour;
+        this.descriptionFour = descriptionFour;
+        this.photos = photos;
+        this.price = price;
+        this.totalDays = totalDays;
+        this.destTitleOne = destTitleOne;
+        this.destTitleTwo = destTitleTwo;
+        this.destTitleThree = destTitleThree;
+        this.destTitleFour = destTitleFour;
+        this.destPhotoOne = destPhotoOne;
+        this.destPhotoTwo = destPhotoTwo;
+        this.destPhotoThree = destPhotoThree;
+        this.destPhotoFour = destPhotoFour;
+        this.companyID = companyID;
+        this.companyName = companyName;
+        this.description = description;
+        this.phones = phones;
+        this.address = address;
     }
 
-    public void setPackageId(String packageId) {
-        this.packageId = packageId;
+    public long getPackageId() {
+        return packageId;
     }
 
     public String getPackageName() {
         return packageName;
     }
 
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
+    public String getDescTitleOne() {
+        return descTitleOne;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionOne() {
+        return descriptionOne;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getDescTitleTwo() {
+        return descTitleTwo;
+    }
+
+    public String getDescriptionTwo() {
+        return descriptionTwo;
+    }
+
+    public String getDescTitleThree() {
+        return descTitleThree;
+    }
+
+    public String getDescriptionThree() {
+        return descriptionThree;
+    }
+
+    public String getDescTitleFour() {
+        return descTitleFour;
+    }
+
+    public String getDescriptionFour() {
+        return descriptionFour;
     }
 
     public String[] getPhotos() {
         return photos;
     }
 
-    public void setPhotos(String[] photos) {
-        this.photos = photos;
-    }
-
     public String getPrice() {
         return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getTotalDays() {
         return totalDays;
     }
 
-    public void setTotalDays(String totalDays) {
-        this.totalDays = totalDays;
+    public String getDestTitleOne() {
+        return destTitleOne;
     }
 
-    public ArrayList<DestinationVO> getDestinationVOs() {
-        return destinationVOs;
+    public String getDestTitleTwo() {
+        return destTitleTwo;
     }
 
-    public void setDestinationVOs(ArrayList<DestinationVO> destinationVOs) {
-        this.destinationVOs = destinationVOs;
+    public String getDestTitleThree() {
+        return destTitleThree;
     }
 
-    public TourCompanyVO getTourCompanyVO() {
-        return tourCompanyVO;
+    public String getDestTitleFour() {
+        return destTitleFour;
     }
 
-    public void setTourCompanyVO(TourCompanyVO tourCompanyVO) {
-        this.tourCompanyVO = tourCompanyVO;
+    public String getDestPhotoOne() {
+        return destPhotoOne;
     }
+
+    public String getDestPhotoTwo() {
+        return destPhotoTwo;
+    }
+
+    public String getDestPhotoThree() {
+        return destPhotoThree;
+    }
+
+    public String getDestPhotoFour() {
+        return destPhotoFour;
+    }
+
+    public long getCompanyID() {
+        return companyID;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String[] getPhones() {
+        return phones;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
 }
