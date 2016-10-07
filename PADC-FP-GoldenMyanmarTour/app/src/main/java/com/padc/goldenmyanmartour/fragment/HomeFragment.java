@@ -59,26 +59,16 @@ import de.greenrobot.event.EventBus;
  */
 public class HomeFragment extends BaseFragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
-
     @BindView(R.id.gv_destinations)
     GridView gvDestinations;
 
-    @BindView(R.id.sp_fiterCity)
-    Spinner spFilterCity;
+//    @BindView(R.id.sp_fiterCity)
+//    Spinner spFilterCity;
 
     MenuItem destinationItemCity;
 
     private DestinationAdapter mAdapter;
     private DestinationViewHolder.ControllerDestinationItem mController;
-
-//    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            String extra = intent.getStringExtra("key-for-extra");
-//            List<DestinationVO> newDestList = DestinationModel.getInstance().getmDestList();
-//            mAdapter.setNewData(newDestList);
-//        }
-//    };
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -100,11 +90,6 @@ public class HomeFragment extends BaseFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        List<DestinationVO> destinationVOList = DestinationModel.getInstance().getmDestList();
-//        Log.d("DataList", DestinationModel.getInstance().getmDestList().toString());
-        mAdapter = new DestinationAdapter(destinationVOList, mController);
-//        mAdapter = new DestinationAdapter(null, mController);
         setHasOptionsMenu(true);
     }
 
@@ -113,41 +98,12 @@ public class HomeFragment extends BaseFragment
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
+
+        List<DestinationVO> destinationVOList = DestinationModel.getInstance().getmDestList();
+        mAdapter = new DestinationAdapter(destinationVOList, mController);
         gvDestinations.setAdapter(mAdapter);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.spinner_city_item_array,
-                android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spFilterCity.setAdapter(adapter);
-
-
         return view;
     }
-
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        menu.clear();
-//        inflater.inflate(R.menu.menu_type_filter,menu);
-//
-//
-//
-//        destinationItemCity = menu.findItem(R.id.spinner);
-//
-//        //destinationItemCity.setTitle("City");
-//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(destinationItemCity);
-//        spinner.setDropDownVerticalOffset(-56);
-//
-//
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-//                 R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//
-//        spinner.setAdapter(adapter);
-//
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -240,4 +196,5 @@ public class HomeFragment extends BaseFragment
         mAdapter.notifyDataSetChanged();
     }
     */
+
 }
