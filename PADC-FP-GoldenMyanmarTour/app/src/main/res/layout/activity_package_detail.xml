@@ -59,16 +59,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--<ImageView-->
-            <!--android:id="@+id/iv_book_the_package"-->
-            <!--android:layout_width="@dimen/icon_in_detail"-->
-            <!--android:layout_height="@dimen/icon_in_detail"-->
-            <!--android:layout_marginTop="@dimen/margin_medium"-->
-            <!--android:clickable="true"-->
-            <!--android:padding="@dimen/margin_medium"-->
-            <!--android:src="@drawable/ic_book_for_the_trip"-->
-            <!--android:tint="@color/accent" />-->
-
             <TextView
                 android:id="@+id/tv_package_price"
                 android:layout_width="wrap_content"
@@ -79,18 +69,6 @@
                 android:text="Price : 20,000 Ks"
                 android:textColor="@color/price_text_color"
                 android:textSize="@dimen/text_regular" />
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_package_name"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@id/tv_package_price"-->
-                <!--android:layout_marginBottom="@dimen/margin_medium_2"-->
-                <!--android:layout_marginLeft="@dimen/margin_medium_3"-->
-                <!--android:layout_marginRight="@dimen/margin_medium_3"-->
-                <!--android:text="TREK 06 - 2 DAYS / 1 NIGHT FROM KALAW TO INLE LAKE \n KALAW – CHAUNGYI PAUK – KHAUNG DINE – INLE LAKE"-->
-                <!--android:textColor="@color/primary_text"-->
-                <!--android:textSize="@dimen/text_regular_2x" />-->
 
             <TextView
                 android:id="@+id/tv_package_desc_title_one"
@@ -116,15 +94,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_regular"
-                tools:text="Early morning drive to Thayepoo (appr. 1 hour), a Danu – Taung Yoe – Pa O village,
-the starting point for the 2 days trekking trip to Khaung Dine.
-Your local station tour guide Ko Paul will introduce you to the villagers along the way
-and will show you the traditional way of life.
-At Supan Inn a Danu and Taung Yoe Tribal Village you will stop for lunch.
-Only a 30 minutes away is a bathing place where you can have a bath and
-then proceed to Chaunggyi Pauk a typical Taung Yoe village.
- The people in this village are well known for their bamboo mattresses and handicrafts.
-Dinner and overnight at Chaungyi Pauk." />
+                tools:text="Early " />
 
             <HorizontalScrollView
                 android:id="@+id/horizontal_one"
@@ -146,32 +116,6 @@ Dinner and overnight at Chaungyi Pauk." />
                         android:layout_marginRight="@dimen/image_left"
                         android:src="@drawable/inle" />
 
-                    <ImageView
-                        android:id="@+id/iv_two"
-                        android:layout_width="@dimen/image_width"
-                        android:layout_height="@dimen/image_height"
-                        android:layout_marginLeft="@dimen/image_left"
-                        android:layout_marginRight="@dimen/image_left"
-                        android:layout_toRightOf="@id/iv_one"
-                        android:src="@drawable/bagan" />
-
-                    <ImageView
-                        android:id="@+id/iv_three"
-                        android:layout_width="@dimen/image_width"
-                        android:layout_height="@dimen/image_height"
-                        android:layout_marginLeft="@dimen/image_left"
-                        android:layout_marginRight="@dimen/image_left"
-                        android:layout_toRightOf="@id/iv_two"
-                        android:src="@drawable/mandalay" />
-
-                    <ImageView
-                        android:id="@+id/iv_four"
-                        android:layout_width="@dimen/image_width"
-                        android:layout_height="@dimen/image_height"
-                        android:layout_marginLeft="@dimen/image_left"
-                        android:layout_marginRight="@dimen/image_left"
-                        android:layout_toRightOf="@id/iv_three"
-                        android:src="@drawable/ananda_pagoda_festival" />
                 </RelativeLayout>
             </HorizontalScrollView>
 
@@ -200,11 +144,7 @@ Dinner and overnight at Chaungyi Pauk." />
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_regular"
-                tools:text="From Chaungyi Pauk it is only a 2 ½ hours walk to the Hot Spa,
-the only place where you can go for a hot bath. Don't miss the change.
-Then proceed by bus to Khaung Dine at the north-western shore of Inle Lake.
-This Intha village is well known for the production of soybean Cakes and noodles.
-From here transfer by boat to your hotel." />
+                tools:text="From Chaungyi Pauk " />
 
             <HorizontalScrollView
                 android:id="@+id/horizontal_two"
@@ -226,32 +166,106 @@ From here transfer by boat to your hotel." />
                         android:layout_marginRight="@dimen/image_left"
                         android:src="@drawable/bagan" />
 
-                    <ImageView
-                        android:id="@+id/iv_two_two"
-                        android:layout_width="@dimen/image_width"
-                        android:layout_height="@dimen/image_height"
-                        android:layout_marginLeft="@dimen/image_left"
-                        android:layout_marginRight="@dimen/image_left"
-                        android:layout_toRightOf="@id/iv_two_one"
-                        android:src="@drawable/mandalay" />
+                </RelativeLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/tv_package_desc_title_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontal_two"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:lineSpacingMultiplier="1.2"
+                android:text="Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <TextView
+                android:id="@+id/tv_package_desc_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_title_three"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular"
+                tools:text="From Chaungyi Pauk " />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontal_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_three"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/iv_two_three"
+                        android:id="@+id/iv_three_one"
                         android:layout_width="@dimen/image_width"
                         android:layout_height="@dimen/image_height"
                         android:layout_marginLeft="@dimen/image_left"
                         android:layout_marginRight="@dimen/image_left"
-                        android:layout_toRightOf="@id/iv_two_two"
-                        android:src="@drawable/ananda_pagoda_festival" />
+                        android:src="@drawable/bagan" />
+
+                </RelativeLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/tv_package_desc_title_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontal_three"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:lineSpacingMultiplier="1.2"
+                android:text="Day 2:Chaungyi Pauk-Khaung Dine-Inle Lake"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <TextView
+                android:id="@+id/tv_package_desc_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_title_four"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_marginLeft="@dimen/margin_medium_3"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular"
+                tools:text="From Chaungyi Pauk " />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontal_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_package_desc_four"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/iv_two_four"
+                        android:id="@+id/iv_four_one"
                         android:layout_width="@dimen/image_width"
                         android:layout_height="@dimen/image_height"
                         android:layout_marginLeft="@dimen/image_left"
                         android:layout_marginRight="@dimen/image_left"
-                        android:layout_toRightOf="@id/iv_two_three"
-                        android:src="@drawable/inle" />
+                        android:src="@drawable/bagan" />
+
                 </RelativeLayout>
             </HorizontalScrollView>
         </RelativeLayout>
