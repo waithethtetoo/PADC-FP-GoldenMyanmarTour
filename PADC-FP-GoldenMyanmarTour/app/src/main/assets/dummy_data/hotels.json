@@ -1,0 +1,188 @@
+ [{
+ 	"hotel-id": 1234567890,
+ 	"hotel-name": "Aureum Palace Hotel (Bagan)",
+ 	"description": "The Aureum Palace Hotel is located in one of ancient kingdoms in Myanmar, highlights with ancient pagodas and relics in central Myanmar. It is easy to find cocktails and lighter fare at the resort and cafes and poolside dining is available throughout the day. There are also available with a swimming pool and fitness center, as well as a business center for Internet access. The complex will inspire you about an ancient oriental settlement in Myanmar with traditional architecture in an area of 27 acres including beautiful tropical gardens. The hotel is famous for Burmese, Shan, Thai and other exotic regional cuisines of neighbor countries in Southeast Asia and china.",
+ 	"photos": [
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Aureum-Palace-Hotel-3.jpg",
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Aureum-Palace-Hotel-4.jpg",
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Aureum-Palace-Hotel-5.jpg",
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Aureum-Palace-Hotel-6.jpg"
+ 	],
+ 	"direction-to-hotel": " Near Bagan Viewing Tower, Min Nanthu Village, Nyaung Oo",
+ 	"phone-numbers": ["+95-6160046", "+95-6160047", "+95-96502963"],
+ 	"address": "Near Bagan Viewing Tower, Min Nanthu Village,Nyaung Oo, Mandalay Division, Myanmar.",
+ 	"city-name": "Bagan",
+ 	"state-name": "Mandalay",
+ 	"included-services": ["Air Conditioning",
+ 		"Mini Bar",
+ 		"IDD Telephone",
+ 		"Safe",
+ 		"Tea and Coffee Making Facilities"
+ 	],
+ 	"room-description": ["Deluxe", "Jasmine Villa Lake View", "Lotus Villa", "Island Villa", "Palm Tree Villa 628 Sft"],
+ 	"charge-per-night": ["$200.50", "$280.50", "$380.50", "$380.50", "$695.50"],
+ 	"room-photos": [
+ 		"http://www.aureumpalacehotel.com/img/room/bagan-deluxe01.jpg",
+ 		"http://www.aureumpalacehotel.com/img/bagan/room/bagan_jasmine_b1.jpg",
+ 		"http://www.aureumpalacehotel.com/img/bagan/room/bagan_lotus_b2.jpg",
+ 		"http://www.aureumpalacehotel.com/img/bagan/room/bagan_island_b2.jpg",
+ 		"http://www.aureumpalacehotel.com/img/bagan/room/bagan_palm_b2.jpg"
+ 	]
+ }, {
+ 	"hotel-id": 1234567891,
+ 	"hotel-name": "Sule Shangri-La",
+ 	"description": "Sule Shangri-La located in at the heart of Yangon - one of the most bustling cities in SEA. How wonderful if take a stopover at the hotel after a long day traveling and enjoy a moment of relax and leisure in one of the best 5 star hotel in Myanmar. The hotel windows provide a unique view over Yangon at the river, lush tropical trees and magnificent pagodas. The hotel is situated in walking distance to Shwedagon Pagoda - one of the most sacred pagodas in Myanmar. Sule Shangri-La has outdoor pool, fully-equipped Fitness and Recreation Centre. The hotel also offers authentic buffet breakfast including Burmese and international dishes.",
+ 	"photos": [
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Sule-Shangri-La-Yangon-1.jpg",
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Sule-Shangri-La-Yangon-3.jpg",
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Sule-Shangri-La-Yangon-6.jpg",
+ 		"http://www.gomyanmartours.com/wp-content/uploads/2014/11/Sule-Shangri-La-Yangon-12.jpg"
+ 	],
+ 	"direction-to-hotel": "",
+ 	"phone-numbers": ["(95 1) 242 828"],
+ 	"address": "223 Bo Gyoke Rd, Yangon, Myanmar",
+ 	"city-name": "Yangon",
+ 	"state-name": "Yangon",
+ 	"included-services": ["Breakfast included",
+ 		"Book now, pay later!",
+ 		"Cancellation policies"
+ 	],
+ 	"room-description": ["Deluxe Room", "Executive Room", "Horizon Club Room"],
+ 	"charge-per-night": ["$350.00", "$400.00", "$320.50"],
+ 	"room-photos": [
+ 		"https://media-cdn.tripadvisor.com/media/oyster/600/0a/7d/44/34/deluxe-room--v11252310.jpg",
+ 		"https://media-cdn.tripadvisor.com/media/oyster/600/0a/7d/45/f8/pool--v11252588.jpg",
+ 		"https://media-cdn.tripadvisor.com/media/photo-s/07/d8/81/96/sule-shangri-la-yangon.jpg"
+ 	]
+ }, {
+ 	"hotel-id": 1234567892,
+ 	"hotel-name": "Myanmar Treasure Resort Inle",
+ 	"description": "Inle Lake, a vast body of water 875 meter above sea-level features a unique ecosystem, singular life-styles and rich traditions. Sitting right on the lake waters, Myanmar Treasure Resort, Inle, offers an elegant combination of traditional local lifestyle and the comforts of accommodation to capture a tradition held long and true. An ideal location to view this splendid area and unique area, a peak into the lives and traditions of the Inthas (literally meaning �Sons of the Lake�) and experience their hospitality. The resort offers you choices of entertainment programs of culture and traditions, unique dining experience upon and overlooking the lake and mountains behind. The floating spa available to reinvigorate your body and soul after a full day of sightseeing upon and around the lake.",
+ 	"photos": [
+ 		"https://cdn.jovago.net/web_hotel_detail_gallery/myanmar-treasure-resort-inle-24619-3eb1304b4343df39b7f8d1bd2c3037f8c95eb627.jpg",
+ 		"https://cdn.jovago.net/web_hotel_detail_gallery/myanmar-treasure-resort-inle-24619-560880cfdef2421d9228dbdb433b410a536b60d2.jpg",
+ 		"https://cdn.jovago.net/web_hotel_detail_gallery/myanmar-treasure-resort-inle-24619-c185b1b3daa9c9720ff88cdffd097fa3b7976f2d.jpg",
+ 		"https://cdn.jovago.net/web_hotel_detail_gallery/myanmar-treasure-resort-inle-24619-80879e3c5fba6b67050cb1bca39e1d9eea9d23cd.jpg"
+ 	],
+ 	"direction-to-hotel": "",
+ 	"phone-numbers": ["+95-9518 6668", "+95-81 209 312"],
+ 	"address": "Maing Thauk Village, Nyaungshwe,Inle Lake",
+ 	"city-name": "Nyaungshwe",
+ 	"state-name": "Shan",
+ 	"included-services": ["Private Balcony",
+ 		"Work Desk",
+ 		"Outside Umbrella",
+ 		"Satellite TV",
+ 		"Ellectric Kettle/Tea and Coffee",
+ 		"Mini Bar",
+ 		"Bottled Water",
+ 		"In-room Safe",
+ 		"In-room Telephone"
+ 	],
+ 	"room-description": ["Suite Room", "Deluxe Mountain View", "Deluxe Lake View"],
+ 	"charge-per-night": ["$300.50", "$420.50", "$420.50"],
+ 	"room-photos": [
+ 		"https://cdn.jovago.net/web_hotel_list_slider/myanmar-treasure-resort-inle-24619-82b9900c7798082242f9dab8aeb3e17fdc6d2b1b.jpg",
+ 		"https://cdn.jovago.net/web_hotel_list_slider/myanmar-treasure-resort-inle-24619-560880cfdef2421d9228dbdb433b410a536b60d2.jpg",
+ 		"https://cdn.jovago.net/web_hotel_list_slider/myanmar-treasure-resort-inle-24619-560880cfdef2421d9228dbdb433b410a536b60d2.jpg"
+ 	]
+ }, {
+ 	"hotel-id": 1234567893,
+ 	"hotel-name": "Triumph Hotel(Mandalay)",
+ 	"description": "Boasting a 24-hour front desk, it provides free WiFi access, which is available throughout. Triumph Hotel Mandalay is within a 10-minute ride from the city centre. Mandalay International Airport is 35 km away. Guests enjoy free on-site parking. Each air-conditioned room here will provide you with a flat-screen cable/satellite TV, a seating area and an electric kettle. An en suite bathroom comes with a bathtub, shower facilities and a hairdryer. At Triumph Hotel Mandalay you will find a fitness centre, luggage storage and meeting facilities. An array of activities can be enjoyed on site or in the surroundings, including golfing and cycling. For meals, guests can sample local dishes at the restaurant. Refreshing beverages are available at the bar.",
+ 	"photos": [
+ 		"http://images.asiatravel.com/Hotel/15604/44903343.jpg?_ga=1.203613014.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/15604/Deluxe.jpg?_ga=1.132271688.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/15604/Swimming%20Pool_1.jpg?_ga=1.132271688.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/15604/Swimming%20Pool%20(Night)_2.jpg?_ga=1.132271688.752308856.1474359348"
+ 	],
+ 	"direction-to-hotel": "Triumph Hotel Mandalay is a 10-minute ride from Mandalay Hill. It is within a 10-minute ride from the city centre. Mandalay International Airport is 35 km away.",
+ 	"phone-numbers": ["026 1145"],
+ 	"address": "No. (1), 26th (B) Road, Between ; 55th & 56th Street, Aung Myay Tharzan Township, Mandalay",
+ 	"city-name": "Nyaungshwe",
+ 	"state-name": "Mandalay",
+ 	"included-services": ["Breakfast included",
+ 		"45 sq.m",
+ 		"No Credit card required",
+ 		"2 single bed or 1 double bed",
+ 		"Air Conditioning",
+ 		"Mini Bar",
+ 		"Balcony",
+ 		"Free WiFi",
+ 		"Satellite TV",
+ 		"Refrigerator",
+ 		"Safe"
+ 	],
+ 	"room-description": ["Economy Room", "Villa Deluxe", "Economy Single Bed", "Villa Junior Suite"],
+ 	"charge-per-night": ["$43.29", "$57.15", "$43.29", "$71.43"],
+ 	"room-photos": [
+ 		"https://cdn.jovago.net/web_hotel_list_slider/myanmar-treasure-resort-inle-24619-82b9900c7798082242f9dab8aeb3e17fdc6d2b1b.jpg",
+ 		"https://pix6.agoda.net/hotelimages/656/656441/656441_15041020330026821398.jpg?s=800x600&ar=4x3",
+ 		"https://pix6.agoda.net/hotelimages/656/656441/656441_15041020080026820786.jpg?s=800x600&ar=4x3",
+ 		"https://pix6.agoda.net/hotelimages/656/656441/656441_15041021040026822016.jpg?s=800x600&ar=4x3"
+ 	]
+ }, {
+ 	"hotel-id": 1234567894,
+ 	"hotel-name": "Hotel Madira",
+ 	"description": "Renovated in 2013, the Hotel Madira guarantees guests a pleasant stay whether in Myitkyina for business or pleasure. From here, guests can enjoy easy access to all that the lively city has to offer. With its convenient location, the hotel offers easy access to the city's must-see destinations. Hotel Madira offers impeccable service and all the essential amenities to invigorate travelers. Guests of the hotel can enjoy on-site features like disabled facilities, coffee shop, valet parking, executive floor, car park. Hotel Madira is home to 45 bedrooms, all tastefully furnished to provide comforts such as non smoking rooms, balcony/terrace, coffee/tea maker, separate shower and tub, complimentary bottled water. Besides, the hotel's host of recreational offerings ensures you have plenty to do during your stay. Hotel Madira is an ideal place of stay for travelers seeking charm, comfort and convenience in Myitkyina. ",
+ 	"photos": [
+ 		"http://images.asiatravel.com/Hotel/14660/14660_DeluxeDouble.jpg?_ga=1.128249162.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/14660/14660_MeetingRoom.jpg?_ga=1.234021848.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/14660/14660_Facade1.jpg?_ga=1.234021848.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/14660/14660_Lobby.jpg?_ga=1.191671020.752308856.1474359348"
+ 	],
+ 	"direction-to-hotel": "",
+ 	"phone-numbers": ["+65 3152 9388",
+ 		" +60 (3) 2788 4492",
+ 		" +62 (21) 2960 1459 ",
+ 		"074 2119"
+ 	],
+ 	"address": "No (510), Pyayhtaungsu Road, Yuzana Quarter, Myitkyina, Kachin State",
+ 	"city-name": "Myitkyina",
+ 	"state-name": "Kachin",
+ 	"included-services": ["Breakfast included",
+ 		"45 sq.m",
+ 		"No Credit card required",
+ 		"2 single bed or 1 double bed",
+ 		"Air Conditioning",
+ 		"Mini Bar",
+ 		"Balcony",
+ 		"Free WiFi",
+ 		"Satellite TV",
+ 		"Refrigerator",
+ 		"Safe"
+ 	],
+ 	"room-description": ["Deluxe Double"],
+ 	"charge-per-night": ["$65.72"],
+ 	"room-photos": [
+ 		"https://pix6.agoda.net/hotelimages/467/467032/467032_16042617180041823579.jpg?s=800x600&ar=4x3"
+ 	]
+ }, {
+ 	"hotel-id": 1234567895,
+ 	"hotel-name": "Kandawgyi Hill Resort",
+ 	"description": "The Kandawgyi Hill Resort, Pyin Oo Lwin is set about 10 minutes drive south of downtown Pyin Oo Lwin and around 5 minutes walk to the National Kandawgyi Botanical Gardens. For leisure, guests can enjoy complimentary use of the swimming pool by the Club House and free entry to the Botanical Gardens. The Kandawgyi Hill Resort has garden surroundings, basic amenities and colonial style rooms.",
+ 	"photos": [
+ 		"http://images.asiatravel.com/Hotel/11450/Hotel%20Exterior.png",
+ 		"http://images.asiatravel.com/Hotel/11450/function-room.jpg?_ga=1.171280998.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/11450/lobby.jpg?_ga=1.171280998.752308856.1474359348",
+ 		"http://images.asiatravel.com/Hotel/11450/golf.jpg?_ga=1.123855180.752308856.1474359348"
+ 	],
+ 	"direction-to-hotel": "About 69km away from Mandalay.Pyin Oo Lwin is set about 10 minutes drive south of downtown Pyin Oo Lwin and around 5 minutes walk to the National Kandawgyi Botanical Gardens. ",
+ 	"phone-numbers": ["01399 334"],
+ 	"address": "Nadar Road, , Quarter 6, Pyin Oo Lwin, Mandalay Division, Myanmar",
+ 	"city-name": "Pyin Oo Lwin",
+ 	"state-name": "Mandalay",
+ 	"included-services": ["Electric Kettle/ Tea and Coffee",
+ 		"Bottled Water",
+ 		"Mini Bar",
+ 		"In-room Telephone",
+ 		"Satellite TV",
+ 		"Work Desk",
+ 		"Balcony"
+ 	],
+ 	"room-description": ["Deluxe"],
+ 	"charge-per-night": ["$57.15"],
+ 	"room-photos": [
+ 		"http://www.myanmartreasureresorts.com/wp-content/uploads/2016/02/myanmar-treasure-resorts-kandawgyi-hill-resort-delux-room.jpg"
+ 	]
+ }]
