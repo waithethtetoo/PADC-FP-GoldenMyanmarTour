@@ -32,12 +32,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.activity.HomeActivity;
 import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.HotelAdapter;
+import com.padc.goldenmyanmartour.data.Models.HotelModel;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
@@ -60,22 +62,8 @@ public class HotelFragment extends Fragment {
     @BindView(R.id.rv_hotels)
     RecyclerView rvHotels;
 
-    @BindView(R.id.sp_filterHotelCity)
-    Spinner spFilterHotelCity;
-
-    @BindView(R.id.sp_filterHotelPrice)
-    Spinner spFilterHotelPrice;
-
     private HotelAdapter mHotelAdapter;
     private HotelViewHolder.ControllerHotelItem controllerHotelItem;
-
-//    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            List<HotelVO> newHotelList = HotelModel.getInstance().getHotelList();
-//            mHotelAdapter.setNewData(newHotelList);
-//        }
-//    };
 
 
     public static HotelFragment newInstance() {
@@ -86,13 +74,13 @@ public class HotelFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        // controllerHotelItem = (HotelViewHolder.ControllerHotelItem) context;
+        controllerHotelItem = (HotelViewHolder.ControllerHotelItem) context;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHotelAdapter = new HotelAdapter(null, controllerHotelItem);
+        mHotelAdapter = new HotelAdapter(HotelModel.getInstance().getHotelList(), controllerHotelItem);
 
     }
 
@@ -102,145 +90,14 @@ public class HotelFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_hotel, container, false);
         ButterKnife.bind(this, rootView);
 
-//        List<HotelVO> hotelList = HotelModel.getInstance().getHotelList();
         rvHotels.setAdapter(mHotelAdapter);
-
-        ArrayAdapter<CharSequence> adapterCity = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_city_item_array, android.R.layout.simple_spinner_item);
-        adapterCity.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spFilterHotelCity.setAdapter(adapterCity);
-
-
-        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_price_item_array, android.R.layout.simple_spinner_item);
-        adapterPrice.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spFilterHotelPrice.setAdapter(adapterPrice);
 
         int gridColumnCount = getResources().getInteger(R.integer.attraction_list_grid);
         rvHotels.setLayoutManager(new GridLayoutManager(getContext(), gridColumnCount));
 
         return rootView;
     }
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        menu.clear();
-//        inflater.inflate(R.menu.menu_city_price_filter,menu);
-//
-//        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
-//        hotelPriceItem.setTitle("Price");
-//
-//
-//
-//        hotelCityItem = menu.findItem(R.id.spinnerCity);
-//        hotelCityItem.setTitle("City");
-//
-//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-//                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-//
-//
-//
-//        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
-//        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
-//                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
-//        spinnerPrice.setAdapter(adapterPrice);
-//
-//
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id= item.getItemId();
-//        switch (id) {
-//            case R.id.spinnerPrice:
-//                break;
-//            case R.id.spinnerCity:
-//               break;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
-//
-//    @Override
-//
-//   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-//    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        //LocalBroadcastManager.getInstance(getContext()).registerReceiver(mDataLoaded, new IntentFilter(HotelModel.BROADCAST_DATA_LOADED));
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        //   LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mDataLoaded);
-    }
-
-//    @Override
-//    protected void onSendScreenHit() {
-//
-//    }
-//
-//    @Override
-//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-//        return new CursorLoader(getContext(),
-//                DestinationContract.HotelEntry.CONTENT_URI,
-//                null,
-//                null,
-//                null,
-//                DestinationContract.HotelEntry.COLUMN_NAME + "DESC");
-//    }
-//
-//    @Override
-//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-//        List<HotelVO> hotelList = new ArrayList<>();
-//        if (data != null && data.moveToFirst()) {
-//            do {
-//                HotelVO hotel = HotelVO.parseFromCursor(data);
-//                hotel.setPhotos(HotelVO.loadHotelImagesByName(hotel.getHotelName()));
-//                hotelList.add(hotel);
-//            } while (data.moveToNext());
-//        }
-//        mHotelAdapter.setNewData(hotelList);
-//        HotelModel.getInstance().setStoredData(hotelList);
-//    }
-//
-//    @Override
-//    public void onLoaderReset(Loader<Cursor> loader) {
-//    }
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu_city_price_filter,menu);
-//
-//        hotelPriceItem = menu.findItem(R.id.spinnerPrice);
-//        hotelPriceItem.setTitle("Price");
-//
-//
-//
-//        hotelCityItem = menu.findItem(R.id.spinnerCity);
-//        hotelCityItem.setTitle("City");
-//
-//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(hotelCityItem);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(GMTApp.getContext(),
-//                R.array.spinner_city_item_array, android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-//
-//
-//
-//        Spinner spinnerPrice = (Spinner)MenuItemCompat.getActionView(hotelPriceItem);
-//        ArrayAdapter<CharSequence> adapterPrice = ArrayAdapter.createFromResource(GMTApp.getContext(),
-//                R.array.spinner_price_item_array, android.R.layout.simple_spinner_dropdown_item);
-//        spinnerPrice.setAdapter(adapterPrice);
-//
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-
+/*
     @Override
     public void setUserVisibleHint(boolean visible) {
         super.setUserVisibleHint(visible);
@@ -255,5 +112,16 @@ public class HotelFragment extends Fragment {
         if (!getUserVisibleHint()) {
             return;
         }
+        HomeActivity mainActivity = (HomeActivity) getActivity();
+        mainActivity.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Do what you want
+                Toast.makeText(GMTApp.getContext(), "Hotel Fragment Search FAB Clicked", Toast.LENGTH_SHORT).show();
+                Intent intentToSearch = SearchActivity.newIntent("Hotel Fragment");
+                startActivity(intentToSearch);
+            }
+        });
     }
+    */
 }

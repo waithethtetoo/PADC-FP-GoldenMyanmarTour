@@ -317,8 +317,7 @@ public class PackageDetailActivity extends BaseActivity {
 
     @OnClick(R.id.fab_share)
     public void clickOnShare() {
-//        String imageUrl = DestinationConstants.IMAGE_ROOT_DIR + mDestination.getDestination_photos()[0];
-//        sendViaShareIntent(mDestination.getTitle() + "-" + imageUrl);
-        sendViaShareIntent("Package");
+        String imageUrl = DestinationConstants.IMAGE_ROOT_DIR + packageVO.getPhotos()[0];
+        sendViaShareIntent(packageVO.getPackageName() + "-" + imageUrl);
     }
 }

@@ -144,7 +144,6 @@ public class PLanOwnRouteFragment extends Fragment {
                         });
                         break;
 
-
                     case 4:
                         ivOne.setVisibility(View.VISIBLE);
                         ivTwo.setVisibility(View.VISIBLE);

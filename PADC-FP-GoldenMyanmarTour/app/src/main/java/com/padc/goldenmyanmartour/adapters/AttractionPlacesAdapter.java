@@ -1,6 +1,7 @@
 package com.padc.goldenmyanmartour.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,28 +20,34 @@ public class AttractionPlacesAdapter extends RecyclerView.Adapter<AttractionPlac
 
     private LayoutInflater apInflater;
     private List<AttractionPlacesVO> attractionPlacesList;
+    private AttractionPlacesViewHolder.ControllerAttractionPlaceItem controllerItem;
 
     public AttractionPlacesAdapter(List<AttractionPlacesVO> aPlacesList) {
         apInflater = LayoutInflater.from(GMTApp.getContext());
         attractionPlacesList = aPlacesList;
-
     }
 
     @Override
     public AttractionPlacesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = apInflater.inflate(R.layout.view_item_attractionplaces,parent,false);
-        return new AttractionPlacesViewHolder(itemView);
+        View itemView = apInflater.inflate(R.layout.view_item_attractionplaces, parent, false);
+        return new AttractionPlacesViewHolder(itemView, controllerItem);
     }
 
     @Override
     public void onBindViewHolder(AttractionPlacesViewHolder holder, int position) {
-      holder.bindData();
+        holder.bindData(attractionPlacesList.get(position));
     }
-
 
 
     @Override
     public int getItemCount() {
-        return 6;
+        Log.v("AttractionPlaceListSize", String.valueOf(attractionPlacesList.size()));
+        return attractionPlacesList.size();
+    }
+
+
+    public void setNewData(List<AttractionPlacesVO> newAttractionPlace) {
+        attractionPlacesList = newAttractionPlace;
+        notifyDataSetChanged();
     }
 }

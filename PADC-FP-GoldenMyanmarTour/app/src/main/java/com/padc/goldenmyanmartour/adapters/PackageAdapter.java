@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
+import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.PackageVO;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 import com.padc.goldenmyanmartour.views.holders.PackageViewHolder;
@@ -18,6 +19,7 @@ import java.util.List;
  * Created by WT on 9/8/2016.
  */
 public class PackageAdapter extends BaseAdapter {
+
     private List<PackageVO> packageVOList;
     private LayoutInflater inflater;
     private PackageViewHolder.ControllerItem mController;
@@ -26,21 +28,23 @@ public class PackageAdapter extends BaseAdapter {
         if (packageVOList != null) {
             this.packageVOList = packageVOList;
         } else {
-            packageVOList = new ArrayList<>();
+            this.packageVOList = new ArrayList<>();
         }
+
         inflater = LayoutInflater.from(GMTApp.getContext());
         this.mController = mController;
     }
 
     @Override
     public int getCount() {
-        return 6;
+        return packageVOList.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public PackageVO getItem(int position) {
+        return packageVOList.get(position);
     }
+
 
     @Override
     public long getItemId(int position) {
@@ -49,7 +53,9 @@ public class PackageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         PackageViewHolder viewHolder;
+
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.view_item_package, parent, false);
             viewHolder = new PackageViewHolder(convertView, mController);
@@ -57,12 +63,13 @@ public class PackageAdapter extends BaseAdapter {
         } else {
             viewHolder = (PackageViewHolder) convertView.getTag();
         }
-        viewHolder.bindData();
+        viewHolder.bindData(getItem(position));
         return convertView;
     }
 
     public void setNewData(List<PackageVO> newPackage) {
-        this.packageVOList = newPackage;
+        packageVOList = newPackage;
+        notifyDataSetChanged();
     }
 
 }

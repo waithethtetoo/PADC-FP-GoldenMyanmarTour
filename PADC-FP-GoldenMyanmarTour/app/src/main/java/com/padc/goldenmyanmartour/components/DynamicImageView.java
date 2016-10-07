@@ -9,20 +9,27 @@ import android.widget.ImageView;
  */
 public class DynamicImageView extends ImageView {
 
-    private float mAspectRatio=1.4f;
-    public DynamicImageView (Context context){super(context);}
-    public DynamicImageView(Context context, AttributeSet attributeSet){
-        super(context,attributeSet);
+    private float mAspectRatio = 1.4f;
+
+
+    public DynamicImageView(Context context) {
+        super(context);
     }
-    public void setmAspectRatio(float aspectRatio){
-        mAspectRatio=aspectRatio;
+
+    public DynamicImageView(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
+    }
+
+    public void setmAspectRatio(float aspectRatio) {
+        mAspectRatio = aspectRatio;
         requestLayout();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int measureWidth=getMeasuredWidth();
-        setMeasuredDimension(measureWidth,(int)(measureWidth/mAspectRatio));;
+        int measureWidth = getMeasuredWidth();
+        setMeasuredDimension(measureWidth, (int) (measureWidth / mAspectRatio));
+        ;
     }
 }

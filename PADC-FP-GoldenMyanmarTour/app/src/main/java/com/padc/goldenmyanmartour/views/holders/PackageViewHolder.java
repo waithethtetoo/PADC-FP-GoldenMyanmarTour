@@ -47,8 +47,8 @@ public class PackageViewHolder implements View.OnClickListener {
         Glide.with(ivPackage.getContext())
                 .load(imageUrl)
                 .centerCrop()
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.gmtiicon)
+                .error(R.drawable.gmtiicon)
                 .into(ivPackage);
     }
 

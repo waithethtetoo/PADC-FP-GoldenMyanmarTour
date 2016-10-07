@@ -23,6 +23,7 @@ import java.util.Random;
  * Created by WT on 9/24/2016.
  */
 public class HotelModel extends BaseModel {
+
     private static final String DUMMY_HOTEL_LIST = "hotels.json";
 
     private static HotelModel model;

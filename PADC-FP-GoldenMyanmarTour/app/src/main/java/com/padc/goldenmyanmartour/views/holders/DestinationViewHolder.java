@@ -58,8 +58,8 @@ public class DestinationViewHolder implements View.OnClickListener {
         Glide.with(ivDestination.getContext())
                 .load(imageUrl)
                 .centerCrop()
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.gmtiicon)
+                .error(R.drawable.gmtiicon)
                 .into(ivDestination);
     }
 

@@ -40,6 +40,7 @@ import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
 import com.padc.goldenmyanmartour.data.vo.PackageVO;
 import com.padc.goldenmyanmartour.events.DataEvent;
+import com.padc.goldenmyanmartour.fragment.CompanyFragment;
 import com.padc.goldenmyanmartour.fragment.FestivalFragment;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
 import com.padc.goldenmyanmartour.fragment.HotelFragment;
@@ -195,7 +196,7 @@ public class HomeActivity extends BaseActivity
                 navigateToPackageFragment();
                 return true;
             case R.id.hotels:
-                fab.setVisibility(View.VISIBLE);
+                fab.setVisibility(View.INVISIBLE);
                 navigateToHotelFragment();
                 return true;
             case R.id.festivals:
@@ -206,8 +207,9 @@ public class HomeActivity extends BaseActivity
                 fab.setVisibility(View.INVISIBLE);
                 navigateToPlanOwnRoute();
                 return true;
-            case R.id.user_bookmark:
+            case R.id.about_company:
                 fab.setVisibility(View.INVISIBLE);
+                navigateToCompanyFragment();
                 return true;
         }
         return false;
@@ -244,5 +246,10 @@ public class HomeActivity extends BaseActivity
                 .commit();
     }
 
+    private void navigateToCompanyFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, CompanyFragment.newInstance())
+                .commit();
+    }
 
 }

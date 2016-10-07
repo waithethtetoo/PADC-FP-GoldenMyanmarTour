@@ -1,6 +1,10 @@
 package com.padc.goldenmyanmartour.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,14 +20,18 @@ import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 import com.padc.goldenmyanmartour.adapters.PackageAdapter;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
+import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.LocationVO;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
 import com.padc.goldenmyanmartour.views.holders.PackageViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends BaseActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String IE_SEARCH = "IE_SEARCH";
 
@@ -65,7 +73,9 @@ public class SearchActivity extends AppCompatActivity {
             case "Home Fragment":
                 searchView.setHint("Search by destination");
                 // destination list
-                final String[] nameList = {"Yangon", "Bagan", "Mandalay", "Inle Lake", "Maruk U", "Nay Pyi Taw"};
+//                final String[] nameList = {"Yangon", "Bagan", "Mandalay", "Inle Lake", "Maruk U", "Nay Pyi Taw"};
+                String name = destinationVO.getTitle();
+                final String[] nameList = {name};
                 ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(GMTApp.getContext(),
                         android.R.layout.simple_dropdown_item_1line, nameList);
                 searchView.setThreshold(1);
@@ -74,7 +84,6 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         searchHint = parent.getItemAtPosition(position).toString();
-//                        searchAction(searchHint);
                          /*search function do here */
                         ivSearch.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -145,5 +154,33 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this,
+                DestinationContract.DestinationEntry.buildDestinationUriWithTitle(searchHint),
+                null,
+                null,
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null && data.moveToFirst()) {
+            destinationVO = DestinationVO.parseFromCursor(data);
+            destinationVO.setDestination_photos(DestinationVO.loadDestinationImagesByTitle(destinationVO.getTitle()));
+            bindData(destinationVO);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    private void bindData(DestinationVO destinationVO) {
+
     }
 }

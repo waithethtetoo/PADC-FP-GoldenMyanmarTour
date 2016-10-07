@@ -15,26 +15,25 @@
         android:paddingRight="8dp">
 
 
-        <Spinner
-            android:id="@+id/sp_filterHotelCity"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/sp_filterHotelPrice"
-            android:prompt="@string/filter_prompt_city"></Spinner>
+        <!--<Spinner-->
+        <!--android:id="@+id/sp_filterHotelCity"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_toLeftOf="@+id/sp_filterHotelPrice"-->
+        <!--android:prompt="@string/filter_prompt_city"></Spinner>-->
 
-        <Spinner
-            android:id="@+id/sp_filterHotelPrice"
-            android:layout_width="180dp"
-            android:layout_height="60dp"
-            android:layout_alignParentRight="true"
-            android:prompt="@string/filter_prompt_price"></Spinner>
+        <!--<Spinner-->
+        <!--android:id="@+id/sp_filterHotelPrice"-->
+        <!--android:layout_width="180dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:prompt="@string/filter_prompt_price"></Spinner>-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_hotels"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/sp_filterHotelPrice"
             android:columnWidth="150dp"
             android:gravity="center"
             android:horizontalSpacing="@dimen/margin_medium"

@@ -37,7 +37,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelViewHolder> {
 
     @Override
     public void onBindViewHolder(HotelViewHolder holder, int position) {
-        holder.bindData();
+        holder.bindData(mHotelList.get(position));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 6;
+        return mHotelList.size();
     }
 
 

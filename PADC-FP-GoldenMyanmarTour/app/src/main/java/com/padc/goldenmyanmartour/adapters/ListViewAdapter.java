@@ -1,6 +1,8 @@
 package com.padc.goldenmyanmartour.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,81 +13,96 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
-import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
-import com.padc.goldenmyanmartour.data.vo.DestinationVO;
-import com.padc.goldenmyanmartour.utils.DestinationConstants;
+import com.padc.goldenmyanmartour.data.vo.FestivalVO;
+import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
+import com.padc.goldenmyanmartour.views.holders.FestivalViewHolder;
+import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by WT on 9/17/2016.
  */
-public class ListViewAdapter extends BaseAdapter {
+public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
-    private List<AttractionPlacesVO> attractionPlacesVOList;
-    Context context;
+    private String[] roomDesc;
+    private String[] charge;
+    private String[] roomPhotos;
+    private Context context;
+    private static LayoutInflater inflater = null;
+    private ControllerRoomItem controllerRoomItem;
 
-    public ListViewAdapter(List<AttractionPlacesVO> attractionPlacesList, Context context) {
-        if (attractionPlacesVOList != null) {
-            this.attractionPlacesVOList = attractionPlacesList;
-        } else {
-            this.attractionPlacesVOList = new ArrayList<>();
-        }
-        this.context = context;
+    public ListViewAdapter(String[] roomDesc, String[] charge, String[] photos, ControllerRoomItem controllerItem) {
+        this.roomDesc = roomDesc;
+        this.charge = charge;
+        this.roomPhotos = photos;
         inflater = LayoutInflater.from(GMTApp.getContext());
+        this.controllerRoomItem = controllerItem;
     }
 
     @Override
-    public int getCount() {
-        return attractionPlacesVOList.size();
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = inflater.inflate(R.layout.list_item_design, parent, false);
+        return new ViewHolder(itemView, controllerRoomItem);
     }
 
-
     @Override
-    public AttractionPlacesVO getItem(int position) {
-        return attractionPlacesVOList.get(position);
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        String roomName = roomDesc[position];
+        String roomCharges = charge[position];
+        String roomPhoto = roomPhotos[position];
+        holder.bindData(roomName, roomCharges, roomPhoto);
+
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = new ViewHolder();
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.list_item_design, parent, false);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+    public int getItemCount() {
+        return roomDesc.length;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_room)
+        ImageView ivRoom;
+        @BindView(R.id.tv_room_name)
+        TextView tvRoomName;
+        @BindView(R.id.tv_room_price)
+        TextView tvRoomPrice;
+
+        ControllerRoomItem mController;
+
+        public ViewHolder(View itemView, ControllerRoomItem controllerRoomItem) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            this.mController = controllerRoomItem;
         }
-        holder.bindData(getItem(position));
-        return convertView;
-    }
 
-    public void setNewData(List<AttractionPlacesVO> newAttractionPlace) {
-        attractionPlacesVOList = newAttractionPlace;
-        notifyDataSetChanged();
-    }
+        public void bindData(String descs, String charges, String photo) {
 
-    private class ViewHolder {
-        private TextView tvDestTitle;
-        private TextView tvDestOne;
-        private ImageView ivDestOne;
+            tvRoomName.setText(descs);
+            tvRoomPrice.setText(charges);
 
-        public void bindData(AttractionPlacesVO attractionPlacesVO) {
-            tvDestTitle.setText(attractionPlacesVO.getTitle());
-            tvDestOne.setText(attractionPlacesVO.getDescription());
-            String imageUrl = DestinationConstants.ATTRACTION_IMAGE_ROOT_DIR + attractionPlacesVO.getImage()[0];
-            Glide.with(ivDestOne.getContext())
-                    .load(imageUrl)
+            Glide.with(ivRoom.getContext())
+                    .load(photo)
                     .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
-                    .into(ivDestOne);
+                    .placeholder(R.drawable.gmtiicon)
+                    .error(R.drawable.gmtiicon)
+                    .into(ivRoom);
         }
+
     }
+
+
+    public interface ControllerRoomItem {
+
+    }
+
 }

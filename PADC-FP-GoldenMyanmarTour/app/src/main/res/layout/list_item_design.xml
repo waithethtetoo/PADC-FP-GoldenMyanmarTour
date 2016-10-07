@@ -4,55 +4,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+    <com.padc.goldenmyanmartour.components.DynamicImageView
+        android:id="@+id/iv_room"
+        android:layout_width="@dimen/image_width_two"
+        android:layout_height="@dimen/margin_top_profile_pic"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:src="@drawable/bagan" />
+
     <TextView
-        android:id="@+id/tv_dest_title"
+        android:id="@+id/tv_room_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_medium"
-        android:text="Bagan"
+        android:text="Name"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/text_regular_2x" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_room_price"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_dest_one"
-            android:layout_width="@dimen/image_width"
-            android:layout_height="@dimen/image_height"
-            android:src="@drawable/bagan" />
-
-        <TextView
-            android:id="@+id/tv_dest_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:text="BaganBaganBaganBaganBaganBaganBaganBaganBaganBagan"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_regular_2x" />
-    </LinearLayout>
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tv_dest_two"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="@dimen/margin_medium"-->
-    <!--android:text="BaganBaganBaganBaganBaganBaganBaganBaganBaganBagan"-->
-    <!--android:textColor="@color/primary_text"-->
-    <!--android:textSize="@dimen/text_regular_2x" />-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/iv_dest_two"-->
-    <!--android:layout_width="@dimen/image_width"-->
-    <!--android:layout_height="@dimen/image_height"-->
-    <!--android:src="@drawable/bagan" />-->
-
-    <!--</LinearLayout>-->
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:text="Price"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular_2x" />
 </LinearLayout>

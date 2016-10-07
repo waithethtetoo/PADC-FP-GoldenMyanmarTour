@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -29,49 +30,49 @@ public class HotelViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @BindView(R.id.tv_hotel_address)
     TextView tvHotelAddress;
 
-//    @BindView(R.id.tv_hotel_desc)
-//    TextView tvHotelDesc;
+    @BindView(R.id.tv_hotel_phone)
+    TextView tvHotelPhone;
+
+    @BindView(R.id.rb_star)
+    RatingBar rbStar;
 
     private ControllerHotelItem mController;
     private HotelVO mHotel;
 
-    public HotelViewHolder(View itemView,ControllerHotelItem controller) {
+    public HotelViewHolder(View itemView, ControllerHotelItem controller) {
         super(itemView);
-        ButterKnife.bind(this,itemView);
+        ButterKnife.bind(this, itemView);
         itemView.setOnClickListener(this);
         mController = controller;
     }
 
-    public void bindData()//HotelVO hotel
+    public void bindData(HotelVO hotelVO)//HotelVO hotel
     {
-        // mHotel = hotel;
-        tvHotelName.setText("Park Royal Yangon");
-        tvHotelAddress.setText("33 Alan Pya Phaya Road, Dagon Township, Yangon, Myanmar");
-        //tvHotelDesc.setText("Offering a unique blend of gentle Myanmar hospitality combined with first class service and facilities, the Grand Plaza Parkroyal");//hotel.getHotelDesc()
+        mHotel = hotelVO;
 
-        // String imageUrl = hotel.getHotelImage()[0];
+        tvHotelName.setText(hotelVO.getHotelName());
+        tvHotelAddress.setText(hotelVO.getAddress());
+        rbStar.setRating(hotelVO.getRating());
 
+        String phone = hotelVO.getPhoneNo()[0];
+        tvHotelPhone.setText(phone);
+
+        String imageUrl = hotelVO.getPhotos()[0];
         Glide.with(ivHotel.getContext())
-                .load(R.drawable.ygnhotel_1)
+                .load(imageUrl)
                 .centerCrop()
-                .placeholder(R.drawable.ygnhotel_1)
-                .error(R.drawable.ygnhotel_1)
+                .placeholder(R.drawable.gmtiicon)
+                .error(R.drawable.gmtiicon)
                 .into(ivHotel);
 
     }
 
     @Override
     public void onClick(View view) {
-        // mController.onTapHotel(mHotel,ivHotel);
-
-        Intent intentToHotelDetail = HotelDetailActivity.newIntent("Yangon");
-        intentToHotelDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        GMTApp.getContext().startActivity(intentToHotelDetail);
-
-
+        mController.onTapHotel(mHotel, ivHotel);
     }
 
-    public interface ControllerHotelItem{
-        void onTapHotel(HotelVO hotel,ImageView ivHotel);
+    public interface ControllerHotelItem {
+        void onTapHotel(HotelVO hotel, ImageView ivHotel);
     }
 }

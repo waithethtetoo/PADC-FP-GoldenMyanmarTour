@@ -46,7 +46,7 @@ public class ImagesPagerAdapter extends PagerAdapter {
         ImageView ivAttraction = (ImageView) mInflater.inflate(R.layout.view_item_destination_image, container, false);
 
         String imageUrl = mImages.get(position);
-        Glide.with(ivAttraction.getContext())
+             Glide.with(ivAttraction.getContext())
                 .load(imageUrl)
                 .centerCrop()
                 .placeholder(R.drawable.gmtiicon)
