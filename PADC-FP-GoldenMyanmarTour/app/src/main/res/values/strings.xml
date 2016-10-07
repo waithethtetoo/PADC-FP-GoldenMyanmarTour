@@ -96,14 +96,14 @@
 
     <string name="home_screen_title">Golden Myanmar Tour</string>
     <string name="lbl_attraction_places">Attraction Places</string>
-    <!--<string name="format_contact_option_confirmation"><xliff:g id="picked_attraction">%1$s</xliff:g>Please Select Your Booking Option</string>-->
-    <string name="format_contact_option_confirmation">Please Select Your Booking Option</string>
+    <string name="format_contact_option_confirmation"><xliff:g id="picked_attraction">%1$s</xliff:g>Please Select Your Booking Option</string>
+    <!--<string name="format_contact_option_confirmation">Please Select Your Booking Option</string>-->
     <string name="confirm_yes">Yes</string>
     <string name="confirm_no">No</string>
     <string name="confirm_ok">Ok</string>
     <string name="booking_phone">By Phone</string>
     <string name="booking_email">By Email</string>
     <string name="book_the_package">Booking a Tour Package</string>
-    <!--<string name="format_book_the_package_message">I would like to book <xliff:g id="picked_attraction">%1$s</xliff:g></string>-->
-    <string name="format_book_the_package_message">I would like to book</string>
+    <string name="format_book_the_package_message">I would like to book <xliff:g id="picked_attraction">%1$s</xliff:g></string>
+    <!--<string name="format_book_the_package_message">I would like to book</string>-->
 </resources>

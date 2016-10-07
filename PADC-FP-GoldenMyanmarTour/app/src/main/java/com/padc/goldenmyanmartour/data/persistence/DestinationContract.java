@@ -25,14 +25,22 @@ public class DestinationContract {
     public static final String PATH_STATE = "state";
     public static final String PATH_ATTRACTION_PLACES = "attraction_places";
     public static final String PATH_ATTRACTION_PLACE_IMAGE = "attraction_place_images";
-
-    public static final String PATH_FESTIVAL = "festivals";
-    public static final String PATH_FESTIVAL_IMAGES = "festival_images";
-    public static final String PATH_HOTEL = "hotels";
-    public static final String PATH_HOTEL_IMAGES = "hotel_images";
-    public static final String PATH_PACKAGE = "packages";
-    public static final String PATH_PACKAGE_IMAGES = "package_images";
-
+    /**
+     * public static final String PATH_FESTIVAL = "festivals";
+     * public static final String PATH_FESTIVAL_PERIOD = "festival_period";
+     * public static final String PATH_FESTIVAL_IMAGES = "festival_images";
+     * <p/>
+     * public static final String PATH_HOTEL = "hotels";
+     * public static final String PATH_HOTEL_IMAGES = "hotel_images";
+     * <p/>
+     * public static final String PATH_PACKAGE = "packages";
+     * public static final String PATH_PACKAGE_DESC = "package_desc";
+     * public static final String PATH_PACKAGE_IMAGES = "package_images";
+     * <p/>
+     * public static final String PATH_TOUR_COMPANY = "tour_company";
+     * public static final String PATH_TOUR_COMPANY_PHOTOS = "tour_company_photos";
+     * public static final String PATH_TOUR_COMPANY_PHONES = "tour_company_phones";
+     */
     public static final String TAG = "Contract";
 
     /*Destination */
@@ -51,7 +59,7 @@ public class DestinationContract {
         public static final String COLUMN_SORTED_ORDER = "sorted_order";
         public static final String COLUMN_NOTE_TO_VISITOR = "note";
 
-        public static Uri buildDestinationUri(long id) {
+               public static Uri buildDestinationUri(long id) {
             Log.d(GMTApp.TAG, GMTApp.class.getPackage().getName());
             return ContentUris.withAppendedId(CONTENT_URI, id);
 
@@ -116,11 +124,12 @@ public class DestinationContract {
         public static final String COLUMN_STATE_ID = "state_id";
         public static final String COLUMN_DESTINATION_TITLE = "destination_title";
 
+
         public static Uri buildLocationUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildLocationUriWithTitle(String title) {
+        public static Uri buildLocationUriWithDestinationTitle(String title) {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_DESTINATION_TITLE, title)
                     .build();
@@ -139,17 +148,19 @@ public class DestinationContract {
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_CITY;
         public static final String ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_CITY;
+
         public static final String TABLE_NAME = "city";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_DESC = "desc";
         public static final String COLUMN_DESTINATION_TITLE = "destination_title";
 
+
         public static Uri buildCityUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildCityUriWithName(String name) {
+        public static Uri buildCityUriWithDestinationName(String name) {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_DESTINATION_TITLE, name)
                     .build();
@@ -179,7 +190,7 @@ public class DestinationContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildStateUriWithName(String name) {
+        public static Uri buildStateUriWithDestinationName(String name) {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_DESTINATION_TITLE, name)
                     .build();
@@ -210,13 +221,13 @@ public class DestinationContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildPlaceUriWithName(String name) {
+        public static Uri buildPlaceUriWithDestinationTitle(String title) {
             return CONTENT_URI.buildUpon()
-                    .appendQueryParameter(COLUMN_DESTINATION_TITLE, name)
+                    .appendQueryParameter(COLUMN_DESTINATION_TITLE, title)
                     .build();
         }
 
-        public static String getTitleFromParam(Uri uri) {
+        public static String getNameFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_DESTINATION_TITLE);
         }
     }
@@ -229,6 +240,7 @@ public class DestinationContract {
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ATTRACTION_PLACE_IMAGE;
         public static final String ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ATTRACTION_PLACE_IMAGE;
+
         public static final String TABLE_NAME = "attraction_place_images";
         public static final String COLUMN_ATTRACTION_TITLE = "attraction_title";
         public static final String COLUMN_IMAGES = "images";
@@ -237,30 +249,220 @@ public class DestinationContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildAttractionPlaceImageUriWithTitle(String title) {
+        public static Uri buildAttractionPlaceImageUriWithAttractionTitle(String title) {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_ATTRACTION_TITLE, title)
                     .build();
         }
 
-        public static String getAttractionPlaceTitleFromParam(Uri uri) {
+        public static String getNameFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_ATTRACTION_TITLE);
         }
     }
+/*
 
-    /*Festival  */
+    //Package
+    public static final class PackageEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_PACKAGE).build();
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PACKAGE;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PACKAGE;
+
+        public static final String TABLE_NAME = "packages";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_PRICE = "price";
+        public static final String COLUMN_TOTAL_DAY = "total_day";
+        public static final String COLUMN_DESTINATION_ID = "destination_id";
+        public static final String COLUMN_TOUR_COMPANY_ID = "tour_company_id";
+
+        public static Uri buildPackageUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildPackageUriWithName(String name) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_NAME, name)
+                    .build();
+        }
+
+        public static String getTitleFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_NAME);
+        }
+    }
+
+
+    public static final class PackageDescriptionEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_PACKAGE_DESC).build();
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PACKAGE_DESC;
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PACKAGE_DESC;
+
+        public static final String TABLE_NAME = "package_desc";
+        public static final String COLUMN_PACKAGE_ID = "package_id";
+        public static final String COLUMN_DESC = "package_desc";
+
+        public static Uri buildPackageDescUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildPackageDescUriWithId(String id) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_PACKAGE_ID, id)
+                    .build();
+        }
+
+        public static String getPackageDescFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_PACKAGE_ID);
+        }
+
+    }
+
+
+    public static final class PackageImageEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_PACKAGE_IMAGES).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PACKAGE_IMAGES;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PACKAGE_IMAGES;
+
+        public static final String TABLE_NAME = "package_image";
+        public static final String COLUMN_PACKAGE_ID = "package_id";
+        public static final String COLUMN_IMAGE = "image";
+
+        public static Uri buildPackageImageUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildPackageImageUriWithPackageId(long packageId) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_PACKAGE_ID, String.valueOf(packageId))
+                    .build();
+        }
+
+        public static String getPackageTitleFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_PACKAGE_ID);
+        }
+
+    }
+
+    public static final class TourCompanyEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TOUR_COMPANY).build();
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOUR_COMPANY;
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOUR_COMPANY;
+
+        public static final String TABLE_NAME = "tour_company";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_DESC = "desc";
+        public static final String COLUMN_PACKAGE_ID = "package_id";
+        public static final String COLUMN_CITY_ID = "city_id";
+        public static final String COLUMN_STATE_ID = "state_id";
+
+        public static Uri buildTourCompanyUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTourCompanyUriWithName(String name) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_NAME, name)
+                    .build();
+        }
+
+        public static String getTitleFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_NAME);
+        }
+    }
+
+
+    public static final class TourCompanyImageEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TOUR_COMPANY_PHOTOS).build();
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOUR_COMPANY_PHOTOS;
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOUR_COMPANY_PHOTOS;
+
+        public static final String TABLE_NAME = "tour_company_image";
+        public static final String COLUMN_TOUR_COMPANY_NAME = "tour_company_name";
+        public static final String COLUMN_IMAGE = "image";
+
+        public static Uri buildTourCompanyImageUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTourCompanyImageUriWithTitle(String title) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TOUR_COMPANY_NAME, title)
+                    .build();
+        }
+
+        public static String getTourCompanyTitleFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_TOUR_COMPANY_NAME);
+        }
+
+    }
+
+    public static final class TourCompanyPhoneEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TOUR_COMPANY_PHONES).build();
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOUR_COMPANY_PHONES;
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TOUR_COMPANY_PHONES;
+
+        public static final String TABLE_NAME = "tour_company_photo";
+        public static final String COLUMN_TOUR_COMPANY_ID = "tour_company_id";
+        public static final String COLUMN_PHONE = "phone";
+
+        public static Uri buildTourCompanyPhoneUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTourCompanyPhoneUriWithCompanyId(long companyId) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TOUR_COMPANY_ID, String.valueOf(companyId))
+                    .build();
+        }
+
+        public static String getTourCompanyIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_TOUR_COMPANY_ID);
+        }
+    }
+
     public static final class FestivalEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_DESTINATION).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FESTIVAL).build();
         public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FESTIVAL;
         public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FESTIVAL;
+
         public static final String TABLE_NAME = "festival";
+        public static final String COLUMN_ID = "id";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_DESC = "desc";
         public static final String COLUMN_NOTE_TO_VISITOR = "note";
         public static final String COLUMN_DIRECTION = "direction";
+        public static final String COLUMN_START_DATE = "start_date";
+        public static final String COLUMN_END_DATE = "end_date";
+        public static final String COLUMN_START_TIME = "start_time";
+        public static final String COLUMN_END_TIME = "end_time";
+        public static final String COLUMN_CITY_ID = "city_id";
+        public static final String COLUMN_STATE_ID = "state_id";
+
 
         public static Uri buildFestivalUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
@@ -276,20 +478,51 @@ public class DestinationContract {
             return uri.getQueryParameter(COLUMN_NAME);
         }
     }
+*/
+    /*
+        public static final class FestivalPeriodEntry implements BaseColumns {
+            public static final Uri CONTENT_URI =
+                    BASE_CONTENT_URI.buildUpon().appendPath(PATH_FESTIVAL_PERIOD).build();
+            public static final String DIR_TYPE =
+                    ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FESTIVAL_PERIOD;
 
-    /*Festival Image*/
+            public static final String ITEM_TYPE =
+                    ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FESTIVAL_PERIOD;
+
+            public static final String TABLE_NAME = "festival_period";
+            public static final String COLUMN_START_DATE = "start_date";
+            public static final String COLUMN_END_DATE = "end_date";
+            public static final String COLUMN_START_TIME = "start_time";
+            public static final String COLUMN_END_TIME = "end_time";
+            public static final String COLUMN_FESTIVAL_TITLE = "festival_title";
+
+            public static Uri buildFestivalPeriodUri(long id) {
+                return ContentUris.withAppendedId(CONTENT_URI, id);
+            }
+
+            public static Uri buildFestivalPeriodUriWithTitle(String title) {
+                return CONTENT_URI.buildUpon()
+                        .appendQueryParameter(COLUMN_FESTIVAL_TITLE, title)
+                        .build();
+            }
+
+            public static String getFestivalPeriodFromParam(Uri uri) {
+                return uri.getQueryParameter(COLUMN_FESTIVAL_TITLE);
+            }
+        }
+
+
     public static final class FestivalImageEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_DESTINATION_IMAGES).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FESTIVAL_IMAGES).build();
 
         public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION_IMAGES;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FESTIVAL_IMAGES;
 
         public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION_IMAGES;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FESTIVAL_IMAGES;
 
         public static final String TABLE_NAME = "festival_image";
-
         public static final String COLUMN_FESTIVAL_TITLE = "festival_title";
         public static final String COLUMN_IMAGE = "image";
 
@@ -307,75 +540,15 @@ public class DestinationContract {
             return uri.getQueryParameter(COLUMN_FESTIVAL_TITLE);
         }
     }
-
-    /*Package */
-    public static final class PackageEntry implements BaseColumns {
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_DESTINATION).build();
-        public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION;
-        public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION;
-        public static final String TABLE_NAME = "package";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_DESC = "desc";
-        public static final String COLUMN_PRICE = "price";
-        public static final String COLUMN_TOTAL_DAY = "total_day";
-
-        public static Uri buildPackageUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-
-        public static Uri buildPackageUriWithName(String name) {
-            return CONTENT_URI.buildUpon()
-                    .appendQueryParameter(COLUMN_NAME, name)
-                    .build();
-        }
-
-        public static String getTitleFromParam(Uri uri) {
-            return uri.getQueryParameter(COLUMN_NAME);
-        }
-    }
-
-    /*Package Image*/
-    public static final class PackageImageEntry implements BaseColumns {
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_DESTINATION_IMAGES).build();
-
-        public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION_IMAGES;
-
-        public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION_IMAGES;
-
-        public static final String TABLE_NAME = "package_image";
-        public static final String COLUMN_PACKAGE_TITLE = "package_title";
-        public static final String COLUMN_IMAGE = "image";
-
-        public static Uri buildPackageImageUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-
-        public static Uri buildPackageImageUriWithTitle(String title) {
-            return CONTENT_URI.buildUpon()
-                    .appendQueryParameter(COLUMN_PACKAGE_TITLE, title)
-                    .build();
-        }
-
-        public static String getPackageTitleFromParam(Uri uri) {
-            return uri.getQueryParameter(COLUMN_PACKAGE_TITLE);
-        }
-
-    }
-
-    /*Hotel*/
+*/
+/*
     public static final class HotelEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_DESTINATION).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_HOTEL).build();
         public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_HOTEL;
         public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_HOTEL;
         public static final String TABLE_NAME = "hotel";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_DESC = "desc";
@@ -396,16 +569,16 @@ public class DestinationContract {
         }
     }
 
-    /*Hotel Image */
+
     public static final class HotelImageEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_DESTINATION_IMAGES).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_HOTEL_IMAGES).build();
 
         public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION_IMAGES;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_HOTEL_IMAGES;
 
         public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DESTINATION_IMAGES;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_HOTEL_IMAGES;
 
         public static final String TABLE_NAME = "hotel_image";
         public static final String COLUMN_HOTEL_TITLE = "hotel_title";
@@ -426,4 +599,6 @@ public class DestinationContract {
         }
 
     }
+
+    */
 }

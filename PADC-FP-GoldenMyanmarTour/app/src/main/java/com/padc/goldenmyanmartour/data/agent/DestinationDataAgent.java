@@ -6,11 +6,12 @@ package com.padc.goldenmyanmartour.data.agent;
 public interface DestinationDataAgent {
 
     void loadDestinations();
+/*
+    void loadPackages();
 
     void loadFestivals();
 
     void loadHotels();
-
-    void loadPackages();
+    */
 }
 

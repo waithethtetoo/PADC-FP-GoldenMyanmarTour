@@ -27,12 +27,12 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalViewHolder> {
     private FestivalViewHolder.ControllerFestivalItem controllerFestivalItem;
 
     public FestivalAdapter(List<FestivalVO> festivalVOList, FestivalViewHolder.ControllerFestivalItem controllerFestivalItem) {
+        inflater = LayoutInflater.from(GMTApp.getContext());
         if (festivalVOList != null) {
             this.festivalVOList = festivalVOList;
         } else {
-            festivalVOList = new ArrayList<>();
+            this.festivalVOList = new ArrayList<>();
         }
-        inflater = LayoutInflater.from(GMTApp.getContext());
         this.controllerFestivalItem = controllerFestivalItem;
     }
 
@@ -45,19 +45,17 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalViewHolder> {
 
     @Override
     public void onBindViewHolder(FestivalViewHolder holder, int position) {
-        holder.bindData();
+        holder.bindData(festivalVOList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        //return festivalVOList.size();
-
-        return 2;
-
+        return festivalVOList.size();
     }
 
     public void setNewData(List<FestivalVO> newFestivalList) {
         festivalVOList = newFestivalList;
         notifyDataSetChanged();
     }
+
 }

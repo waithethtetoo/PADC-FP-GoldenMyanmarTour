@@ -72,10 +72,29 @@ public class LocationVO {
 
     private static LocationVO parseFromCursor(Cursor cursor) {
         LocationVO locationVO = new LocationVO();
-        locationVO.setLat(cursor.getLong(cursor.getColumnIndex(DestinationContract.LocationEntry.COLUMN_LAT)));
-        locationVO.setLng(cursor.getLong(cursor.getColumnIndex(DestinationContract.LocationEntry.COLUMN_LNG)));
-        locationVO.setAddress(cursor.getString(cursor.getColumnIndex(DestinationContract.LocationEntry.COLUMN_ADDRESS)));
+        locationVO.lat = cursor.getLong(cursor.getColumnIndex(DestinationContract.LocationEntry.COLUMN_LAT));
+        locationVO.lng = cursor.getLong(cursor.getColumnIndex(DestinationContract.LocationEntry.COLUMN_LNG));
+        locationVO.address = cursor.getString(cursor.getColumnIndex(DestinationContract.LocationEntry.COLUMN_ADDRESS));
         return locationVO;
+    }
+
+
+    public static void saveLocationByDestination(String title, LocationVO locationVO) {
+        //Location Save
+        Context context = GMTApp.getContext();
+        ContentValues cv = new ContentValues();
+
+        cv.put(DestinationContract.LocationEntry.COLUMN_LAT, locationVO.getLat());
+        cv.put(DestinationContract.LocationEntry.COLUMN_LNG, locationVO.getLng());
+        cv.put(DestinationContract.LocationEntry.COLUMN_ADDRESS, locationVO.getAddress());
+        cv.put(DestinationContract.LocationEntry.COLUMN_DESTINATION_TITLE, title);
+        cv.put(DestinationContract.LocationEntry.COLUMN_CITY_ID, locationVO.cityVO.getCityId());
+        cv.put(DestinationContract.LocationEntry.COLUMN_STATE_ID, locationVO.stateVO.getStateId());
+
+        CityVO.saveCityByDestinationTitle(title, locationVO.getCityVO());
+        StateVO.saveStateByDestinationTitle(title, locationVO.getStateVO());
+
+        Uri insertedUri = context.getContentResolver().insert(DestinationContract.LocationEntry.CONTENT_URI, cv);
     }
 
     public static LocationVO loadLocationByDestinationTitle(String title) {
@@ -92,25 +111,5 @@ public class LocationVO {
             return locationVO;
         }
         return null;
-
-    }
-
-    public static void saveLocationByDestination(String title, LocationVO locationVO) {
-        //Location Save
-        Context context = GMTApp.getContext();
-        ContentValues cv = new ContentValues();
-        cv.put(DestinationContract.LocationEntry.COLUMN_LAT, locationVO.getLat());
-        cv.put(DestinationContract.LocationEntry.COLUMN_LNG, locationVO.getLng());
-        cv.put(DestinationContract.LocationEntry.COLUMN_ADDRESS, locationVO.getAddress());
-        cv.put(DestinationContract.LocationEntry.COLUMN_DESTINATION_TITLE, title);
-
-        CityVO.saveCityByDestinationTitle(title, locationVO.getCityVO());
-        //CityVO.saveCityByDestinationTitlte(locationVO.getId(),locationVO.getCityVO());
-        StateVO.saveStateByDestinationTitle(title, locationVO.getStateVO());
-
-        Uri insertedUri = context.getContentResolver().insert(DestinationContract.LocationEntry.CONTENT_URI, cv);
-
-
-        Log.d(GMTApp.TAG, " Location Inserted Uri : " + insertedUri);
     }
 }

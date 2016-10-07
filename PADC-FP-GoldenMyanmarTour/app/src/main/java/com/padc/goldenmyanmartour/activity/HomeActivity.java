@@ -1,5 +1,6 @@
 package com.padc.goldenmyanmartour.activity;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
@@ -34,8 +36,10 @@ import com.padc.goldenmyanmartour.data.Models.DestinationModel;
 import com.padc.goldenmyanmartour.data.agent.RetrofitDataAgent;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.data.vo.HotelVO;
 import com.padc.goldenmyanmartour.data.vo.PackageVO;
+import com.padc.goldenmyanmartour.events.DataEvent;
 import com.padc.goldenmyanmartour.fragment.FestivalFragment;
 import com.padc.goldenmyanmartour.fragment.HomeFragment;
 import com.padc.goldenmyanmartour.fragment.HotelFragment;
@@ -43,19 +47,25 @@ import com.padc.goldenmyanmartour.fragment.PLanOwnRouteFragment;
 import com.padc.goldenmyanmartour.fragment.PackageFragment;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import com.padc.goldenmyanmartour.views.holders.DestinationViewHolder;
+import com.padc.goldenmyanmartour.views.holders.FestivalViewHolder;
 import com.padc.goldenmyanmartour.views.holders.HotelViewHolder;
 import com.padc.goldenmyanmartour.views.holders.PackageViewHolder;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Optional;
+import de.greenrobot.event.EventBus;
 
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         DestinationViewHolder.ControllerDestinationItem,
-        PackageViewHolder.ControllerItem {
+        PackageViewHolder.ControllerItem,
+        HotelViewHolder.ControllerHotelItem,
+        FestivalViewHolder.ControllerFestivalItem {
 
-   @BindView(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     @BindView(R.id.toolbar)
@@ -63,13 +73,6 @@ public class HomeActivity extends BaseActivity
 
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
-
- /*   @BindView(R.id.pager_images)
-    ViewPager pagerImages;
-
-    @BindView(R.id.pi_image_slider)
-    PageIndicatorView piImageSlider;
-*/
 
     @BindView(R.id.fab)
     public FloatingActionButton fab;
@@ -99,20 +102,6 @@ public class HomeActivity extends BaseActivity
 
         Menu leftMenu = navigationView.getMenu();
         navigationView.setNavigationItemSelectedListener(this);
-
-        //spinner _ filter
-
-
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-//                Intent intentToSearchActivity = SearchActivity.newIntent();
-//                startActivity(intentToSearchActivity);
-//
-//            }
-//        });
 
         if (savedInstanceState == null) {
             navigateToHomeFragment();
@@ -150,24 +139,7 @@ public class HomeActivity extends BaseActivity
 
         // Inflate the menu; this adds items to the action bar if it is present.
 
-
         getMenuInflater().inflate(R.menu.menu_home, menu);
-
-//        ButterKnife.bind(menu,this);
-//
-//
-//        Spinner spinner = (Spinner)MenuItemCompat.getActionView(spinnerFilter);
-//
-//        if(spinner != null) {
-//            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                    R.array.spinner_list_item_array, android.R.layout.simple_spinner_item);
-//
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//            spinner.setAdapter(adapter);
-//
-//        }
-
         return true;
     }
 
@@ -179,8 +151,20 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public void onTapPackage(PackageVO packageVO, ImageView iv_package) {
-        Intent intent = PackageDetailActivity.newIntent(packageVO.getPackageName());
-        startActivity(intent);
+        Intent intentToPackage = PackageDetailActivity.newIntent(packageVO.getPackageName());
+        startActivity(intentToPackage);
+    }
+
+    @Override
+    public void onTapHotel(HotelVO hotel, ImageView ivHotel) {
+        Intent intentToHotel = HotelDetailActivity.newIntent(hotel.getHotelName());
+        startActivity(intentToHotel);
+    }
+
+    @Override
+    public void onTapFestivals(FestivalVO festivalVO, ImageView iv_festival) {
+        Intent intentToFestival = FestivalDetailActivity.newIntent(festivalVO.getFestivalName());
+        startActivity(intentToFestival);
     }
 
     @Override
@@ -259,4 +243,6 @@ public class HomeActivity extends BaseActivity
                 .replace(R.id.fl_container, PLanOwnRouteFragment.newInstance())
                 .commit();
     }
+
+
 }

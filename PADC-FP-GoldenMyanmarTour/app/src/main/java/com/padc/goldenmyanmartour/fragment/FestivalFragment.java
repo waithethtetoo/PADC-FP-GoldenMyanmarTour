@@ -20,6 +20,8 @@ import android.widget.GridView;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 import com.padc.goldenmyanmartour.adapters.FestivalAdapter;
+import com.padc.goldenmyanmartour.data.Models.FestivalModel;
+import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.utils.DestinationConstants;
@@ -43,33 +45,22 @@ public class FestivalFragment extends Fragment {
     private FestivalAdapter mAdapter;
     private FestivalViewHolder.ControllerFestivalItem mController;
 
-//    private BroadcastReceiver mDataLoaded = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            String extra = intent.getStringExtra("key-for-extra");
-//            List<FestivalVO> newFestival = FestivalModel.getInstance().getFestivalList();
-//            mAdapter.setNewData(newFestival);
-//        }
-//    };
-
-    public FestivalFragment() {
-    }
 
     public static FestivalFragment newInstance() {
         FestivalFragment fragment = new FestivalFragment();
         return fragment;
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        mController = (FestivalViewHolder.ControllerFestivalItem) context;
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mController = (FestivalViewHolder.ControllerFestivalItem) context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new FestivalAdapter(null, mController);
+        mAdapter = new FestivalAdapter(FestivalModel.getInstance().getFestivalList(), mController);
     }
 
     @Override
@@ -78,50 +69,11 @@ public class FestivalFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_festival, container, false);
         ButterKnife.bind(this, view);
 
-//        List<FestivalVO> festivalVOList = FestivalModel.getInstance().getFestivalList();
-//        mAdapter = new FestivalAdapter(festivalVOList, mController);
         rvFestivals.setAdapter(mAdapter);
-        rvFestivals.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        int gridColumnCount = getResources().getInteger(R.integer.attraction_list_grid);
+        rvFestivals.setLayoutManager(new GridLayoutManager(getContext(), gridColumnCount));
+
         return view;
     }
 
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        getActivity().getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-//    }
-
-//    @Override
-//    protected void onSendScreenHit() {
-//
-//    }
-//
-//    @Override
-//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-//        return new CursorLoader(getContext(),
-//                DestinationContract.FestivalEntry.CONTENT_URI,
-//                null,
-//                null,
-//                null,
-//                DestinationContract.FestivalEntry.COLUMN_NAME + "DESC");
-//    }
-//
-//    @Override
-//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-//        List<FestivalVO> festivalVOList = new ArrayList<>();
-//        if (data != null && data.moveToFirst()) {
-//            do {
-//                FestivalVO festivalVO = FestivalVO.parseFromCursor(data);
-//                festivalVO.setPhotos(FestivalVO.loadFestivalImagesByTitle(festivalVO.getFestivalName()));
-//                festivalVOList.add(festivalVO);
-//            } while (data.moveToNext());
-//        }
-//        mAdapter.setNewData(festivalVOList);
-//        FestivalModel.getInstance().setStoredData(festivalVOList);
-//    }
-//
-//    @Override
-//    public void onLoaderReset(Loader<Cursor> loader) {
-//
-//    }
 }

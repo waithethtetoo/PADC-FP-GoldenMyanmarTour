@@ -44,8 +44,8 @@ public class DestinationViewHolder implements View.OnClickListener {
 
     public void bindData(DestinationVO destinationVO) {
         mDestination = destinationVO;
-        tvDestinationName.setText(destinationVO.getTitle());
-        tvDestinationDesc.setText(destinationVO.getLocationVO().getCityVO().getDescription());
+        tvDestinationName.setText(mDestination.getTitle());
+        tvDestinationDesc.setText(mDestination.getLocationVO().getCityVO().getDescription());
 
         String imageUrl = destinationVO.getDestination_photos()[0];
 

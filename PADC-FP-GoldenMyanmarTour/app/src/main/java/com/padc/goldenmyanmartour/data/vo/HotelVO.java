@@ -26,79 +26,106 @@ public class HotelVO {
     @SerializedName("photos")
     private String[] photos;
 
+    @SerializedName("rating")
+    private float rating;
+
     @SerializedName("direction-to-hotel")
     private String direction;
 
     @SerializedName("phone-numbers")
     private String[] phoneNo;
 
-    @SerializedName("location")
-    private LocationVO locationVO;
+    @SerializedName("address")
+    private String address;
 
-    @SerializedName("room-prices")
-    private ArrayList<RoomPriceVO> roomPriceVOArrayList;
+    @SerializedName("city-name")
+    private String cityName;
+
+    @SerializedName("state-name")
+    private String stateName;
+
+    @SerializedName("included-services")
+    private String[] services;
+
+    @SerializedName("room-description")
+    private String[] roomDesc;
+
+    @SerializedName("charge-per-night")
+    private String[] charge;
+
+    @SerializedName("room-photos")
+    private String[] roomPhotos;
+
+    public HotelVO(int hotelId, String hotelName, String description, String[] photos, float rating, String direction, String[] phoneNo, String address, String cityName, String stateName, String[] services, String[] roomDesc, String[] charge, String[] roomPhotos) {
+        this.hotelId = hotelId;
+        this.hotelName = hotelName;
+        this.description = description;
+        this.photos = photos;
+        this.rating = rating;
+        this.direction = direction;
+        this.phoneNo = phoneNo;
+        this.address = address;
+        this.cityName = cityName;
+        this.stateName = stateName;
+        this.services = services;
+        this.roomDesc = roomDesc;
+        this.charge = charge;
+        this.roomPhotos = roomPhotos;
+    }
 
     public int getHotelId() {
         return hotelId;
-    }
-
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
     }
 
     public String getHotelName() {
         return hotelName;
     }
 
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String[] getPhotos() {
         return photos;
     }
 
-    public void setPhotos(String[] photos) {
-        this.photos = photos;
+    public float getRating() {
+        return rating;
     }
 
     public String getDirection() {
         return direction;
     }
 
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
     public String[] getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(String[] phoneNo) {
-        this.phoneNo = phoneNo;
+    public String getAddress() {
+        return address;
     }
 
-    public LocationVO getLocationVO() {
-        return locationVO;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setLocationVO(LocationVO locationVO) {
-        this.locationVO = locationVO;
+    public String getStateName() {
+        return stateName;
     }
 
-    public ArrayList<RoomPriceVO> getRoomPriceVOArrayList() {
-        return roomPriceVOArrayList;
+    public String[] getServices() {
+        return services;
     }
 
-    public void setRoomPriceVOArrayList(ArrayList<RoomPriceVO> roomPriceVOArrayList) {
-        this.roomPriceVOArrayList = roomPriceVOArrayList;
+    public String[] getRoomDesc() {
+        return roomDesc;
+    }
+
+    public String[] getCharge() {
+        return charge;
+    }
+
+    public String[] getRoomPhotos() {
+        return roomPhotos;
     }
 }

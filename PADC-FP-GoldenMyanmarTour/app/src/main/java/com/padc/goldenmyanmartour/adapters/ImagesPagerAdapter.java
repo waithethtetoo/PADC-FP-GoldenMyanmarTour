@@ -19,7 +19,6 @@ import java.util.List;
  * Created by WT on 9/5/2016.
  */
 public class ImagesPagerAdapter extends PagerAdapter {
-
     private List<String> mImages;
     private LayoutInflater mInflater;
 
@@ -34,7 +33,6 @@ public class ImagesPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-//        return 5;
         return mImages.size();
     }
 
@@ -45,18 +43,20 @@ public class ImagesPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ImageView imageView = (ImageView) mInflater.inflate(R.layout.view_item_destination_image, container, false);
-        String imageUrl = mImages.get(position);
+        ImageView ivAttraction = (ImageView) mInflater.inflate(R.layout.view_item_destination_image, container, false);
 
-        Glide.with(imageView.getContext())
+        String imageUrl = mImages.get(position);
+        Glide.with(ivAttraction.getContext())
                 .load(imageUrl)
                 .centerCrop()
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .into(imageView);
-        return imageView;
-    }
+                .placeholder(R.drawable.gmtiicon)
+                .error(R.drawable.gmtiicon)
+                .into(ivAttraction);
 
+        ((ViewPager) container).addView(ivAttraction);
+
+        return ivAttraction;
+    }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {

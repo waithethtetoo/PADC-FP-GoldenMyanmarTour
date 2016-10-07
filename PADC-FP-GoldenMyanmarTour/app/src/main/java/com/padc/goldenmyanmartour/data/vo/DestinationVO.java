@@ -18,6 +18,7 @@ import java.util.List;
  * Created by WT on 9/5/2016.
  */
 public class DestinationVO {
+
     @SerializedName("destination_id")
     private long id;
 
@@ -25,7 +26,7 @@ public class DestinationVO {
     private String title;
 
     @SerializedName("sort_order")
-    private int sort_order;
+    private String sort_order;
 
     @SerializedName("destination-photos")
     private String[] destination_photos;
@@ -55,11 +56,11 @@ public class DestinationVO {
         this.title = title;
     }
 
-    public int getSort_order() {
+    public String getSort_order() {
         return sort_order;
     }
 
-    public void setSort_order(int sort_order) {
+    public void setSort_order(String sort_order) {
         this.sort_order = sort_order;
     }
 
@@ -99,18 +100,16 @@ public class DestinationVO {
     public static void saveDestinations(List<DestinationVO> destinationLst) {
         Context context = GMTApp.getContext();
         ContentValues[] destCv = new ContentValues[destinationLst.size()];
+
         for (int index = 0; index < destinationLst.size(); index++) {
             DestinationVO destinationVO = destinationLst.get(index);
-
             destCv[index] = destinationVO.parseToContentValues();
             DestinationVO.saveDestinationImage(destinationVO.getTitle(), destinationVO.getDestination_photos());
-
             LocationVO.saveLocationByDestination(destinationVO.getTitle(), destinationVO.getLocationVO());
-            AttractionPlacesVO.saveAttractionPlaceByDestination(destinationVO.getTitle(), destinationVO.getAttractionPlacesVOs());
+            AttractionPlacesVO.saveAttractionPlaceByDestinationTitle(destinationVO.getTitle(), destinationVO.getAttractionPlacesVOs());
         }
 
         int insertedCount = context.getContentResolver().bulkInsert(DestinationContract.DestinationEntry.CONTENT_URI, destCv);
-//        Log.d(GMTApp.TAG, "Bulk inserted into destination_images table : " + insertedCount);
     }
 
     private static void saveDestinationImage(String title, String[] photos) {
@@ -131,16 +130,22 @@ public class DestinationVO {
 
     private ContentValues parseToContentValues() {
         ContentValues cv = new ContentValues();
+        cv.put(DestinationContract.DestinationEntry.COLUMN_ID, id);
         cv.put(DestinationContract.DestinationEntry.COLUMN_TITLE, title);
+        cv.put(DestinationContract.DestinationEntry.COLUMN_NOTE_TO_VISITOR, noteToVisitor);
+        cv.put(DestinationContract.DestinationEntry.COLUMN_SORTED_ORDER, sort_order);
         return cv;
     }
 
     public static DestinationVO parseFromCursor(Cursor data) {
         DestinationVO destinationVO = new DestinationVO();
+        destinationVO.id = data.getLong(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_ID));
         destinationVO.title = data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_TITLE));
         destinationVO.noteToVisitor = data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_NOTE_TO_VISITOR));
+        destinationVO.sort_order = data.getString(data.getColumnIndex(DestinationContract.DestinationEntry.COLUMN_SORTED_ORDER));
         return destinationVO;
     }
+
 
     public static String[] loadDestinationImagesByTitle(String title) {
         Context context = GMTApp.getContext();
@@ -156,6 +161,5 @@ public class DestinationVO {
         images.toArray(imageArray);
         return imageArray;
     }
-
 
 }

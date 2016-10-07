@@ -10,10 +10,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/sp_filterType"
-            android:layout_width="180dp"
-            android:layout_height="60dp" />
+        <!--<Spinner-->
+            <!--android:id="@+id/sp_filterType"-->
+            <!--android:layout_width="180dp"-->
+            <!--android:layout_height="60dp" />-->
 
         <GridView
             android:id="@+id/gv_packages"

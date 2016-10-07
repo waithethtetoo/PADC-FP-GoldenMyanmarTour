@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import de.greenrobot.event.EventBus;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,14 +33,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitDataAgent implements DestinationDataAgent {
 
     private static RetrofitDataAgent retrofitDataAgent;
-    private final DestinationApi theApi;
+    private DestinationApi theApi;
 
     public RetrofitDataAgent() {
 
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(50, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -49,7 +50,9 @@ public class RetrofitDataAgent implements DestinationDataAgent {
                 .build();
 
         theApi = retrofit.create(DestinationApi.class);
+
     }
+
 
     public static RetrofitDataAgent getInstance() {
         if (retrofitDataAgent == null) {
@@ -58,7 +61,6 @@ public class RetrofitDataAgent implements DestinationDataAgent {
         return retrofitDataAgent;
     }
 
-    // destinations
     @Override
     public void loadDestinations() {
         Call<DestinationListResponse> loadDestCall = theApi.loadDestinations(DestinationConstants.ACCESS_TOKEN);
@@ -83,78 +85,6 @@ public class RetrofitDataAgent implements DestinationDataAgent {
                 DestinationModel.getInstance().notifyErrorInLoadingDestinations(t.getMessage());
             }
         });
+
     }
-
-
-    // packages
-    @Override
-    public void loadPackages() {
-        Call<PackageListResponse> loadPackageCall = theApi.loadPackages(DestinationConstants.ACCESS_TOKEN);
-        loadPackageCall.enqueue(new Callback<PackageListResponse>() {
-            @Override
-            public void onResponse(Call<PackageListResponse> call, retrofit2.Response<PackageListResponse> response) {
-                if (response.isSuccessful()) {
-                    PackageListResponse packageListResponse = response.body();
-                    if (packageListResponse == null) {
-                        PackageModel.getInstance().notifyErrorInLoadingPackages(response.message());
-                    } else {
-                        PackageModel.getInstance().notifyPackagesLoaded(packageListResponse.getPackagesList());
-                    }
-                } else {
-                    Log.d("Data", "Unsuccessful");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PackageListResponse> call, Throwable t) {
-                PackageModel.getInstance().notifyErrorInLoadingPackages(t.getMessage());
-            }
-        });
-    }
-
-    // festivals
-    @Override
-    public void loadFestivals() {
-        Call<FestivalListResponse> loadFestivalCall = theApi.loadFestivals(DestinationConstants.ACCESS_TOKEN);
-        loadFestivalCall.enqueue(new Callback<FestivalListResponse>() {
-            @Override
-            public void onResponse(Call<FestivalListResponse> call, retrofit2.Response<FestivalListResponse> response) {
-                FestivalListResponse festivalListResponse = response.body();
-                if (festivalListResponse == null) {
-                    FestivalModel.getInstance().notifyErrorInLoadingFestivals(response.message());
-                } else {
-                    FestivalModel.getInstance().notifyFestivalsLoaded(festivalListResponse.getFestivalList());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<FestivalListResponse> call, Throwable t) {
-                FestivalModel.getInstance().notifyErrorInLoadingFestivals(t.getMessage());
-            }
-        });
-    }
-
-    // hotels
-    @Override
-    public void loadHotels() {
-        Call<HotelListResponse> loadHotelCall = theApi.loadHotels(DestinationConstants.ACCESS_TOKEN);
-        loadHotelCall.enqueue(new Callback<HotelListResponse>() {
-            @Override
-            public void onResponse(Call<HotelListResponse> call, retrofit2.Response<HotelListResponse> response) {
-                HotelListResponse hotelListResponse = response.body();
-                if (hotelListResponse == null) {
-                    HotelModel.getInstance().notifyErrorInLoadingHotels(response.message());
-                } else {
-                    HotelModel.getInstance().notifyHotelsLoaded(hotelListResponse.getHotelsList());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<HotelListResponse> call, Throwable t) {
-                HotelModel.getInstance().notifyErrorInLoadingHotels(t.getMessage());
-            }
-        });
-    }
-
-
 }

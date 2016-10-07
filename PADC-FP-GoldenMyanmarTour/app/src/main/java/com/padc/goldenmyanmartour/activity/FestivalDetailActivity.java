@@ -19,6 +19,8 @@ import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.adapters.ImagesPagerAdapter;
 import com.padc.goldenmyanmartour.components.PageIndicatorView;
+import com.padc.goldenmyanmartour.data.Models.FestivalModel;
+import com.padc.goldenmyanmartour.data.Models.HotelModel;
 import com.padc.goldenmyanmartour.data.persistence.DestinationContract;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
@@ -28,24 +30,28 @@ import com.padc.goldenmyanmartour.utils.DestinationConstants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FestivalDetailActivity extends BaseActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class FestivalDetailActivity extends BaseActivity {
 
     private static final String IE_FESTIVAL_NAME = "IE_FESTIVAL_NAME";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-//
-//    @BindView(R.id.tv_festival_name)
-//    TextView tvFestName;
+
     @BindView(R.id.tv_festival_location)
-    TextView tvFestLocation;
-    @BindView(R.id.tv_festival_month)
-    TextView tvFestStratDate;
-    @BindView(R.id.tv_festival_date)
-    TextView tvFestEndDate;
-    @BindView(R.id.tv_festival_duration)
-    TextView tvFestDuration;
+    TextView tvLocation;
+
+    @BindView(R.id.tv_start_date)
+    TextView tvStartDate;
+
+    @BindView(R.id.tv_end_date)
+    TextView tvEndDate;
+
+//    @BindView(R.id.tv_start_time)
+//    TextView tvStartTime;
+
+//    @BindView(R.id.tv_end_time)
+//    TextView tvEndTime;
+
     @BindView(R.id.tv_festival_desc)
     TextView tvFestDesc;
 
@@ -82,38 +88,43 @@ public class FestivalDetailActivity extends BaseActivity
         }
 
         mFestivalName = getIntent().getStringExtra(IE_FESTIVAL_NAME);
-        getSupportLoaderManager().initLoader(DestinationConstants.DESTINATION_LIST_LOADER_GRIDVIEW, null, this);
-    }
+        FestivalVO festivalVO = FestivalModel.getInstance().getFestivalByName(mFestivalName);
 
-    private void bindData(FestivalVO festivalVO) {
-//        tvFestName.setText(festivalVO.getFestivalName());
-        tvFestLocation.setText(festivalVO.getLocationVO().getCityVO().getName());
-        tvFestStratDate.setText(festivalVO.getFestivalPeriodVO().getStartDate());
-        tvFestEndDate.setText(festivalVO.getFestivalPeriodVO().getEndDate());
-        tvFestDuration.setText(festivalVO.getFestivalPeriodVO().getStartTime());
-        tvFestDesc.setText(festivalVO.getDescription());
+        if (festivalVO == null) {
+            throw new RuntimeException("Can't find festival with the title : " + mFestivalName);
+        } else {
+            collapsingToolbar.setTitle(mFestivalName);
 
-        piFestImageSlider.setNumPage(festivalVO.getPhotos().length);
-        ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(festivalVO.getPhotos());
-        pagerFestImages.setAdapter(pagerAdapter);
-        pagerFestImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            piFestImageSlider.setNumPage(festivalVO.getPhotos().length);
+            ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(festivalVO.getPhotos());
+            pagerFestImages.setAdapter(pagerAdapter);
+            pagerFestImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            }
+                }
 
-            @Override
-            public void onPageSelected(int position) {
-                piFestImageSlider.setCurrentPage(position);
-            }
+                @Override
+                public void onPageSelected(int position) {
+                    piFestImageSlider.setCurrentPage(position);
+                }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
+                @Override
+                public void onPageScrollStateChanged(int state) {
 
-            }
-        });
+                }
+            });
 
-        collapsingToolbar.setTitle(mFestivalName);
+            tvLocation.setText(festivalVO.getCityName() + " , " + festivalVO.getStateName());
+            tvStartDate.setText(festivalVO.getStartDate());
+//            tvStartTime.setText(festivalVO.getStartTime());
+
+            tvEndDate.setText(festivalVO.getEndDate());
+//            tvEndTime.setText(festivalVO.getEndTime());
+
+            tvFestDesc.setText(festivalVO.getDescription());
+
+        }
     }
 
     @Override
@@ -125,41 +136,11 @@ public class FestivalDetailActivity extends BaseActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case android.R.id.home:
                 finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this,
-                DestinationContract.FestivalEntry.buildFestivalUriWithName(mFestivalName),
-                null,
-                null,
-                null,
-                null);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data != null && data.moveToFirst()) {
-            //mFestival = FestivalVO.parseFromCursor(data);
-            //mFestival.setPhotos(FestivalVO.loadFestivalImagesByTitle(mFestival.getFestivalName()));
-            bindData(mFestival);
-        }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
-    }
-
-    @Override
-    protected void onSendScreenHit() {
-        super.onSendScreenHit();
-    }
-
 }

@@ -17,9 +17,10 @@
 
         <TextView
             android:id="@+id/tv_attractionPlace"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_attractionPlaces"
+            android:text="Yangon"
             android:textColor="@color/primary_text"
             android:textSize="16dp" />
     </RelativeLayout>

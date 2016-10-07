@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
  * Created by WT on 9/8/2016.
  */
 public class PackageViewHolder implements View.OnClickListener {
+
     @BindView(R.id.iv_package)
     ImageView ivPackage;
 
@@ -29,19 +30,22 @@ public class PackageViewHolder implements View.OnClickListener {
     private ControllerItem mController;
 
     public PackageViewHolder(View view, ControllerItem mController) {
+        super();
         ButterKnife.bind(this, view);
         view.setOnClickListener(this);
         this.mController = mController;
     }
 
-    public void bindData() {
-//        mPackageVO = packageVO;
-//        tvPackageName.setText(packageVO.getPackageName());
+    public void bindData(PackageVO packageVO) {
 
-        tvPackageName.setText("2 Days/1 Night From Kalaw to Inle Lake");
-//        String imageUrl = packageVO.getPhotos()[0];
+        mPackageVO = packageVO;
+
+        tvPackageName.setText(packageVO.getPackageName());
+
+        String imageUrl = packageVO.getPhotos()[0];
+
         Glide.with(ivPackage.getContext())
-                .load(R.drawable.inle)
+                .load(imageUrl)
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
@@ -50,10 +54,10 @@ public class PackageViewHolder implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        mController.onTapPackage(mPackageVO, ivPackage);
-        Intent intentToPackageDetail = PackageDetailActivity.newIntent("Yangon-Bago-Thanlyin-Yangon");
-        intentToPackageDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        GMTApp.getContext().startActivity(intentToPackageDetail);
+        mController.onTapPackage(mPackageVO, ivPackage);
+//        Intent intentToPackageDetail = PackageDetailActivity.newIntent("Yangon-Bago-Thanlyin-Yangon");
+//        intentToPackageDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        GMTApp.getContext().startActivity(intentToPackageDetail);
     }
 
     public interface ControllerItem {

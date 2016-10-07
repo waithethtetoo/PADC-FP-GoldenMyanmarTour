@@ -3,6 +3,7 @@ package com.padc.goldenmyanmartour.data.vo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
 
@@ -49,9 +50,10 @@ public class StateVO {
 
     private static StateVO parseFromCursor(Cursor cursor) {
         StateVO stateVO = new StateVO();
-        stateVO.setStateId(cursor.getLong(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_ID)));
-        stateVO.setName(cursor.getString(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_NAME)));
-        stateVO.setDescription(cursor.getString(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_DESC)));
+        stateVO.stateId = cursor.getLong(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_ID));
+        stateVO.name = cursor.getString(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_NAME));
+        stateVO.description = cursor.getString(cursor.getColumnIndex(DestinationContract.StateEntry.COLUMN_DESC));
+
         return stateVO;
     }
 
@@ -79,4 +81,6 @@ public class StateVO {
         Uri insertedUri = context.getContentResolver().insert(DestinationContract.StateEntry.CONTENT_URI, cv);
         Log.d(GMTApp.TAG, " Location Inserted Uri : " + insertedUri);
     }
+
+
 }

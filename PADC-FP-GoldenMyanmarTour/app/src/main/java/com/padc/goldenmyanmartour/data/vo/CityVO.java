@@ -49,9 +49,9 @@ public class CityVO {
 
     private static CityVO parseFromCursor(Cursor cursor) {
         CityVO cityVO = new CityVO();
-        cityVO.setName(cursor.getString(cursor.getColumnIndex(DestinationContract.CityEntry.COLUMN_NAME)));
-        cityVO.setDescription(cursor.getString(cursor.getColumnIndex(DestinationContract.CityEntry.COLUMN_DESC)));
-        cityVO.setCityId(cursor.getLong(cursor.getColumnIndex(DestinationContract.CityEntry.COLUMN_ID)));
+        cityVO.cityId = cursor.getLong(cursor.getColumnIndex(DestinationContract.CityEntry.COLUMN_ID));
+        cityVO.name = cursor.getString(cursor.getColumnIndex(DestinationContract.CityEntry.COLUMN_NAME));
+        cityVO.description = cursor.getString(cursor.getColumnIndex(DestinationContract.CityEntry.COLUMN_DESC));
         return cityVO;
     }
 
@@ -76,8 +76,8 @@ public class CityVO {
         cv.put(DestinationContract.CityEntry.COLUMN_NAME, cityVO.getName());
         cv.put(DestinationContract.CityEntry.COLUMN_DESC, cityVO.getDescription());
         cv.put(DestinationContract.CityEntry.COLUMN_DESTINATION_TITLE, title);
-
         Uri insertedUri = context.getContentResolver().insert(DestinationContract.CityEntry.CONTENT_URI, cv);
         Log.d(GMTApp.TAG, " Location Inserted Uri : " + insertedUri);
     }
+
 }

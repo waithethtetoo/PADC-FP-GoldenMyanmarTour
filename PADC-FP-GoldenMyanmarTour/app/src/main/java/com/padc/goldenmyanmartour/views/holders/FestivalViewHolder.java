@@ -21,21 +21,29 @@ import butterknife.ButterKnife;
  */
 public class FestivalViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener {
+
     @BindView(R.id.tv_festival_name)
     TextView tvFestName;
+
     @BindView(R.id.tv_festival_location)
     TextView tvFestLocation;
-    @BindView(R.id.tv_festival_month)
-    TextView tvFestMonth;
-    @BindView(R.id.tv_festival_date)
-    TextView tvFestDate;
-    @BindView(R.id.tv_festival_duration)
-    TextView tvFestDuration;
+
+    @BindView(R.id.tv_start_date)
+    TextView tvStartDate;
+
+    @BindView(R.id.tv_end_date)
+    TextView tvEndDate;
+
+//    @BindView(R.id.tv_start_time)
+//    TextView tvStartTime;
+//
+//    @BindView(R.id.tv_end_time)
+//    TextView tvEndTime;
 
     @BindView(R.id.iv_festival)
     ImageView ivFestival;
 
-    private FestivalVO festivalVO;
+    private FestivalVO mfestivalVO;
     private ControllerFestivalItem mController;
 
     public FestivalViewHolder(View view, ControllerFestivalItem controllerFestivalItem) {
@@ -45,26 +53,29 @@ public class FestivalViewHolder extends RecyclerView.ViewHolder
         mController = controllerFestivalItem;
     }
 
-    public void bindData() {
-        tvFestName.setText("Ananda Pagoda Festival");
-        tvFestLocation.setText("Khamti, Lahe, Lashi in Sagaing");
-        tvFestMonth.setText("January");
-        tvFestDate.setText("Full Moon of Pyatho to 15th Waning of Pyatho");
-        tvFestDuration.setText("15 Days");
+    public void bindData(FestivalVO festivalVO) {
+        mfestivalVO = festivalVO;
+        tvFestName.setText(festivalVO.getFestivalName());
+        tvFestLocation.setText(festivalVO.getCityName() + " , " + festivalVO.getStateName());
+        tvStartDate.setText(festivalVO.getStartDate());
+        tvEndDate.setText(festivalVO.getEndDate());
+//        tvStartTime.setText(festivalVO.getStartTime());
+//        tvEndTime.setText(festivalVO.getEndTime());
+
+
+        String images = festivalVO.getPhotos()[0];
 
         Glide.with(ivFestival.getContext())
-                .load(R.drawable.ananda_pagoda_festival)
+                .load(images)
                 .centerCrop()
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.gmtiicon)
+                .error(R.drawable.gmtiicon)
                 .into(ivFestival);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intentToFestival = FestivalDetailActivity.newIntent("Anada Pagoda Festival");
-        intentToFestival.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        GMTApp.getContext().startActivity(intentToFestival);
+        mController.onTapFestivals(mfestivalVO, ivFestival);
     }
 
     public interface ControllerFestivalItem {

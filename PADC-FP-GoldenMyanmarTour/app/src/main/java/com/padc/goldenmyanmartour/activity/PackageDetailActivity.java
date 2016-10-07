@@ -133,8 +133,8 @@ public class PackageDetailActivity extends BaseActivity {
         } else {
             collapsingToolbar.setTitle(packageVO.getPackageName());
 
-            piPackageImageSlider.setNumPage(packageVO.getPhones().length);
-            ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(packageVO.getPhones());
+            piPackageImageSlider.setNumPage(packageVO.getPhotos().length);
+            ImagesPagerAdapter pagerAdapter = new ImagesPagerAdapter(packageVO.getPhotos());
             pagerPackageImages.setAdapter(pagerAdapter);
 
             pagerPackageImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

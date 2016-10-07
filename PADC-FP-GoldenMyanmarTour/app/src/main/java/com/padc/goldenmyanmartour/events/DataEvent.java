@@ -1,6 +1,8 @@
 package com.padc.goldenmyanmartour.events;
 
+import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
+import com.padc.goldenmyanmartour.data.vo.FestivalVO;
 import com.padc.goldenmyanmartour.data.vo.PackageVO;
 
 import java.util.ArrayList;
@@ -12,23 +14,15 @@ import java.util.List;
 public class DataEvent {
 
     public static class SuccessEvent {
-        //        private DestinationVO destinationVO;
-        private ArrayList<DestinationVO> mDestinationList;
 
-//        public SuccessEvent(DestinationVO destinationVO) {
-//            this.destinationVO = destinationVO;
-//        }
+        private ArrayList<PackageVO> mPackageList;
 
-        public SuccessEvent(ArrayList<DestinationVO> destinationVOArrayList) {
-            this.mDestinationList = destinationVOArrayList;
+        public SuccessEvent(ArrayList<PackageVO> packageVOArrayList) {
+            this.mPackageList = packageVOArrayList;
         }
 
-//        public DestinationVO getDestinationVO() {
-//            return destinationVO;
-//        }
-
-        public ArrayList<DestinationVO> getmDestinationList() {
-            return mDestinationList;
+        public ArrayList<PackageVO> getmPackageList() {
+            return mPackageList;
         }
     }
 
@@ -77,6 +71,43 @@ public class DataEvent {
 
         public List<PackageVO> getPackageVOList() {
             return packageVOList;
+        }
+    }
+
+    public static class AttractionPlaceDataLoaded {
+        private String message;
+        private List<AttractionPlacesVO> attractionPlacesVOList;
+
+        public AttractionPlaceDataLoaded(String message, List<AttractionPlacesVO> attractionPlacesVOList) {
+            this.message = message;
+            this.attractionPlacesVOList = attractionPlacesVOList;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public List<AttractionPlacesVO> getAttractionPlacesVOList() {
+            return attractionPlacesVOList;
+        }
+    }
+
+
+    public static class FestivalDataLoaded {
+        private String message;
+        private List<FestivalVO> festivalVOList;
+
+        public FestivalDataLoaded(String message, List<FestivalVO> mFestivalVoList) {
+            this.message = message;
+            this.festivalVOList = mFestivalVoList;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public List<FestivalVO> getFestivalVOList() {
+            return festivalVOList;
         }
     }
 
