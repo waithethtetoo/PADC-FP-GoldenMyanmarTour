@@ -60,7 +60,7 @@
                     android:layout_marginLeft="@dimen/margin_medium"
                     android:layout_marginTop="@dimen/margin_medium"
                     android:text="@string/home_screen_title"
-                    android:textColor="@color/accent"
+                    android:textColor="@color/icons"
                     android:textSize="@dimen/screen_title_size" />
             </android.support.v7.widget.Toolbar>
 

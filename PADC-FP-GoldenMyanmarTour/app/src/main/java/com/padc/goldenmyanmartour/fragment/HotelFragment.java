@@ -97,31 +97,5 @@ public class HotelFragment extends Fragment {
 
         return rootView;
     }
-/*
-    @Override
-    public void setUserVisibleHint(boolean visible) {
-        super.setUserVisibleHint(visible);
-        if (visible && isResumed()) {
-            onResume();
-        }
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!getUserVisibleHint()) {
-            return;
-        }
-        HomeActivity mainActivity = (HomeActivity) getActivity();
-        mainActivity.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Do what you want
-                Toast.makeText(GMTApp.getContext(), "Hotel Fragment Search FAB Clicked", Toast.LENGTH_SHORT).show();
-                Intent intentToSearch = SearchActivity.newIntent("Hotel Fragment");
-                startActivity(intentToSearch);
-            }
-        });
-    }
-    */
 }

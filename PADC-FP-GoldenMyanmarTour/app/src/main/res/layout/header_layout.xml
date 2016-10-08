@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/margin_medium"
     android:orientation="vertical">
 
     <com.padc.goldenmyanmartour.components.DynamicImageView
         android:id="@+id/header_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
         android:scaleType="center"
         android:src="@drawable/gmtiicon" />
 

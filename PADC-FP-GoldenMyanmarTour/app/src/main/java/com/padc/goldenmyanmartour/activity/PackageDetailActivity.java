@@ -171,29 +171,29 @@ public class PackageDetailActivity extends BaseActivity {
             Glide.with(ivOne.getContext())
                     .load(packageVO.getDestPhotoOne())
                     .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.gmtiicon)
+                    .error(R.drawable.gmtiicon)
                     .into(ivOne);
 
             Glide.with(ivTwo.getContext())
                     .load(packageVO.getDestPhotoTwo())
                     .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.gmtiicon)
+                    .error(R.drawable.gmtiicon)
                     .into(ivTwo);
 
             Glide.with(ivThree.getContext())
                     .load(packageVO.getDestPhotoThree())
                     .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.gmtiicon)
+                    .error(R.drawable.gmtiicon)
                     .into(ivThree);
 
             Glide.with(ivFour.getContext())
                     .load(packageVO.getDestPhotoFour())
                     .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.gmtiicon)
+                    .error(R.drawable.gmtiicon)
                     .into(ivFour);
 
 
@@ -235,61 +235,6 @@ public class PackageDetailActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
-/*
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this,
-                DestinationContract.PackageEntry.buildPackageUriWithName(mPackageName),
-                null,
-                null,
-                null,
-                null);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data != null && data.moveToFirst()) {
-            packageVO = PackageVO.parseFromCursor(data);
-            packageVO.setPhotos(PackageVO.loadPackageImageByName(packageVO.getPackageName()));
-            bindData(packageVO);
-        }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
-    }
-
-
-    private void bindData(PackageVO packageVO) {
-
-        tvPackagePrice.setText(packageVO.getPrice());
-        tvPackageDescOne.setText(packageVO.getDescription());
-
-        piPackageImageSlider.setNumPage(packageVO.getPhotos().length);
-
-        String[] images = packageVO.getPhotos();
-        ImagesPagerAdapter adapter = new ImagesPagerAdapter(images);
-        pagerPackageImages.setAdapter(adapter);
-        pagerPackageImages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                piPackageImageSlider.setCurrentPage(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        collapsingToolbar.setTitle(mPackageName);
-    }
-*/
 
     @OnClick(R.id.fab_bookmark)
     public void clickOnPackageBookMark() {
@@ -319,6 +264,5 @@ public class PackageDetailActivity extends BaseActivity {
     public void clickOnShare() {
         String imageUrl = packageVO.getPhotos()[0];
         sendViaShareIntent(packageVO.getPackageName() + "-" + imageUrl);
-//        sendViaShareIntent(packageVO.getPackageName());
     }
 }

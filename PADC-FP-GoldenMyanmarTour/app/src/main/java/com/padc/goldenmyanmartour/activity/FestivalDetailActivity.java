@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
@@ -29,6 +30,7 @@ import com.padc.goldenmyanmartour.utils.DestinationConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FestivalDetailActivity extends BaseActivity {
 
@@ -142,5 +144,17 @@ public class FestivalDetailActivity extends BaseActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @OnClick(R.id.fab_bookmark)
+    public void clickOnPackageBookMark() {
+        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.fab_share)
+    public void clickOnShare() {
+        String imageUrl = mFestival.getPhotos()[0];
+        sendViaShareIntent(mFestival.getFestivalName() + "-" + imageUrl);
     }
 }

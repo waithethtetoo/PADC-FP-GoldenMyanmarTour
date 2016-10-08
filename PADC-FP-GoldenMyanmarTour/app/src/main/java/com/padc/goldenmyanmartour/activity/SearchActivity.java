@@ -78,6 +78,7 @@ public class SearchActivity extends BaseActivity {
 
         fragmentName = getIntent().getStringExtra(IE_SEARCH);
 
+//        dController = (DestinationViewHolder.ControllerDestinationItem) context;
         switch (fragmentName) {
 
             case "Home Fragment":

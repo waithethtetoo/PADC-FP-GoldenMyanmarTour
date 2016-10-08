@@ -40,6 +40,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by hp user on 9/10/2016.
@@ -77,7 +78,7 @@ public class HotelDetailActivity extends BaseActivity {
     PageIndicatorView piHotelImageSlider;
 
     private String mHotelName;
-    private HotelVO mHotel;
+    private HotelVO hotelVO;
     private HotelAdapter hotelAdapter;
     private ListViewAdapter listViewAdapter;
     private ListViewAdapter.ControllerRoomItem controllerRoomItem;
@@ -102,7 +103,7 @@ public class HotelDetailActivity extends BaseActivity {
         }
 
         mHotelName = getIntent().getStringExtra(IE_HOTEL_NAME);
-        HotelVO hotelVO = HotelModel.getInstance().getHotelsByName(mHotelName);
+        hotelVO = HotelModel.getInstance().getHotelsByName(mHotelName);
 
         if (hotelVO == null) {
             throw new RuntimeException("Can't find hotel with the title : " + mHotelName);
@@ -165,5 +166,16 @@ public class HotelDetailActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @OnClick(R.id.fab_bookmark)
+    public void clickOnPackageBookMark() {
+        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.fab_share)
+    public void clickOnShare() {
+        String imageUrl = hotelVO.getPhotos()[0];
+        sendViaShareIntent(hotelVO.getHotelName() + "-" + imageUrl);
     }
 }
