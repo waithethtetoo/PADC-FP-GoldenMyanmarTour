@@ -146,15 +146,15 @@ public class FestivalDetailActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    @OnClick(R.id.fab_bookmark)
-    public void clickOnPackageBookMark() {
-        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
-    }
-
-    @OnClick(R.id.fab_share)
-    public void clickOnShare() {
-        String imageUrl = mFestival.getPhotos()[0];
-        sendViaShareIntent(mFestival.getFestivalName() + "-" + imageUrl);
-    }
+//
+//    @OnClick(R.id.fab_bookmark)
+//    public void clickOnPackageBookMark() {
+//        Toast.makeText(GMTApp.getContext(), "Your bookmark is recorded", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @OnClick(R.id.fab_share)
+//    public void clickOnShare() {
+//        String imageUrl = mFestival.getPhotos()[0];
+//        sendViaShareIntent(mFestival.getFestivalName() + "-" + imageUrl);
+//    }
 }
