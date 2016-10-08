@@ -126,7 +126,7 @@ public class PackageDetailActivity extends BaseActivity {
         }
 
         String packageName = getIntent().getStringExtra(IE_PACKAGE_NAME);
-        PackageVO packageVO = PackageModel.getInstance().getPackageByName(packageName);
+        packageVO = PackageModel.getInstance().getPackageByName(packageName);
 
         if (packageVO == null) {
             throw new RuntimeException("Can't find package with the title : " + packageName);
@@ -317,7 +317,8 @@ public class PackageDetailActivity extends BaseActivity {
 
     @OnClick(R.id.fab_share)
     public void clickOnShare() {
-        String imageUrl = DestinationConstants.IMAGE_ROOT_DIR + packageVO.getPhotos()[0];
+        String imageUrl = packageVO.getPhotos()[0];
         sendViaShareIntent(packageVO.getPackageName() + "-" + imageUrl);
+//        sendViaShareIntent(packageVO.getPackageName());
     }
 }

@@ -1,5 +1,7 @@
 package com.padc.goldenmyanmartour.events;
 
+import android.util.Log;
+
 import com.padc.goldenmyanmartour.data.vo.AttractionPlacesVO;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.FestivalVO;
@@ -54,6 +56,21 @@ public class DataEvent {
         public List<DestinationVO> getDestinationVOList() {
             return destinationVOList;
         }
+
+        public List<DestinationVO> getDestinationListBySearchText(String searchText) {
+            //Search Here
+            List<DestinationVO> filterList = new ArrayList<>();
+            for (DestinationVO destinationVO : destinationVOList) {
+
+                if (destinationVO.getTitle().equalsIgnoreCase(searchText)) {
+                    filterList.add(destinationVO);
+                    Log.v("FilterList", destinationVO.getTitle());
+                }
+            }
+
+            return filterList;
+        }
+
     }
 
     public static class PackageDataLoaded {
@@ -71,6 +88,20 @@ public class DataEvent {
 
         public List<PackageVO> getPackageVOList() {
             return packageVOList;
+        }
+
+        public List<PackageVO> getPackageListBySearchText(String searchText) {
+            //Filter here
+            List<PackageVO> filterList = new ArrayList<>();
+            for (PackageVO packageVO : packageVOList) {
+
+                if (packageVO.getPackageName().equalsIgnoreCase(searchText)) {
+                    filterList.add(packageVO);
+                    Log.v("FilterList", packageVO.getPackageName());
+                }
+            }
+
+            return filterList;
         }
     }
 

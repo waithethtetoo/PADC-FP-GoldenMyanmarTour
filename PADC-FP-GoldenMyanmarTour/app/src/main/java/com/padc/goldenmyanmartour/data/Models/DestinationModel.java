@@ -2,6 +2,7 @@ package com.padc.goldenmyanmartour.data.Models;
 
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.data.vo.DestinationVO;
@@ -50,6 +51,21 @@ public class DestinationModel extends BaseModel {
             return destinationVO;
         }
         return null;
+    }
+
+    // action search
+    public List<DestinationVO> getDestinationListBySearchText(String searchText) {
+        //Filter here
+        List<DestinationVO> filterList = new ArrayList<>();
+        for (DestinationVO destinationVO : mDestList) {
+
+            if (destinationVO.getTitle().equalsIgnoreCase(searchText)) {
+                filterList.add(destinationVO);
+                Log.v("FilterList", destinationVO.getTitle());
+            }
+        }
+
+        return filterList;
     }
 
     public void notifyDestinationLoaded(List<DestinationVO> destinationVOList) {

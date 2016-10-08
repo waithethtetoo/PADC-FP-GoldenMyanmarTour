@@ -117,10 +117,10 @@ public class BaseActivity extends AppCompatActivity {
                 return;
             }
         }
-        Intent intent=new Intent();
+        Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        startActivityForResult(Intent.createChooser(intent,getString(R.string.select_picture)),REQUEST_SELECT_IMAGE_ABOVE_KITKAT);
+        startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), REQUEST_SELECT_IMAGE_ABOVE_KITKAT);
     }
 
     protected void showProgressDialog(String msg) {

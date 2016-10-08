@@ -1,6 +1,7 @@
 package com.padc.goldenmyanmartour.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class DestinationAdapter extends BaseAdapter {
 
-   private List<DestinationVO> destinationList;
+    private List<DestinationVO> destinationList;
     private LayoutInflater inflater;
     private DestinationViewHolder.ControllerDestinationItem controllerDestinationItem;
 
@@ -61,6 +62,22 @@ public class DestinationAdapter extends BaseAdapter {
 
         viewHolder.bindData(getItem(position));
         return convertView;
+    }
+
+
+    public List<DestinationVO> setNewDataBySearchText(List<DestinationVO> searchList, String searchText) {
+        //Filter here
+        List<DestinationVO> filterList = new ArrayList<>();
+        for (DestinationVO searchDest : searchList) {
+            if (searchDest.getTitle().equalsIgnoreCase(searchText)) {
+                filterList.add(searchDest);
+                Log.d(GMTApp.TAG, searchDest.getTitle());
+            }
+        }
+
+        destinationList = filterList;
+        notifyDataSetChanged();//framework method
+        return filterList;
     }
 
 

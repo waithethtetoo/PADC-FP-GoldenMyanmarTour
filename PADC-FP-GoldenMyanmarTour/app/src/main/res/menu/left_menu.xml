@@ -14,9 +14,9 @@
         <item
             android:id="@+id/festivals"
             android:title="@string/festivals" />
-        <item
-            android:id="@+id/plan_own_route"
-            android:title="@string/plan_your_own_route" />
+        <!--<item-->
+            <!--android:id="@+id/plan_own_route"-->
+            <!--android:title="@string/plan_your_own_route" />-->
         <item
             android:id="@+id/about_company"
             android:title="@string/about_company" />

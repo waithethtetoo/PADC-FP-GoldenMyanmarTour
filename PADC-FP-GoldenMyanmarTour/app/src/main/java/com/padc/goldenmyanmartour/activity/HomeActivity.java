@@ -203,10 +203,12 @@ public class HomeActivity extends BaseActivity
                 fab.setVisibility(View.INVISIBLE);
                 navigateToFestivalFragment();
                 return true;
+            /*
             case R.id.plan_own_route:
                 fab.setVisibility(View.INVISIBLE);
                 navigateToPlanOwnRoute();
                 return true;
+                */
             case R.id.about_company:
                 fab.setVisibility(View.INVISIBLE);
                 navigateToCompanyFragment();
