@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.DestinationDetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margin_medium_3"
+        android:layout_marginRight="@dimen/margin_medium_3">
+
+        <LinearLayout
+            android:id="@+id/linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <AutoCompleteTextView
+                android:id="@+id/searchView"
+                android:layout_width="@dimen/left_menu_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.80"
+                android:popupBackground="@color/primary_text"
+                android:textColor="@color/primary_text" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/searchView"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/searchView"
+                android:src="@drawable/ic_search_24dp" />
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/gv_search_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/linearlayout"
+            android:columnWidth="150dp"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/margin_medium"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/margin_medium"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

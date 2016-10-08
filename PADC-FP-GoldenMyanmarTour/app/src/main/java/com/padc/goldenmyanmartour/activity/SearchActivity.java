@@ -55,14 +55,11 @@ public class SearchActivity extends BaseActivity {
     GridView gvSearchResult;
 
     DestinationAdapter dAdapter;
-    PackageAdapter pAdapter;
 
     DestinationViewHolder.ControllerDestinationItem dController;
-    PackageViewHolder.ControllerItem pController;
     private String searchHint;
 
     List<DestinationVO> searchDestList;
-    List<PackageVO> searchPackageList;
 
     private Context context = GMTApp.getContext();
 
@@ -119,40 +116,7 @@ public class SearchActivity extends BaseActivity {
                 });
                 break;
 
-            case "Package Fragment":
-                searchView.setHint("Search by package destination");
-                // destination list
-                final String[] destList = {"Yangon-Bago-Thanlyin-Yangon",
-                        "Kawthaung-Taung La Bo- 115 Island-Nga Man Island-Kyun Phila-Myauk Ni-Thay Yae Island-Kawthaung",
-                        "Pindaya-Htut Ni-See Kya Inn-Yazakyi-Taung Myint Gyi-Ya Gyi",
-                        "Yangon-Thanwe-Yangon (Golfing at the most beautiful beach)",
-                        "Yangon-Bagan-Mandalay-Yangon"};
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-                        android.R.layout.simple_dropdown_item_1line, destList);
-                searchView.setThreshold(1);
-                searchView.setAdapter(adapter);
-                searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        searchHint = parent.getItemAtPosition(position).toString();
-
-                        /*search function do here */
-                        searchPackageList = PackageModel.getInstance().getPackageBySearchText(searchHint);
-
-                        ivSearch.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                gvSearchResult.setVisibility(View.VISIBLE);
-
-                                pAdapter = new PackageAdapter(searchPackageList, pController);
-                                gvSearchResult.setAdapter(pAdapter);
-                            }
-                        });
-
-                    }
-                });
-                break;
         }
     }
 
@@ -205,9 +169,5 @@ public class SearchActivity extends BaseActivity {
         List<DestinationVO> newDestList = event.getDestinationListBySearchText(searchHint);
         dAdapter.setNewDataBySearchText(newDestList, searchHint);
         dAdapter.notifyDataSetChanged();
-
-//        List<PackageVO> newPackageList = pEvent.getPackageListBySearchText(searchHint);
-//        pAdapter.setNewDataBySearchText(newPackageList, searchHint);
-//        pAdapter.notifyDataSetChanged();
     }
 }

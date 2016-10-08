@@ -1,5 +1,6 @@
 package com.padc.goldenmyanmartour.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,22 @@ public class PackageAdapter extends BaseAdapter {
 
         inflater = LayoutInflater.from(GMTApp.getContext());
         this.mController = mController;
+    }
+
+    // Search Action
+    public List<PackageVO> setNewDataBySearchText(List<PackageVO> searchList, String searchText) {
+        //Filter here
+        List<PackageVO> filterList = new ArrayList<>();
+        for (PackageVO searchPackage : searchList) {
+            if (searchPackage.getPackageName().equalsIgnoreCase(searchText)) {
+                filterList.add(searchPackage);
+                Log.d(GMTApp.TAG, searchPackage.getPackageName());
+            }
+        }
+
+        packageVOList = filterList;
+        notifyDataSetChanged();//framework method
+        return filterList;
     }
 
     @Override

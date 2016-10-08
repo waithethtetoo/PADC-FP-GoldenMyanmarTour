@@ -2,9 +2,11 @@ package com.padc.goldenmyanmartour.data.Models;
 
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.padc.goldenmyanmartour.GMTApp;
+import com.padc.goldenmyanmartour.data.vo.DestinationVO;
 import com.padc.goldenmyanmartour.data.vo.PackageVO;
 import com.padc.goldenmyanmartour.events.DataEvent;
 import com.padc.goldenmyanmartour.utils.CommonInstances;
@@ -57,9 +59,6 @@ public class PackageModel extends BaseModel {
         }
         return packageList;
     }
-//    public void loadPackages() {
-//        dataAgent.loadPackages();
-//    }
 
     public List<PackageVO> getPackageList() {
         return mPackageList;
@@ -72,6 +71,21 @@ public class PackageModel extends BaseModel {
             }
         }
         return null;
+    }
+
+    // action search
+    public List<PackageVO> getPackageBySearchText(String searchText) {
+        //Filter here
+        List<PackageVO> filterList = new ArrayList<>();
+        for (PackageVO packageVO : mPackageList) {
+
+            if (packageVO.getPackageName().equalsIgnoreCase(searchText)) {
+                filterList.add(packageVO);
+                Log.v("FilterList", packageVO.getPackageName());
+            }
+        }
+
+        return filterList;
     }
 
     /*

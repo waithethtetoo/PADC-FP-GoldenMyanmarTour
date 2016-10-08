@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.padc.goldenmyanmartour.GMTApp;
 import com.padc.goldenmyanmartour.R;
 import com.padc.goldenmyanmartour.activity.HomeActivity;
+import com.padc.goldenmyanmartour.activity.PackageSearchActivity;
 import com.padc.goldenmyanmartour.activity.SearchActivity;
 import com.padc.goldenmyanmartour.adapters.DestinationAdapter;
 import com.padc.goldenmyanmartour.adapters.PackageAdapter;
@@ -120,7 +121,7 @@ public class PackageFragment extends Fragment {
             public void onClick(View v) {
                 //Do what you want
                 Toast.makeText(GMTApp.getContext(), "Package Fragment Search FAB Clicked", Toast.LENGTH_SHORT).show();
-                Intent intentToSearch = SearchActivity.newIntent("Package Fragment");
+                Intent intentToSearch = PackageSearchActivity.newIntent("Package Fragment");
                 startActivity(intentToSearch);
             }
         });

@@ -47,7 +47,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".activity.SearchActivity" />
-
+        <activity android:name=".activity.PackageSearchActivity" />
         <activity
             android:name=".activity.FestivalDetailActivity"
             android:label="@string/festivals"
